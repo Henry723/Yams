@@ -56,6 +56,7 @@ $("#imageInput").on("change", previewFile);
       dataType: 'json',
       contentType: 'application/json',
       success: function(data){
+        $("#foodTable").empty();
         console.log(data.responses[0].fullTextAnnotation.text);
         var dataText = data.responses[0].fullTextAnnotation.text;
         var foods = ["SPINACH", "CARROTS", "GREEN PEPPERS", "CELERY", "MUSHROOMS", "MIXED PEPPERS", "POTATOES"]
@@ -66,7 +67,6 @@ $("#imageInput").on("change", previewFile);
             tData += "<tr><td>" + num + "</td><td>" + foods[key] + "</td></tr>";
           }
         }
-        $("#foodTable").innerHTML = "";
         $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Item</th></tr></thead><tbody>" + tData + "</tbody></table>");
         $("#foodTable").show();
 
