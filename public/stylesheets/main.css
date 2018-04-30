@@ -1,0 +1,82 @@
+body {
+    background-image:url('../images/4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+#carouselContent {
+  height: 40%;
+  color: rgb(75,0,130);
+  background-color: rgba(255,255,255,0.6);
+}
+
+.carousel-item h2 {
+  font-size: 80pt;
+  margin-top: 5%;
+}
+.carousel-item p {
+  font-size: 24pt;
+  margin-top: 5%;
+}
+
+#loginClick {
+  color: white;
+  background-color: rgb(75,0,130);
+  width: 20%;
+  border-radius: 0;
+  margin-top: 5%;
+}
+
+#mainForm hr {
+  background-color: white;
+  width: 50%;
+}
+#mainForm a:hover {
+  text-decoration: underline;
+}
+#registerClick {
+  font-size: 18pt;
+  color: rgb(75,0,130);
+}
+
+#registerForm {
+    display : none;
+}
+
+#loginForm {
+    display : none;
+}
+
+.submit {
+  color: white;
+  background-color: rgb(75,0,130);
+  border-radius: 0;
+  width: 75%;
+}
+
+#registerForm, #loginForm a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+  .submit {
+    width: 100%;
+  }
+  .carousel-item h2 {
+    margin-top: 17%;
+  }
+  #loginClick {
+    width: 50%;
+  }
+
+  #mainForm hr {
+    width: 75%;
+  }
+
+}

@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Receipt Scanner</title>
-    <style type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"></style>
-    <style type="text/css" rel="stylesheet" href="./stylesheets/scanner.css"></style>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipt Upload</title>
+  <link type="text/css" rel="stylesheet" href="./stylesheets/scanner.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">YAMS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <h1>Hello!</h1>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row mt-5">
+    <div class="col-8 mx-auto text-center">
+      <h1>Hello!</h1>
+      <p>Please upload your receipt:</p>
+    </div>
+    <div class="col-8 mx-auto text-center">
+      <form>
+        <div class="form-group">
+          <input class="form-control" id='imageInput' type="file">
+          <br/>
+          <img class="mt-4" src="" height="200" alt="Image preview...">
+        </div>
+        <div class="form-group">
+          <button id="submit" class="btn btn-large">SUBMIT</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="foodTable" class="table table-dark">
+  </div>
 
-    <form>
-      <div class="form-group">
-        <input id='imageInput' type="file"><br>
-        <img src="" height="200" alt="Image preview...">
-      </div>
-      <div class="form-group">
-        <button id='submit' class="btn btn-large btn-primary btn-block">Submit!</button>
-      </div>
-    </form>
 
 
 
 
-    <script
-    src="http://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./javascripts/scan.js"></script>
+
+  <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./javascripts/scan.js"></script>
 
 
-  </body>
-  </html>
+</body>
+</html>

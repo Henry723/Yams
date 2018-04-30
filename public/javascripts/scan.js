@@ -57,6 +57,18 @@ $("#imageInput").on("change", previewFile);
       contentType: 'application/json',
       success: function(data){
         console.log(data.responses[0].fullTextAnnotation.text);
+        var dataText = data.responses[0].fullTextAnnotation.text;
+        var foods = ["SPINACH", "CARROTS", "GREEN PEPPERS", "CELERY", "MUSHROOMS", "MIXED PEPPERS", "POTATOES"]
+        var tData = "";
+        for (var key in foods){
+          var num = parseInt(key) + 1;
+          if (dataText.includes(key)){
+            tData += "<tr><td>" + num + "</td><td>" + foods[key] + "</td></tr>";
+          }
+        }
+        $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Item</th></tr></thead><tbody>" + tData + "</tbody></table>");
+        $("#foodTable").show();
+
       }
     });
 
