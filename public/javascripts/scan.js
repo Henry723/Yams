@@ -66,6 +66,7 @@ $("#imageInput").on("change", previewFile);
             tData += "<tr><td>" + num + "</td><td>" + foods[key] + "</td></tr>";
           }
         }
+        $("#foodTable").innerHTML = "";
         $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Item</th></tr></thead><tbody>" + tData + "</tbody></table>");
         $("#foodTable").show();
 
