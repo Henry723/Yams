@@ -62,7 +62,7 @@ $("#imageInput").on("change", previewFile);
         var tData = "";
         for (var key in foods){
           var num = parseInt(key) + 1;
-          if (dataText.includes(key)){
+          if (dataText.includes(foods[key])){
             tData += "<tr><td>" + num + "</td><td>" + foods[key] + "</td></tr>";
           }
         }
