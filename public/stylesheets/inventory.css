@@ -1,11 +1,11 @@
-#inventoryBg {
-    background-image:url('../images/1.jpg');
+body {
+    background-image:url('../images/3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 200px;
-    text-align: center;
+    height: 100%;
 }
+
 
 #inventoryBg h1 {
     font-size: 400%;
