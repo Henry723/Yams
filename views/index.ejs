@@ -50,15 +50,15 @@
   <!--Login form-------------------------------------------->
   <div id="loginForm" class="row">
     <div class="col-8 mx-auto">
-      <form class="p-4" action="./scanner">
+      <form class="p-4" action="./user/login" method="POST">
         <div class="form-group">
-          <input type="email" class="form-control" id="emailInput" required="required" placeholder="email@example.com">
+          <input name="email" type="email" class="form-control" id="emailInput" required="required" placeholder="email@example.com">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="passwordInput" required="required"  placeholder="Password">
+          <input name="password" type="password" class="form-control" id="passwordInput" required="required"  placeholder="Password">
         </div>
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="rememberCheck">
+          <input name="remember" type="checkbox" class="form-check-input" id="rememberCheck">
           <label class="form-check-label">
             Remember me
           </label>
@@ -75,18 +75,18 @@
   <!--Signup form-------------------------------------------->
   <div id="registerForm" class="row">
     <div class="col-8 mx-auto">
-      <form class="p-4" action="./scanner">
+      <form class="p-4" action="./user/register" method="POST">
         <div class="form-group">
-          <input type="text" class="form-control" id="registerFullName" required="required" pattern="[A-Za-z]{}" placeholder="Full name">
+          <input name="name" type="text" class="form-control" id="registerFullName" required="required" pattern="[A-Za-z]{}" placeholder="Full name">
         </div>
         <div class="form-group">
-          <input type="email" class="form-control" id="registerEmail" required="required"  placeholder="Email address">
+          <input name="email" type="email" class="form-control" id="registerEmail" required="required"  placeholder="Email address">
         </div>
         <div class="form-group">
           <input type="password" class="form-control" id="registerPassword" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="registerPasswordCheck" required="required" pattern=".{}" title="Your password does not match" placeholder="Confirm Password">
+          <input name="password" type="password" class="form-control" id="registerPasswordCheck" required="required" pattern=".{}" title="Your password does not match" placeholder="Confirm Password">
         </div>
         <div class="col-8 mx-auto text-center">
           <button type="submit" class="btn submit">SUBMIT</button>
