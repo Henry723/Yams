@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var foods = ["SPINACH", "CARROTS", "GREEN PEPPERS", "CELERY", "MUSHROOMS", "MIXED PEPPERS", "POTATOES"]
-/* GET users dashboard. */
-router.get('/', function(req, res, next) {
-  /**Pass through users foodData(fridge) && foodReference data***/
+
+
+/***login user and render dashboard****/
+router.post('/login', function(req, res, next){
+  console.log(req.body.email);
+  res.render('user');
+});
+
+/***register user and render dashboard****/
+router.post('/register', function(req, res, next){
+  console.log(req.body.email);
   res.render('user');
 });
 
@@ -14,11 +22,11 @@ router.get('/allFoods', function(req, res, next) {
 });
 
 /*******adding food to fridge****/
-router.post('/', function(req, res, next){
+router.post('/newFoodItem', function(req, res, next){
 })
 
 /****delete item from fridge****/
-router.delete("/", function(req, res, next){
+router.delete("/:foodID", function(req, res, next){
 })
 
 
