@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 
-var encodedImage = "";
+  var encodedImage = "";
+  var newReceiptFoodData;
 
   function previewFile() {
     var preview = document.querySelector('img');
@@ -16,7 +17,6 @@ var encodedImage = "";
         }
       }
       encodedImage = reader.result.substring(commaPlace);
-      // console.log(encodedImage);
     }, false);
 
     if (file) {
@@ -24,30 +24,23 @@ var encodedImage = "";
     }
   }
 
-$("#imageInput").on("change", previewFile);
-
-
-
-
+  $("#imageInput").on("change", previewFile);
   $("#submit").on("click", function(e){
     e.preventDefault();
-
     var formData = {
-        "requests": [
-          {
-            "image": {
-              "content": encodedImage
-            },
-            "features": [
-              {
-                "type": "DOCUMENT_TEXT_DETECTION"
-              }
-            ]
-          }
-        ]
-      }
-
-
+      "requests": [
+        {
+          "image": {
+            "content": encodedImage
+          },
+          "features": [
+            {
+              "type": "DOCUMENT_TEXT_DETECTION"
+            }
+          ]
+        }
+      ]
+    }
 
     $.ajax({
       type: "POST",
@@ -56,20 +49,25 @@ $("#imageInput").on("change", previewFile);
       dataType: 'json',
       contentType: 'application/json',
       success: function(data){
-        $("#foodTable").empty();
-        console.log(data.responses[0].fullTextAnnotation.text);
-        var dataText = data.responses[0].fullTextAnnotation.text;
-        var foods = ["SPINACH", "CARROTS", "GREEN PEPPERS", "CELERY", "MUSHROOMS", "MIXED PEPPERS", "POTATOES"]
-        var tData = "";
-        for (var key in foods){
-          var num = parseInt(key) + 1;
-          if (dataText.includes(foods[key])){
-            tData += "<tr><td>" + num + "</td><td>" + foods[key] + "</td></tr>";
+        newReceiptFoodData = data.responses[0].fullTextAnnotation.text;
+        $.ajax({
+          type: "GET",
+          url: "/user/allFoods",
+          success: function(data){
+            var allFoods = data;
+            var receiptDataText = newReceiptFoodData;
+            $("#foodTable").empty();
+            var tData = "";
+            for (var key in allFoods){
+              var num = parseInt(key) + 1;
+              if (dataText.includes(allFoods[key])){
+                tData += "<tr><td>" + num + "</td><td>" + allFoods[key] + "</td></tr>";
+              }
+            }
+            $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Item</th></tr></thead><tbody>" + tData + "</tbody></table>");
+            $("#foodTable").show();
           }
-        }
-        $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Item</th></tr></thead><tbody>" + tData + "</tbody></table>");
-        $("#foodTable").show();
-
+        });
       }
     });
 
