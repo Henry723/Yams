@@ -5,19 +5,20 @@ var db = require('../db');
 /***login user and render dashboard****/
 router.post('/login', function (req, res, next) {
 
-    db.query("SELECT ID FROM users WHERE email=" + JSON.stringify(req.body.email), function (error, result, field) {
+    db.query("SELECT ID,full_name FROM users WHERE email=" + JSON.stringify(req.body.email), function (error, result, field) {
 
         if (error) {
             console.log(error);
         }
         else {
             var json = JSON.parse(JSON.stringify(result));
+            console.log(json);
             var userID = json[0].ID;
-
+            var userName = json[0].full_name;
+            req.session.userID = userID;
             db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + userID, function (error, result, fields) {
-
                 json = JSON.parse(JSON.stringify(result));
-                res.render('user', { json: json });
+                res.render('user', { json: json, userName: userName });
             });
         }
     });
@@ -55,14 +56,16 @@ router.get('/allFoods', function (req, res, next) {
       if (error){
         console.log(error);
       } else {
-        var json = JSON.parse(JSON.stringify(result));
-        res.send({ foods: json});
+        foods = JSON.parse(JSON.stringify(result));
+        res.send({ foods: foods});
       }
     });
 });
 
 /*******adding food to fridge****/
-router.post('/newFoodItem', function (req, res, next) {
+router.post('/addFoodItems', function (req, res, next) {
+  console.log(req.session);
+  console.log(req.body);
 });
 
 /****delete item from fridge****/
