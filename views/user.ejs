@@ -44,7 +44,7 @@
   </nav>
   <div class="row mt-5">
     <div class="col-8 mx-auto text-center">
-      <h1>Hello! <%= json[0].foodName%></h1>
+      <h1>Hello! <%= userName %></h1>
       <p>Please upload your receipt:</p>
     </div>
     <div class="col-8 mx-auto text-center">
@@ -55,12 +55,14 @@
           <img class="mt-4" src="" height="200" alt="Image preview...">
         </div>
         <div class="form-group">
-          <button id="submit" class="btn btn-large">SUBMIT</button>
+          <button id="submit" class="btn btn-large">SCAN</button>
         </div>
       </form>
     </div>
   </div>
-  <div id="foodTable" class="table table-dark">
+  <div id="scannerForm" class="">
+    <form action="./addFoodItems" method="POST">
+    </form>
   </div>
   <div id="inventoryBg" class="mh-100 text-center" >
     <h1>My Kitchen</h1>
