@@ -16,10 +16,8 @@ router.post('/login', function (req, res, next) {
 
             db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + userID, function (error, result, fields) {
 
-                res.render('user', JSON.parse(JSON.stringify(result)), function (err, html) {
-                    console.log("The user's food data sent");
-                    console.log(JSON.parse(JSON.stringify(result)));
-                 });
+                json = JSON.parse(JSON.stringify(result));
+                res.render('user', { json: json });
             });
         }
     });
@@ -39,12 +37,11 @@ router.get('/allFoods', function (req, res, next) {
 
 /*******adding food to fridge****/
 router.post('/newFoodItem', function (req, res, next) {
-})
+});
 
 /****delete item from fridge****/
 router.delete("/:foodID", function (req, res, next) {
 
-})
-
+});
 
 module.exports = router;
