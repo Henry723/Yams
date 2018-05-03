@@ -25,7 +25,25 @@ router.post('/login', function (req, res, next) {
 
 /***register user and render dashboard****/
 router.post('/register', function (req, res, next) {
-    console.log(req.body.email);
+    
+	console.log(req.body);
+    
+    var register = {
+    	"full_name": req.body.name,
+    	"email": req.body.email,
+    	"password": req.body.password
+    }
+    
+    console.log(register);
+    
+    db.query("insert into users set ?", register, function(error) {
+    	if (error) {
+    		console.log(error.message);
+    		throw error;
+    	} else {
+    		console.log("login success");
+    	}
+    });
     res.render('user');
 });
 
