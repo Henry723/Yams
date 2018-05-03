@@ -54,17 +54,18 @@ $( document ).ready(function() {
           type: "GET",
           url: "/user/allFoods",
           success: function(data){
-            var allFoods = data;
-            var receiptDataText = newReceiptFoodData;
+            var allFoods = data.foods;
+            var receiptDataText = newReceiptFoodData.toUpperCase();
             $("#foodTable").empty();
             var tData = "";
             for (var key in allFoods){
+              var item = allFoods[key];
               var num = parseInt(key) + 1;
-              if (dataText.includes(allFoods[key])){
-                tData += "<tr><td>" + num + "</td><td>" + allFoods[key] + "</td></tr>";
+              if (receiptDataText.includes(item.foodName.toUpperCase())){
+                tData += "<tr><td>" + num + "</td><td>" + item.foodName.toUpperCase() +"</td><td>" + item.averageExpiryDate + "</td></tr>";
               }
             }
-            $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Item</th></tr></thead><tbody>" + tData + "</tbody></table>");
+            $("#foodTable").append("<table><thead><tr><th scope='col'>#</th><th scope='col'>Name</th><th scope='col'>Expires in(days)</th></tr></thead><tbody>" + tData + "</tbody></table>");
             $("#foodTable").show();
           }
         });

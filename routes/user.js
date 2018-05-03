@@ -11,7 +11,7 @@ router.post('/login', function (req, res, next) {
             console.log(error);
         }
         else {
-            var json = JSON.parse(JSON.stringify(result)); 
+            var json = JSON.parse(JSON.stringify(result));
             var userID = json[0].ID;
 
             db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + userID, function (error, result, fields) {
@@ -25,17 +25,17 @@ router.post('/login', function (req, res, next) {
 
 /***register user and render dashboard****/
 router.post('/register', function (req, res, next) {
-    
+
 	console.log(req.body);
-    
+
     var register = {
     	"full_name": req.body.name,
     	"email": req.body.email,
     	"password": req.body.password
     }
-    
+
     console.log(register);
-    
+
     db.query("insert into users set ?", register, function(error) {
     	if (error) {
     		console.log(error.message);
@@ -50,7 +50,15 @@ router.post('/register', function (req, res, next) {
 /****ajax response****/
 router.get('/allFoods', function (req, res, next) {
     /**Pass through foodReference data***/
-    res.send(foods);
+    var foods;
+    db.query("SELECT * FROM foodReference", function(error, result, fields){
+      if (error){
+        console.log(error);
+      } else {
+        var json = JSON.parse(JSON.stringify(result));
+        res.send({ foods: json});
+      }
+    });
 });
 
 /*******adding food to fridge****/
