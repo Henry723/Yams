@@ -1,79 +1,280 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventory</title>
-  <link type="text/css" rel="stylesheet" href="../stylesheets/inventory.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory</title>
+
+<link type="text/css" rel="stylesheet" href="../public/stylesheets/user.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
 
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">YAMS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">YAMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Take A Photo</a>
-        </li>
-        <button class="btn btn-danger navbar-btn">+</button>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Add item</a>
-        </li>
-        <button class="btn btn-danger navbar-btn">+</button>
-      </ul>
-
-    </div>
-  </nav>
-  <div class="row mt-5">
-    <div class="col-8 mx-auto text-center">
-      <h1>Hello! <%= userName %></h1>
-      <p>Please upload your receipt:</p>
-    </div>
-    <div class="col-8 mx-auto text-center">
-      <form>
-        <div class="form-group">
-          <input class="form-control" id='imageInput' type="file">
-          <br/>
-          <img class="mt-4" src="" height="200" alt="Image preview...">
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/views/index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./about.html">Features/About</a>
+                </li>
+            </ul>
+            
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="userPageAnchor" class="nav-link" href="#">Item List</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a id="scanPageAnchor" class="nav-link" href="#">Take A Photo</a>
+                </li>
+                    
+                <li class="nav-item">
+                    <a id="addPageAnchor" class="nav-link" href="#">Add item</a>
+                </li>
+                   
+            </ul>
+            
         </div>
-        <div class="form-group">
-          <button id="submit" class="btn btn-large">SCAN</button>
+    </nav>
+    <div id="userPage">
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------- main page  ----------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    
+    <div class="row">
+        <div id="inventoryBg" class="col-12 text-center">
+            <h1>My Kitchen</h1>
         </div>
-      </form>
     </div>
-  </div>
-  <div id="scannerForm" class="">
-    <form action="./addFoodItems" method="POST">
-    </form>
-  </div>
-  <div id="inventoryBg" class="mh-100 text-center" >
-    <h1>My Kitchen</h1>
-  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col bg-danger"><form>
+                    <div class="form-group">
+                        <button id="button1" class="btn btn-lg">MEAT</button>
+                        <div id="myDropdown1">
+                            <div class="eachFood">
+                                <p class="eachFoodName">beet</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        100%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">pork</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                        60%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">chicken</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                                        10%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="w-100"></div>
+            <div class="col bg-warning"><form>
+                    <div class="form-group">
+                        <button id="button2" class="btn btn-lg">FRUIT</button>
+                        <div id="myDropdown2">
+                            <div class="eachFood">
+                                <p class="eachFoodName">beet</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        100%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">pork</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                        60%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">chicken</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                                        10%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="w-100"></div>
+            
+            <div class="col bg-success"><form>
+                    <div class="form-group">
+                        <button id="button3" class="btn btn-lg">DAIRY</button>
+                        <div id="myDropdown3">
+                            <div class="eachFood">
+                                <p class="eachFoodName">beet</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        100%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">pork</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                        60%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">chicken</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                                        10%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="w-100"></div>
+            
+            <div class="col bg-secondary"><form>
+                    <div class="form-group">
+                        <button id="button4" class="btn btn-lg">OTHER</button>
+                        <div id="myDropdown4">
+                            <div class="eachFood">
+                                <p class="eachFoodName">beet</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        100%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">pork</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                        60%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eachFood">
+                                <p class="eachFoodName">chicken</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                                        10%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../javascripts/scan.js"></script>
-
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------- Scanning ------------------------------------------------->
+<!------------------------------------------------------------------------------------------------>    
+    <div id="scanPage">
+        <div class="row mt-5">
+            <div class="col-8 mx-auto text-center">
+                <h1>Hello! <%= userName %></h1>
+                <p>Please upload your receipt:</p>
+            </div>
+            <div class="col-8 mx-auto text-center">
+                <form>
+                    <div class="form-group">
+                        <input class="form-control" id='imageInput' type="file">
+                        <br/>
+                        <img class="mt-4" src="" height="200" alt="Image preview...">
+                    </div>
+                    <div class="form-group">
+                        <button id="submit1" class="btn btn-large">SUBMIT</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        <div id="scannerForm" class="">
+        <form action="./addFoodItems" method="POST">
+        </form>
+      </div>
+    </div>
+    
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------- ADD ITEM ------------------------------------------------->
+<!------------------------------------------------------------------------------------------------> 
+    
+    <div id="addPage">
+        <div id="addFrame">
+            <p id="add"> Add item </p>
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+                
+                <div id="category" class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary btn-md active">
+                        <input type="radio" id="option1" autocomplete="off" checked> Meat
+                    </label>
+                    <label class="btn btn-secondary btn-md">
+                        <input type="radio" id="option2" autocomplete="off"> Fruit
+                    </label>
+                    <label class="btn btn-secondary btn-md">
+                        <input type="radio" id="option3" autocomplete="off"> Dairy
+                    </label>
+                    <label class="btn btn-secondary btn-md">
+                        <input type="radio" id="option3" autocomplete="off"> Other
+                    </label>
+                </div> 
+                
+                <div id="quantity" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <button id="submit" class="btn1" class="btn btn-large">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+    
+    
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../public/javascripts/user.js"></script>
+<script type="text/javascript" src="../public/javascripts/scan.js"></script>
+        
 </body>
 </html>
