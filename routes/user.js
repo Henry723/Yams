@@ -2,34 +2,19 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db');
 
+/****so messy ahhhh****/
+router.get('/login', function(req, res, next){
+  req.body.email = req.session.email;
+  db.login(req, res, next);
+});
+
 /***login user and render dashboard****/
-router.post('/login', function (req, res, next) {
-
-    db.query("SELECT ID,full_name FROM users WHERE email=" + JSON.stringify(req.body.email), function (error, result, field) {
-
-        if (error) {
-            console.log(error);
-        }
-        else {
-            var json = JSON.parse(JSON.stringify(result));
-            console.log(json);
-            var userID = json[0].ID;
-            var userName = json[0].full_name;
-            req.session.userID = userID;
-            req.session.userName = userName;
-            db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + userID, function (error, result, fields) {
-                json = JSON.parse(JSON.stringify(result));
-                console.log(json);
-                res.render('user', { json: json, userName: userName });
-            });
-        }
-    });
+router.post('/login', function(req, res, next){
+  db.login(req, res, next);
 });
 
 /***register user and render dashboard****/
 router.post('/register', function (req, res, next) {
-
-	console.log(req.body);
 
     var register = {
     	"full_name": req.body.name,
@@ -47,7 +32,9 @@ router.post('/register', function (req, res, next) {
     		console.log("login success");
     	}
     });
-    res.render('user');
+    db.login(req, res, next);
+
+
 });
 
 /****ajax response****/
@@ -86,12 +73,13 @@ router.post('/addFoodItems', function (req, res, next) {
     		console.log("addition success");
     	}
 	});
-
 	// redirect user into their dash board.
-  db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + req.session.userID, function (error, result, fields) {
-      json = JSON.parse(JSON.stringify(result));
-      res.render('user', { json: json, userName: req.session.userName });
-  });
+  // db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + req.session.userID, function (error, result, fields) {
+  //     usersFood = JSON.parse(JSON.stringify(result));
+  //     res.render('user', { usersFood: usersFood, userName: req.session.userName });
+  // });
+  req.body.email = req.session.email;
+  db.login(req, res, next);
 
 });
 

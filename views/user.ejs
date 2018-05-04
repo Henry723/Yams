@@ -22,10 +22,10 @@
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/views/index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../index">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./about.html">Features/About</a>
+                    <a class="nav-link" href="../about">Features/About</a>
                 </li>
             </ul>
 
@@ -54,21 +54,21 @@
     <div class="container">
         <div class="row">
             <div class="w-100"></div>
-            <div class="col bg-warning"><form>
+            <div class="col kitchen-orange"><form>
                     <div class="form-group">
                         <button id="button2" class="btn btn-lg">My Kitchen</button>
                         <!-- <div id="myDropdown2"> -->
-                        <% for (var i = 0; i < json.length; i++){ %>
+                        <% for (var i = 0; i < usersFood.length; i++){ %>
                             <div class="eachFood">
-                                <p class="eachFoodName"><%= json[i].foodName %></p>
+                                <p class="eachFoodName"><%= usersFood[i].foodName %></p>
                                 <div class="progress">
-                                <%  if (json[i].daysLeft < 10){ %>
+                                <%  if (usersFood[i].daysLeft < 10){ %>
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        <%= json[i].daysLeft %>
+                                        <%= usersFood[i].daysLeft %>
                                     </div>
                                 <%  } else { %>
                                     <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        <%= json[i].daysLeft %>
+                                        <%= usersFood[i].daysLeft %>
                                     </div>
                                 <%  } %>
                                 </div>
@@ -98,12 +98,12 @@
           <img class="mt-4" src="" height="200" alt="Image preview...">
         </div>
         <div class="form-group">
-          <button id="submit" class="btn btn-large">SUBMIT</button>
+          <button id="submit" class="btn btn-large">SCAN</button>
         </div>
       </form>
     </div>
   </div>
-  <div id="scannerForm" class="">
+  <div id="scannerForm" class="container">
     <form action="./addFoodItems" method="POST">
     </form>
   </div>

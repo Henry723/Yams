@@ -28,22 +28,22 @@ body {
 #button2 {
     font-weight: bold;
     font-size : 200%;
-    color: black; 
+    color: black;
     width: 100%;
     background-color:transparent;
 }
 #button3 {
     font-weight: bold;
     font-size : 200%;
-    color: black;  
-    width: 100%;  
+    color: black;
+    width: 100%;
     background-color:transparent;
 }
 #button4 {
     font-weight: bold;
     font-size : 200%;
-    color: black;  
-    width: 100%;  
+    color: black;
+    width: 100%;
     background-color:transparent;
 }
 
@@ -61,7 +61,7 @@ body {
 
 #myDropdown4 {
     display:none;
-}  
+}
 .eachFood {
     margin-top: 5%;
     font-weight:bold;
@@ -73,6 +73,9 @@ body {
 }
 .eachFoodName {
     text-align: center;
+}
+.kitchen-orange {
+  background-color: rgb(255,140,0);
 }
 /*******************************************************************************************/
 /**********************************  scanning page       *************************************/
@@ -116,7 +119,7 @@ body {
 }
 
 #category {
-    display: flex; 
+    display: flex;
     margin: 0 auto;
 }
 
