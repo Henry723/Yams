@@ -51,145 +51,30 @@
     <!------------------------------------- main page  ----------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
 
-    <div class="row">
-        <div id="inventoryBg" class="col-12 text-center">
-            <h1>My Kitchen </h1>
-        </div>
-    </div>
     <div class="container">
         <div class="row">
-            <div class="col bg-danger"><form>
-                    <div class="form-group">
-                        <button id="button1" class="btn btn-lg">MEAT</button>
-                        <div id="myDropdown1">
-                            <div class="eachFood">
-                                <p class="eachFoodName">beet</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        100%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">pork</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                        60%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">chicken</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
-                                        10%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
             <div class="w-100"></div>
             <div class="col bg-warning"><form>
                     <div class="form-group">
-                        <button id="button2" class="btn btn-lg">FRUIT</button>
-                        <div id="myDropdown2">
+                        <button id="button2" class="btn btn-lg">My Kitchen</button>
+                        <!-- <div id="myDropdown2"> -->
+                        <% for (var i = 0; i < json.length; i++){ %>
                             <div class="eachFood">
-                                <p class="eachFoodName">beet</p>
+                                <p class="eachFoodName"><%= json[i].foodName %></p>
                                 <div class="progress">
+                                <%  if (json[i].daysLeft < 10){ %>
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        <%= json[i].daysLeft %>
+                                    </div>
+                                <%  } else { %>
                                     <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        100%
+                                        <%= json[i].daysLeft %>
                                     </div>
+                                <%  } %>
                                 </div>
                             </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">pork</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                        60%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">chicken</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
-                                        10%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="w-100"></div>
-
-            <div class="col bg-success"><form>
-                    <div class="form-group">
-                        <button id="button3" class="btn btn-lg">DAIRY</button>
-                        <div id="myDropdown3">
-                            <div class="eachFood">
-                                <p class="eachFoodName">beet</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        100%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">pork</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                        60%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">chicken</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
-                                        10%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="w-100"></div>
-
-            <div class="col bg-secondary"><form>
-                    <div class="form-group">
-                        <button id="button4" class="btn btn-lg">OTHER</button>
-                        <div id="myDropdown4">
-                            <div class="eachFood">
-                                <p class="eachFoodName">beet</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        100%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">pork</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                        60%
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="eachFood">
-                                <p class="eachFoodName">chicken</p>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:10%">
-                                        10%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <%  }  %>
+                        <!-- </div> -->
                     </div>
                 </form>
             </div>
