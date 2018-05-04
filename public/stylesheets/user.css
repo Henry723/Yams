@@ -1,0 +1,149 @@
+/*******************************************************************************************/
+/*******************************  FIRST PAGE           *************************************/
+/*******************************************************************************************/
+buttonBackground {
+    background-color:rgb(0, 0, 0, 0);
+}
+
+body {
+    background-image:url('../images/3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    text-align: center;
+}
+
+#inventoryBg h1 {
+    font-size: 200%;
+}
+
+#button1 {
+    font-weight: bold;
+    font-size : 200%;
+    color: black;
+    width: 100%;
+    background-color:transparent;
+}
+#button2 {
+    font-weight: bold;
+    font-size : 200%;
+    color: black;
+    width: 100%;
+    background-color:transparent;
+}
+#button3 {
+    font-weight: bold;
+    font-size : 200%;
+    color: black;
+    width: 100%;
+    background-color:transparent;
+}
+#button4 {
+    font-weight: bold;
+    font-size : 200%;
+    color: black;
+    width: 100%;
+    background-color:transparent;
+}
+
+#myDropdown1 {
+    display:none;
+}
+
+#myDropdown2 {
+    display:none;
+}
+
+#myDropdown3 {
+    display:none;
+}
+
+#myDropdown4 {
+    display:none;
+}
+.eachFood {
+    margin-top: 5%;
+    font-weight:bold;
+    background-color: darkgrey;
+    border-radius: 10px;
+    border-style:solid;
+    border-width:5px;
+    border-color: aliceblue;
+}
+.eachFoodName {
+    text-align: center;
+}
+.kitchen-orange {
+  background-color: rgb(255,140,0);
+}
+/*******************************************************************************************/
+/**********************************  scanning page       *************************************/
+/*******************************************************************************************/
+
+#submit1 {
+  color: white;
+  background-color: rgb(75,0,130);
+  width: 100%;
+  border-radius: 0;
+}
+
+#scannerForm {
+  display: none;
+}
+
+#scannerForm .userID {
+  display: none;
+}
+
+
+#submit1 {
+    margin : 0 auto;
+}
+
+/*******************************************************************************************/
+/**********************************  add item page       *************************************/
+/*******************************************************************************************/
+
+.btn {
+  width: 25%;
+  border-radius: 0;
+}
+
+#addFrame {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+#category {
+    display: flex;
+    margin: 0 auto;
+}
+
+#add {
+    color : rgb(255, 255, 255);
+    text-align: center;
+    font-size : 150%;
+}
+
+.navbar {
+    margin-bottom : 10%;
+}
+
+#submit {
+    width : 100%;
+}
+
+#quantity {
+    margin-top: 10px;
+}
+
+#scanPage {
+    display:none;
+}
+#addPage {
+    display:none;
+}

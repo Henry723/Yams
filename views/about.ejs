@@ -5,34 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<link type="text/css" rel="stylesheet" href="../public/stylesheets/about.css">
+<link type="text/css" rel="stylesheet" href="./stylesheets/about.css">
 </head>
 
 <body>
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!--Brand-->
         <a class="navbar-brand" href="#">YAMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <!--End of brand-->
-        <!--Left side nav-->
+
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">About/Features</a>
+                    <a class="nav-link" href="../index">Home <span class="sr-only">(current)</span></a>
                 </li>
-            </ul>      
+                <li class="nav-item">
+                    <a class="nav-link" href="../about">Features/About</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="userPageAnchor" class="nav-link" href="./user/login">Item List</a>
+                </li>
+
+                <li class="nav-item">
+                    <a id="scanPageAnchor" class="nav-link" href="./user/login">Take A Photo</a>
+                </li>
+
+                <li class="nav-item">
+                    <a id="addPageAnchor" class="nav-link" href="./user/login">Add item</a>
+                </li>
+
+            </ul>
+
         </div>
-        <!--End of left side nav-->
     </nav>
     <!--End of navbar-->
-    
-    
+
+
     <!--Container-->
     <div class="container text-center">
         <!--About yams heading row-->
@@ -44,33 +57,33 @@
             </div>
         </div>
         <!--End of about yams heading row-->
-        
+
         <!--About yams row-->
         <div class="row">
             <!--Item 1-->
             <div class="col-lg-4 col-md-7 mb-4 mx-auto">
-                    <img src="../public/images/fridge.png" att="Icons made by Tracy Tam" class="mx-auto">
+                    <img src="./images/fridge.png" att="Icons made by Tracy Tam" class="mx-auto">
                     <h3 class="pt-4">Virtual Fridge</h3>
                     <p class="text-justify ">We have created this app to help users to keep track the best before date for their convinience. </p>
             </div>
             <!--Item 1-->
             <!--Item 2-->
             <div class="col-lg-4 col-md-6 mb-4 mx-auto">
-                    <img src="../public/images/clock.png" att="Icons made by Smashicons" class="mx-auto">
+                    <img src="./images/clock.png" att="Icons made by Smashicons" class="mx-auto">
                     <h3 class="pt-4">Saves Time</h3>
                     <p class="text-justify">The design for the page is simple and neat. Giving quick and easy access to their items on the go.</p>
             </div>
             <!--Item 2-->
             <!--Item 3-->
             <div class="col-lg-4 col-md-6 mb-5 mx-auto">
-                    <img src="../public/images/coins.png" att="Icons made by Good Ware" class="mx-auto">
+                    <img src="./images/coins.png" att="Icons made by Good Ware" class="mx-auto">
                     <h3 class="pt-4">Saves Money</h3>
                     <p class="text-justify">User will know if they are buying excessive food to their fridge, hence saving up money.</p>
             </div>
             <!--Item 3-->
         </div>
         <!--End of about yams row-->
-        
+
         <!--About us heading row-->
         <div class="row pt-4 pb-4 mt-4">
             <div class="mx-auto col-11">
@@ -80,40 +93,40 @@
             </div>
         </div>
         <!--End of about us heading row-->
-        
+
         <!--About us row-->
         <div class="row">
             <!--Person 1-->
             <div class="col-lg-6 col-md-6 mb-4 mx-auto">
-                <img src="../public/images/Henry.jpg" class="people rounded-circle">
+                <img src="./images/Henry.jpg" class="people rounded-circle">
                 <h3 class="pt-4">Henry</h3>
                 <p>Front end prototype UI designer</p>
             </div>
             <!--Person 1-->
             <!--Person 2-->
             <div class="col-lg-6 col-md-6 mb-4 mx-auto">
-                <img src="../public/images/Younhee.jpg" class="people rounded-circle">
+                <img src="./images/Younhee.jpg" class="people rounded-circle">
                 <h3 class="pt-4">Younhee</h3>
                 <p>Front end javascript handler</p>
             </div>
             <!--Person 2-->
             <!--Person 3-->
             <div class="col-lg-4 col-md-4 mb-4 mx-auto">
-                <img src="../public/images/Hayden.jpg" class="people rounded-circle">
+                <img src="./images/Hayden.jpg" class="people rounded-circle">
                 <h3 class="pt-4">Hayden</h3>
                 <p>Full stack database, git master</p>
             </div>
             <!--Person 3-->
             <!--Person 4-->
             <div class="col-lg-4 col-md-4 mb-4 mx-auto">
-                <img src="../public/images/Adam.jpg" class="people rounded-circle">
+                <img src="./images/Adam.jpg" class="people rounded-circle">
                 <h3 class="pt-4">Adam</h3>
                 <p>Full stack supporter</p>
             </div>
             <!--Person 4-->
             <!--Person 5-->
             <div class="col-lg-4 col-md-4 mb-4 mx-auto">
-                <img src="../public/images/Jae.jpg" class="people rounded-circle">
+                <img src="./images/Jae.jpg" class="people rounded-circle">
                 <h3 class="pt-4">Jae</h3>
                 <p>Back end security handler</p>
             </div>
@@ -122,14 +135,15 @@
         <!--End of about us row-->
     </div>
     <!--End of container-->
-    
-    
+
+
 <!--Scripts-->
 <script
 src="http://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="../javascripts/user.js"></script> -->
 <!--Scripts-->
 </body>
 </html>
