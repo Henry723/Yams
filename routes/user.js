@@ -16,6 +16,7 @@ router.post('/login', function (req, res, next) {
             var userID = json[0].ID;
             var userName = json[0].full_name;
             req.session.userID = userID;
+            req.session.userName = userName;
             db.query("SELECT foodName, daysLeft FROM usersFoodData WHERE ID=" + userID, function (error, result, fields) {
                 json = JSON.parse(JSON.stringify(result));
                 res.render('user', { json: json, userName: userName });
@@ -62,10 +63,32 @@ router.get('/allFoods', function (req, res, next) {
     });
 });
 
-/*******adding food to fridge****/
+/*******adding food to fridge ****/
 router.post('/addFoodItems', function (req, res, next) {
-  console.log(req.session);
-  console.log(req.body);
+	
+	// get userID and food info and store them into array.
+	var foods = [];
+	for (var i = 0; i < req.body.foodName.length; i++) {
+		foods.push([
+			req.session.userID,
+			req.body.foodName[i],
+			req.body.expiryDate[i]]);
+	};
+	
+	// insert food info into database.
+	db.query("insert into usersFoodData (ID, foodName, daysLeft) values ?",
+			[foods], function(error) {
+		if (error) {
+    		console.log(error.message);
+    		throw error;
+    	} else {
+    		console.log("addition success");
+    	}
+	});
+	
+	// redirect user into their dash board.
+	res.render('user', {userName: req.session.userName});
+	
 });
 
 /****delete item from fridge****/
