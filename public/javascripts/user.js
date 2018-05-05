@@ -46,6 +46,11 @@ $( document ).ready(function() {
         $("#myDropdown4").toggle();
     });
     
+    $("deleteButton").click(function(){
+        //Ajax call
+    });
+});
+    
 /********************** scan  ********************/
 
 });
