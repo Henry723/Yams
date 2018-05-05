@@ -58,13 +58,13 @@ router.post('/addFoodItems', function (req, res, next) {
 	var foods = [];
 	for (var i = 0; i < req.body.foodName.length; i++) {
 		foods.push([
-			req.session.userID,
+			req.session.email,
 			req.body.foodName[i],
 			req.body.expiryDate[i]]);
 	};
 
 	// insert food info into database.
-	db.query("insert into usersFoodData (ID, foodName, daysLeft) values ?",
+	db.query("insert into usersFoodData (email, foodName, daysLeft) values ?",
 			[foods], function(error) {
 		if (error) {
     		console.log(error.message);
@@ -85,7 +85,7 @@ router.post('/addFoodItems', function (req, res, next) {
 
 /****delete item from fridge****/
 router.delete("/:foodID", function (req, res, next) {
-
+    
 });
 
 module.exports = router;
