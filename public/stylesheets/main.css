@@ -13,7 +13,7 @@ html {
 }
 
 #carouselContent {
-  height: 45%;
+  height: 255pt;
   color: rgb(75,0,130);
   background-color: rgba(255,255,255,0.6);
 }
@@ -23,7 +23,7 @@ html {
   margin-top: 5%;
 }
 .carousel-item p {
-  font-size: 24pt;
+  font-size: 23pt;
   margin-top: 5%;
 }
 
