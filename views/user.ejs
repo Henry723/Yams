@@ -41,7 +41,7 @@
                 <li class="nav-item">
                     <a id="addPageAnchor" class="nav-link" href="#">Add item</a>
                 </li>
-
+                
             </ul>
 
         </div>
@@ -61,13 +61,10 @@
                         <% for (var i = 0; i < usersFood.length; i++){ %>
                             <div class="eachFood">
                                 <div  class="btn eachFoodName">
-                                    <p class="eachFoodName"><%= usersFood[i].foodName %></p>
+                                    <%= usersFood[i].foodName %>
                                 </div>
-                                
                                 <!--delete button-->
-                                
-                                    <button type="button" class="btn btn-danger float-right">Primary</button>
-                                
+                                <button type="button" id="deleteButton" class="btn btn-danger float-right pt-1">X</button>
                                 <!--delete button-->
                                 <div class="progress">
                                 <%  if (usersFood[i].daysLeft < 10){ %>
