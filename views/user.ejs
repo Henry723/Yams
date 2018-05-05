@@ -60,7 +60,15 @@
                         <!-- <div id="myDropdown2"> -->
                         <% for (var i = 0; i < usersFood.length; i++){ %>
                             <div class="eachFood">
-                                <p class="eachFoodName"><%= usersFood[i].foodName %></p>
+                                <div  class="btn eachFoodName">
+                                    <p class="eachFoodName"><%= usersFood[i].foodName %></p>
+                                </div>
+                                
+                                <!--delete button-->
+                                
+                                    <button type="button" class="btn btn-danger float-right">Primary</button>
+                                
+                                <!--delete button-->
                                 <div class="progress">
                                 <%  if (usersFood[i].daysLeft < 10){ %>
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
