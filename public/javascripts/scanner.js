@@ -52,7 +52,7 @@ $( document ).ready(function() {
         newReceiptFoodData = data.responses[0].fullTextAnnotation.text;
         $.ajax({
           type: "GET",
-          url: "/user/allFoods",
+          url: "/dashboard/allFoods",
           success: function(data){
             var allFoods = data.foods;
             var receiptDataText = newReceiptFoodData.toUpperCase();
