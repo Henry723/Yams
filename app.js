@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 
 var session = require('express-session')
 
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
+var homeRouter = require('./routes/home');
+var dashboardRouter = require('./routes/dashboard');
 var aboutRouter = require('./routes/about');
 
 var db = require('./db');
@@ -25,8 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/user', userRouter);
+app.use('/', homeRouter);
+app.use('/dashboard', dashboardRouter);
 app.use('/about', aboutRouter);
 
 // catch 404 and forward to error handler
