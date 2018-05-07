@@ -19,7 +19,6 @@ router.get('/allFoods', function (req, res, next) {
 /*******adding multiple foods to kitchen ****/
 router.post('/addFoodItems', function (req, res, next) {
 	// get userID and food info and store them into array.
-	// one item: string, two or more item: object
 	var foods = [];
 	if(typeof req.body.foodName === 'string') {
 		foods.push([
