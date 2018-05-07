@@ -47,9 +47,10 @@ $( document ).ready(function() {
     });
 
     $(".deleteButton").click(function(event) {
-        var foodName = event.target.parentNode.getElementsByClassName("btn eachFoodName")[0].innerHTML;
+        var clickedItem = event.target.parentNode;
+        var foodName = clickedItem.getElementsByClassName("btn eachFoodName")[0].innerHTML;
         var foodData = { food: foodName };
-
+        this.parentNode.remove();
         $.ajax({
             url: "/dashboard/delete",
             type: "DELETE",

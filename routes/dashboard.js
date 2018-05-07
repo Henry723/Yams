@@ -43,12 +43,8 @@ router.post('/addFoodItems', function (req, res, next) {
 /****delete item from fridge****/
 router.delete('/delete', function (req, res, next) {
     var foodName = req.body.food.trim();
-
     db.query("DELETE FROM usersFoodData WHERE email=" + JSON.stringify(req.session.email)
         + " AND" + " foodName=" + JSON.stringify(foodName));
-
-    req.body.email = req.session.email;
-    db.login(req, res, next);
 });
 
 module.exports = router;
