@@ -3,6 +3,7 @@ $( document ).ready(function() {
   var encodedImage = "";
   var newReceiptFoodData;
 
+
   function previewFile() {
     var preview = document.querySelector('img');
     var file    = document.querySelector('input[type=file]').files[0];
@@ -41,7 +42,6 @@ $( document ).ready(function() {
         }
       ]
     }
-
     $.ajax({
       type: "POST",
       url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDapb1kWk-XwMPyyjW1ddX66nwH6L-fXxo",
@@ -54,6 +54,7 @@ $( document ).ready(function() {
           type: "GET",
           url: "/dashboard/allFoods",
           success: function(data){
+            $("#close-loader").trigger("click");
             var allFoods = data.foods;
             var receiptDataText = newReceiptFoodData.toUpperCase();
             $("#scannerForm form").empty();
