@@ -164,3 +164,7 @@ body {
 #addPage {
     display:none;
 }
+
+.deleteButton {
+    color: black;
+}

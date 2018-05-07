@@ -46,8 +46,23 @@ $( document ).ready(function() {
         $("#myDropdown4").toggle();
     });
 
-    $("deleteButton").click(function(){
-        //Ajax call
+    $(".deleteButton").click(function(event) {
+        var foodName = event.target.parentNode.getElementsByClassName("btn eachFoodName")[0].innerHTML;
+        var foodData = { food: foodName };
+
+        $.ajax({
+            url: "/dashboard/delete",
+            type: "DELETE",
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(foodData),
+            success: function (result) {
+                console.log("deleted.");
+            },
+            error: function (status) {
+                console.log(status);
+            }
+        });
     });
 });
 
