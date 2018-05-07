@@ -63,17 +63,22 @@ $( document ).ready(function() {
               for (var key in allFoods){
                 var item = allFoods[key];
                 if (receiptDataText.includes(item.foodName.toUpperCase())){
-                  // fData += "<tr><td>" + num + "</td><td>" + item.foodName.toUpperCase() +"</td><td>" + item.averageExpiryDate + "</td></tr>";
                   fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + item.foodName.toUpperCase() + "' required></div><div class='col'><input name='expiryDate' type='number' class='form-control' value='" + item.averageExpiryDate + "' required></div></div>";
                 }
               }
-              $("#scannerForm form").append(fData + "<button type='submit' class='btn'>Submit</button>");
-              $("#scannerForm").show();
+              if (fData){
+                $("#scannerForm form").append(fData + "<button type='submit' class='btn'>Submit</button>");
+                $("#scannerForm").show();
+              } else {
+                alert("No item matches!");
+                $("#close-loader").trigger("click");
+              }
+
             }
           });
         } else {
-          $("#close-loader").trigger("click");
           alert("No text in photo!");
+          $("#close-loader").trigger("click");
         }
       }
     });
