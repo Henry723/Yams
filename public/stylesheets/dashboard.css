@@ -96,9 +96,26 @@ body {
   display: none;
 }
 
-
 #submit1 {
     margin : 0 auto;
+}
+
+#close-loader {
+  display: none;
+}
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 1s linear infinite;
+    margin: 20% auto;
+}
+/***for loader****/
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /*******************************************************************************************/
@@ -146,4 +163,8 @@ body {
 }
 #addPage {
     display:none;
+}
+
+.deleteButton {
+    color: black;
 }

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link type="text/css" rel="stylesheet" href="./stylesheets/main.css">
+  <link type="text/css" rel="stylesheet" href="./stylesheets/home.css">
 </head>
 <body>
 
@@ -50,7 +50,7 @@
   <!--Login form-------------------------------------------->
   <div id="loginForm" class="row">
     <div class="col-8 mx-auto">
-      <form class="p-4" action="./user/login" method="POST">
+      <form class="p-4" action="./login" method="POST">
         <div class="form-group">
           <input name="email" type="email" class="form-control" id="emailInput" required="required" placeholder="email@example.com">
         </div>
@@ -75,7 +75,7 @@
   <!--Signup form-------------------------------------------->
   <div id="registerForm" class="row">
     <div class="col-8 mx-auto">
-      <form class="p-4" action="./user/register" method="POST">
+      <form class="p-4" action="./register" method="POST">
         <div class="form-group">
           <input name="name" type="text" class="form-control" id="registerFullName" required="required" pattern="[A-Za-z]{}" placeholder="Full name">
         </div>
@@ -100,6 +100,6 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./javascripts/main.js"></script>
+  <script type="text/javascript" src="./javascripts/home.js"></script>
 </body>
 </html>
