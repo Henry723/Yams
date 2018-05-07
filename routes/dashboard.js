@@ -19,13 +19,21 @@ router.get('/allFoods', function (req, res, next) {
 /*******adding multiple foods to kitchen ****/
 router.post('/addFoodItems', function (req, res, next) {
 	// get userID and food info and store them into array.
+	// one item: string, two or more item: object
 	var foods = [];
-	for (var i = 0; i < req.body.foodName.length; i++) {
+	if(typeof req.body.foodName === 'string') {
 		foods.push([
 			req.session.email,
-			req.body.foodName[i],
-			req.body.expiryDate[i]]);
-	};
+			req.body.foodName,
+			req.body.expiryDate]);
+	} else {
+		for (var i = 0; i < req.body.foodName.length; i++) {
+			foods.push([
+				req.session.email,
+				req.body.foodName[i],
+				req.body.expiryDate[i]]);
+		};
+	}
 	// insert food info into database.
 	db.query("insert into usersFoodData (email, foodName, daysLeft) values ?",
 			[foods], function(error) {
