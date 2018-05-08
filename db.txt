@@ -1,19 +1,19 @@
 CREATE TABLE users (
-  userID int NOT NULL AUTO_INCREMENT,
-  full_name VARCHAR(30),
   email VARCHAR(30),
+  name VARCHAR(30),
   password VARCHAR(30),
-  PRIMARY KEY (userID)
+  PRIMARY KEY (email)
 );
 
 CREATE TABLE usersFoodData (
   foodName VARCHAR(30),
-  daysLeft int 100,
-  FOREIGN KEY (userID) REFERENCES users(userID)
+  dayIn Date,
+  dayOut Date,
+  FOREIGN KEY (email) REFERENCES users(email)
 );
 
 CREATE TABLE foodReference (
   foodName VARCHAR(30),
-  averageExpiryDays int 100,
+  expiryDate int 100,
   PRIMARY KEY (foodName)
 );
