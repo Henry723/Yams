@@ -9,11 +9,12 @@ CREATE TABLE usersFoodData (
   foodName VARCHAR(30),
   dayIn Date,
   dayOut Date,
+  email VARCHAR(30),
   FOREIGN KEY (email) REFERENCES users(email)
 );
 
 CREATE TABLE foodReference (
   foodName VARCHAR(30),
-  expiryDate int 100,
+  expiryDate int,
   PRIMARY KEY (foodName)
 );
