@@ -121,12 +121,12 @@
     <div id="addPage">
         <div id="addFrame">
             <p id="add"> Add item </p>
-            <form>
+            <form action = "./dashboard/addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" name = "food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
 
                 <div id="category" class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -146,9 +146,9 @@
 
                 <div id="quantity" class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                        <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" name = "expiryDate" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn1" class="btn btn-large">SUBMIT</button>
             </form>
