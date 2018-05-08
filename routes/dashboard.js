@@ -50,29 +50,10 @@ router.post('/addFoodItems', function (req, res, next) {
 router.post('/addSingleItem', function (req, res, next) {
 
     var foodName = req.body.food;
-    var quantity = req.body.quantity;
-    var foodType = "";
+    var date = req.body.expiryDate;
 
-    if (req.body.meat == "on") {
-        foodType = "Meat";
-    }
-
-    if (req.body.fruit == "on") {
-        foodType = "Fruit";
-    }
-
-    if (req.body.dairy == "on") {
-        foodType = "Dairy";
-    }
-
-    if (req.body.other == "on") {
-        foodType = "Other";
-    }
-
-    if (foodType == "Other") {
-        db.query("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" +  "('" + req.session.email + "', '"
-            + foodName + "', '" + quantity + "')"); 
-    }
+    db.query("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.session.email + "', '"
+        + foodName + "', '" + date + "')");
     res.redirect('/login');
 });
 
