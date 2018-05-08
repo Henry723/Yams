@@ -6,45 +6,74 @@ var db = require('../db');
 router.get('/allFoods', function (req, res, next) {
     /**Pass through foodReference data***/
     var foods;
-    db.query("SELECT * FROM foodReference", function(error, result, fields){
-      if (error){
-        console.log(error);
-      } else {
-        foods = JSON.parse(JSON.stringify(result));
-        res.send({ foods: foods});
-      }
+    db.query("SELECT * FROM foodReference", function (error, result, fields) {
+        if (error) {
+            console.log(error);
+        } else {
+            foods = JSON.parse(JSON.stringify(result));
+            res.send({ foods: foods });
+        }
     });
 });
 
 /*******adding multiple foods to kitchen ****/
 router.post('/addFoodItems', function (req, res, next) {
-	// get userID and food info and store them into array.
-	var foods = [];
-	if(typeof req.body.foodName === 'string') {
-		foods.push([
-			req.session.email,
-			req.body.foodName,
-			req.body.expiryDate]);
-	} else {
-		for (var i = 0; i < req.body.foodName.length; i++) {
-			foods.push([
-				req.session.email,
-				req.body.foodName[i],
-				req.body.expiryDate[i]]);
-		};
-	}
-	// insert food info into database.
-	db.query("insert into usersFoodData (email, foodName, daysLeft) values ?",
-			[foods], function(error) {
-		if (error) {
-    		console.log(error.message);
-    		throw error;
-    	} else {
-    		console.log("addition success");
-    	}
-	});
-  req.body.email = req.session.email;
-  db.login(req, res, next);
+    // get userID and food info and store them into array.
+    var foods = [];
+    if (typeof req.body.foodName === 'string') {
+        foods.push([
+            req.session.email,
+            req.body.foodName,
+            req.body.expiryDate]);
+    } else {
+        for (var i = 0; i < req.body.foodName.length; i++) {
+            foods.push([
+                req.session.email,
+                req.body.foodName[i],
+                req.body.expiryDate[i]]);
+        };
+    }
+    // insert food info into database.
+    db.query("insert into usersFoodData (email, foodName, daysLeft) values ?",
+        [foods], function (error) {
+            if (error) {
+                console.log(error.message);
+                throw error;
+            } else {
+                console.log("addition success");
+            }
+        });
+    req.body.email = req.session.email;
+    db.login(req, res, next);
+});
+
+router.post('/addSingleItem', function (req, res, next) {
+
+    var foodName = req.body.food;
+    var quantity = req.body.quantity;
+    var foodType = "";
+
+    if (req.body.meat == "on") {
+        foodType = "Meat";
+    }
+
+    if (req.body.fruit == "on") {
+        foodType = "Fruit";
+    }
+
+    if (req.body.dairy == "on") {
+        foodType = "Dairy";
+    }
+
+    if (req.body.other == "on") {
+        foodType = "Other";
+    }
+
+    if (foodType == "Other") {
+        db.query("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" +  "('" + req.session.email + "', '"
+            + foodName + "', '" + quantity + "')"); 
+    }
+    res.redirect('/login');
 });
 
 /****delete item from fridge****/
