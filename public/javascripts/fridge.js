@@ -3,8 +3,17 @@
 $( document ).ready(function() {
 
 /********************** nav bar  ********************/
+  $("#aboutPageAnchor").click(function(e){
+//        e.preventDefault();
+        $("#aboutPage").show();
+        $("#userPage").hide();
+        $("#scanPage").hide();
+        $("#addPage").hide();
+    });
+    
     $("#userPageAnchor").click(function(e){
 //        e.preventDefault();
+        $("#aboutPage").hide();
         $("#userPage").show();
         $("#scanPage").hide();
         $("#addPage").hide();
@@ -12,6 +21,7 @@ $( document ).ready(function() {
 
     $("#scanPageAnchor").click(function(e){
 //        e.preventDefault();
+        $("#aboutPage").hide();
         $("#userPage").hide();
         $("#scanPage").show();
         $("#addPage").hide();
@@ -19,11 +29,11 @@ $( document ).ready(function() {
 
     $("#addPageAnchor").click(function(e){
 //        e.preventDefault();
+        $("#aboutPage").hide();
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").show();
     });
-
 
 /********************** user page  ********************/
     $("#button1").click(function(e){
