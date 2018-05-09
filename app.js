@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session')
 
 var homeRouter = require('./routes/home');
-var dashboardRouter = require('./routes/dashboard');
+var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
 
 var db = require('./db');
@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
-app.use('/dashboard', dashboardRouter);
+app.use('/fridge', fridgeRouter);
 app.use('/about', aboutRouter);
 
 // catch 404 and forward to error handler

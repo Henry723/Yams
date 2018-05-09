@@ -39,6 +39,7 @@ connection.login = function (req, res, next) {
             else
             {
                 var userName = rows[0][0].value;
+                console.log(userName);
                 req.session.userName = userName;
                 req.session.email = req.body.email;
             }
@@ -57,7 +58,7 @@ connection.login = function (req, res, next) {
                     }
                     else {
                         var usersFood = rows;
-                        res.render('dashboard', { usersFood: usersFood, userName: req.body.userName });
+                        res.render('fridge', { usersFood: usersFood, userName: req.session.userName });
                     }
                 }));
         });

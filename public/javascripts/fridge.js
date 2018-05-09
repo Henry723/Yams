@@ -52,7 +52,7 @@ $( document ).ready(function() {
         var foodData = { food: foodName };
         this.parentNode.remove();
         $.ajax({
-            url: "/dashboard/delete",
+            url: "/fridge/delete",
             type: "DELETE",
             dataType: 'json',
             contentType: "application/json",
