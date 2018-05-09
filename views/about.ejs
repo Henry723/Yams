@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - About</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="./stylesheets/about.css">
 </head>
@@ -11,7 +12,7 @@
 <body>
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">YAMS</a>
+        <a class="navbar-brand" href="">YAMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,15 +26,15 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a id="userPageAnchor" class="nav-link" href="./login">My Kitchen</a>
+                    <a id="userPageAnchor" class="nav-link" href="./fridge/login">My Fridge</a>
                 </li>
 
                 <li class="nav-item">
-                    <a id="scanPageAnchor" class="nav-link" href="./login">Scan Receipt</a>
+                    <a id="scanPageAnchor" class="nav-link" href="./fridge/login">Scan Receipt</a>
                 </li>
 
                 <li class="nav-item">
-                    <a id="addPageAnchor" class="nav-link" href="./login">Add Single Item</a>
+                    <a id="addPageAnchor" class="nav-link" href="./fridge/login">Add Single Item</a>
                 </li>
 
             </ul>
@@ -49,8 +50,13 @@
         <div class="row pt-4 pb-4">
             <div class="mx-auto col-11">
                 <h1 class="display-4">About Yams</h1>
-                <p class="big">------------- * -------------<br>
+                <div class="row">
+                    <div class="col"><hr></div>
+                    <div class="col-auto"><i class="fas fa-square"></i></div>
+                    <div class="col"><hr></div>
+                    <p class="big pb-5">
                     Yams is a mobile web application that helps you keep track of what's in your kitchen while you're out shopping! It also sends you notifications before your food expires so you can reduce food waste!</p>
+                </div>
             </div>
         </div>
         <!--End of about yams heading row-->
@@ -85,9 +91,15 @@
         <div class="row pt-4 pb-4 mt-4">
             <div class="mx-auto col-11">
                 <h1 class="display-4">About Us</h1>
-                <p class="big">------------- * -------------<br>
+                <div class="row">
+                    <div class="col"><hr></div>
+                    <div class="col-auto"><i class="fas fa-square"></i>
+                    </div>
+                    <div class="col"><hr></div>
+                    <p class="big pb-5">
                     Our team consists of five highly passionate and skilled students who recently teamed up to tackle this food waste issue. We hope Yams can help you in your life!
                 </p>
+                </div>
             </div>
         </div>
         <!--End of about us heading row-->
@@ -141,7 +153,7 @@ src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../javascripts/dashboard.js"></script>
+<!-- <script type="text/javascript" src="../javascripts/fridge.js"></script> -->
 <!--Scripts-->
 </body>
 </html>

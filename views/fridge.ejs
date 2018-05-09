@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yams - <%= userName %></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">YAMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../about">About</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
+                </li>
+
+                <li class="nav-item">
+                    <a id="scanPageAnchor" class="nav-link" href="#">Scan Receipt</a>
+                </li>
+
+                <li class="nav-item">
+                    <a id="addPageAnchor" class="nav-link" href="#">Add Single Item</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    <div id="userPage">
+    <!------------------------------------------------------------------------------------------------>
+    <!-- main page  ----------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+
+    <div class="container">
+        <div class="row">
+            <div class="w-100"></div>
+            <div class="col kitchen-orange"><form>
+                    <div class="form-group">
+                        <h2 id="button2" >My Fridge</h2>
+                        <!-- <div id="myDropdown2"> -->
+                        <% for (var i = 0; i < usersFood.length; i++){ %>
+                            <div class="eachFood">
+                                <div  class="btn eachFoodName">
+                                    <%= usersFood[i][0].value%>
+                                </div>
+                                <!--delete button-->
+                                <button type="button" class="btn btn-danger float-right pt-1 deleteButton">X</button>
+                                <!--delete button-->
+                                <div class="progress">
+                                <%  if (usersFood[i][1].value < 10){ %>
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        <%= usersFood[i][1].value%>
+                                    </div>
+                                <%  } else { %>
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        <%= usersFood[i][1].value %>
+                                    </div>
+                                <%  } %>
+                                </div>
+                            </div>
+                        <%  }  %>
+                        <!-- </div> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<!------------------------------------------------------------------------------------------------>
+<!--- Scanning ------------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+<div id="scanPage">
+  <div class="row mt-5">
+    <div class="col-8 mx-auto text-center">
+      <p>Please upload your receipt:</p>
+    </div>
+    <div class="col-8 mx-auto text-center">
+      <form>
+        <div class="form-group">
+          <input class="form-control" id='imageInput' type="file">
+          <br/>
+          <img class="mt-4" src="" height="200" alt="Image preview...">
+        </div>
+        <div class="form-group">
+          <button id="submit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
+    <div class="loader modal-dialog" role="document">
+      <button id="close-loader" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+  <div id="scannerForm" class="container">
+    <form action="./addFoodItems" method="POST">
+    </form>
+  </div>
+</div>
+
+<!------------------------------------------------------------------------------------------------>
+<!-- ADD ITEM ------------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+
+    <div id="addPage">
+        <div id="addFrame">
+            <p id="add"> Add item </p>
+            <form action = "./addSingleItem" method = "POST">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                    </div>
+                    <input type="text" name = "food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div id="ExpiryDate" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
+                    </div>
+                    <input type="date" name = "expiryDate" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <button id="submit" class="btn1" class="btn btn-large">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../javascripts/fridge.js"></script>
+<script type="text/javascript" src="../javascripts/scanner.js"></script>
+
+</body>
+</html>
