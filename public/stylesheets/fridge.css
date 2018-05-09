@@ -5,13 +5,17 @@ buttonBackground {
     background-color:rgb(0, 0, 0, 0);
 }
 
-body {
+html {
     background-image:url('../images/3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100%;
+    min-height: 100%;
     text-align: center;
+}
+
+body {
+    background-color: transparent;
 }
 
 #inventoryBg h1 {

@@ -19,4 +19,17 @@ $(document).ready(function(){
         $("#loginForm").show();
     });
 
+    var password = document.getElementById("registerPassword")
+    , confirm_password = document.getElementById("registerPasswordCheck");
+    
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+    
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
 });

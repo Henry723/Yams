@@ -62,7 +62,7 @@ html {
   width: 75%;
 }
 
-#registerForm, #loginForm a:hover {
+#registerForm a:hover, #loginForm a:hover {
   text-decoration: underline;
 }
 
