@@ -111,11 +111,21 @@ router.post('/addFoodItems', function (req, res, next) {
 
 router.post('/addSingleItem', function (req, res, next) {
 
+    var dateInstance = new Date();
+    var currentDateStr = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate();
+
+    var designatedDate = new Date(req.body.expiryDate);
+    var currentDate = new Date(currentDateStr);
+
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+
+    var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+
     var foodName = req.body.food;
     var date = req.body.expiryDate;
 
     request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.session.email + "', '"
-        + foodName.toUpperCase() + "', '" + date + "')",
+        + foodName.toUpperCase() + "', '" + daysLeft + "')",
 
         function (err, rowCount, rows) {
             if (err) {
@@ -128,7 +138,7 @@ router.post('/addSingleItem', function (req, res, next) {
     db.execSql(request);
 
     request.on("requestCompleted", function () {
-        res.redirect('/login');
+        res.redirect('/fridge/login');
     });
 });
 
@@ -150,7 +160,7 @@ router.delete('/delete', function (req, res, next) {
     db.execSql(request);
 
     request.on("requestCompleted", function () {
-        res.redirect('/login');
+        res.redirect('/fridge/login');
     });
 });
 
