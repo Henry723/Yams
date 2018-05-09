@@ -18,7 +18,11 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(session({secret: "puppy"}));
+app.use(session({
+  secret: "puppy",
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
