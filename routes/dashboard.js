@@ -1,50 +1,76 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
+var Request = require('tedious').Request;
 
 /****Get all food reference table****/
 router.get('/allFoods', function (req, res, next) {
     /**Pass through foodReference data***/
     var foods;
-    db.query("SELECT * FROM foodReference", function (error, result, fields) {
+
+    request = new Request("SELECT * FROM foodReference", function (error, rowCount, rows) {
         if (error) {
             console.log(error);
-        } else {
-            foods = JSON.parse(JSON.stringify(result));
+        }
+        else {
+            foods = rows
             res.send({ foods: foods });
         }
-    });
+    }
+    );
+
+    db.execSql(request);
 });
 
 /*******adding multiple foods to kitchen ****/
 router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
     var foods = [];
+    
     if (typeof req.body.foodName === 'string') {
         foods.push([
             req.session.email,
             req.body.foodName,
             req.body.expiryDate]);
-    } else {
+    }
+    else {
         for (var i = 0; i < req.body.foodName.length; i++) {
             foods.push([
                 req.session.email,
                 req.body.foodName[i],
                 req.body.expiryDate[i]]);
-        };
+        }
     }
+    var sql = "(";
+    for (var i = 0; i < foods.length; i++) {
+        sql += "'" + foods[i][0] + "'"; //email
+        sql += ", ";
+        sql += "'" + foods[i][1] + "'"; //food name
+        sql += ", ";
+        sql += "'" + foods[i][2] + "')"; //daysLeft (for now)
+
+        if (i != foods.length - 1) {
+            sql += ", (";
+        }
+    }
+
     // insert food info into database.
-    db.query("insert into usersFoodData (email, foodName, daysLeft) values ?",
-        [foods], function (error) {
-            if (error) {
-                console.log(error.message);
-                throw error;
-            } else {
-                console.log("addition success");
-            }
-        });
+    request = new Request("INSERT INTO usersFoodData(email, foodName, daysLeft) VALUES " + sql , function (error) {
+        if (error) {
+            console.log(error.message);
+            throw error;
+        }
+        else {
+            console.log("addition success");
+        }
+    });
+
+    db.execSql(request);
+
     req.body.email = req.session.email;
-    db.login(req, res, next);
+    request.on('requestCompleted', function () {
+        db.login(req, res, next);
+    });
 });
 
 router.post('/addSingleItem', function (req, res, next) {
