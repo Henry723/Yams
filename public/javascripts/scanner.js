@@ -50,26 +50,36 @@ $( document ).ready(function() {
       contentType: 'application/json',
       success: function(data){
         if ('fullTextAnnotation' in data.responses[0]){
-          newReceiptFoodData = data.responses[0].fullTextAnnotation.text;
+            newReceiptFoodData = data.responses[0].fullTextAnnotation.text;
+
           $.ajax({
             type: "GET",
             url: "/dashboard/allFoods",
-            success: function(data){
+            success: function (data) {
+
               $("#close-loader").trigger("click");
               var allFoods = data.foods;
               var receiptDataText = newReceiptFoodData.toUpperCase();
+            
               $("#scannerForm form").empty();
+
               var fData = "";
-              for (var key in allFoods){
-                var item = allFoods[key];
-                if (receiptDataText.includes(item.foodName.toUpperCase())){
-                  fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + item.foodName.toUpperCase() + "' required></div><div class='col'><input name='expiryDate' type='number' class='form-control' value='" + item.averageExpiryDate + "' required></div></div>";
+                for (var i = 0; i < allFoods.length; i++) {
+                    var foodName = allFoods[i][0].value;
+                    var expiryDate = allFoods[i][1].value;
+
+                    
+                if (receiptDataText.includes(foodName.toUpperCase())) {
+                  fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + foodName + "' required></div><div class='col'><input name='expiryDate' type='number' class='form-control' value='" + expiryDate + "' required></div></div>";
                 }
               }
+            
               if (fData){
                 $("#scannerForm form").append(fData + "<button type='submit' class='btn'>Submit</button>");
                 $("#scannerForm").show();
-              } else {
+              }
+
+              else {
                 alert("No item matches!");
                 $("#close-loader").trigger("click");
               }

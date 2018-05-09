@@ -56,19 +56,19 @@
                         <% for (var i = 0; i < usersFood.length; i++){ %>
                             <div class="eachFood">
                                 <div  class="btn eachFoodName">
-                                    <%= usersFood[i].foodName %>
+                                    <%= usersFood[i][0].value%>
                                 </div>
                                 <!--delete button-->
                                 <button type="button" class="btn btn-danger float-right pt-1 deleteButton">X</button>
                                 <!--delete button-->
                                 <div class="progress">
-                                <%  if (usersFood[i].daysLeft < 10){ %>
+                                <%  if (usersFood[i][1].value < 10){ %>
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        <%= usersFood[i].daysLeft %>
+                                        <%= usersFood[i][1].value%>
                                     </div>
                                 <%  } else { %>
                                     <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                        <%= usersFood[i].daysLeft %>
+                                        <%= usersFood[i][1].value %>
                                     </div>
                                 <%  } %>
                                 </div>
