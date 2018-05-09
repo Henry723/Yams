@@ -54,13 +54,13 @@ $( document ).ready(function() {
 
           $.ajax({
             type: "GET",
-            url: "/dashboard/allFoods",
+            url: "/fridge/allFoods",
             success: function (data) {
 
               $("#close-loader").trigger("click");
               var allFoods = data.foods;
               var receiptDataText = newReceiptFoodData.toUpperCase();
-            
+
               $("#scannerForm form").empty();
 
               var fData = "";
@@ -68,12 +68,12 @@ $( document ).ready(function() {
                     var foodName = allFoods[i][0].value;
                     var expiryDate = allFoods[i][1].value;
 
-                    
+
                 if (receiptDataText.includes(foodName.toUpperCase())) {
                   fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + foodName + "' required></div><div class='col'><input name='expiryDate' type='number' class='form-control' value='" + expiryDate + "' required></div></div>";
                 }
               }
-            
+
               if (fData){
                 $("#scannerForm form").append(fData + "<button type='submit' class='btn'>Submit</button>");
                 $("#scannerForm").show();
