@@ -25,7 +25,7 @@ connection.on('connect', function (err) {
     }
 });
 
-connection.login = function (req, res, next) {
+connection.getUserFoodData = function (req, res, next) {
     console.log('Reading rows from the Table...');
 
     // Read all rows from table
