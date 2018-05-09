@@ -114,16 +114,44 @@ router.post('/addSingleItem', function (req, res, next) {
     var foodName = req.body.food;
     var date = req.body.expiryDate;
 
-    db.query("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.session.email + "', '"
-        + foodName + "', '" + date + "')");
-    res.redirect('/login');
+    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.session.email + "', '"
+        + foodName.toUpperCase() + "', '" + date + "')",
+
+        function (err, rowCount, rows) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("data added");
+            }
+        });
+    db.execSql(request);
+
+    request.on("requestCompleted", function () {
+        res.redirect('/login');
+    });
 });
 
 /****delete item from fridge****/
 router.delete('/delete', function (req, res, next) {
+
     var foodName = req.body.food.trim();
-    db.query("DELETE FROM usersFoodData WHERE email=" + JSON.stringify(req.session.email)
-        + " AND" + " foodName=" + JSON.stringify(foodName));
+    request = new Request("DELETE FROM usersFoodData WHERE email=" + "'" + req.session.email + "'"
+        + " AND" + " foodName=" + "'" + foodName + "'",
+
+        function (err, rowCount, rows) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("data deleted");
+            }
+        });
+    db.execSql(request);
+
+    request.on("requestCompleted", function () {
+        res.redirect('/login');
+    });
 });
 
 module.exports = router;
