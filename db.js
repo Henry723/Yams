@@ -23,7 +23,7 @@ connection.login = function (req, res, next) {
             connection.query("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + JSON.stringify(req.body.email),
                 function (error, result, fields) {
                     var usersFood = JSON.parse(JSON.stringify(result));
-                    res.render('dashboard', { usersFood: usersFood, userName: userName });
+                    res.redirect('about', { usersFood: usersFood, userName: userName });
                 });
         }
     });
