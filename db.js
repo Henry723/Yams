@@ -1,32 +1,66 @@
 ﻿var express = require('express');
-var mysql = require('mysql');
+var Connection = require('tedious').Connection;
+var Request = require('tedious').Request;
 
-var connection = mysql.createConnection({
-    host: "sql3.freemysqlhosting.net",
-    user: "sql3235670",
-    password: "jdxZ7a9s55",
-    database: "sql3235670"
+var config =
+    {
+        userName: 'yamsAdmin',
+        password: 'yamsRoot1234',
+        server: 'yamssserver.database.windows.net',
+        options:
+            {
+                database: 'yamsDB',
+                encrypt: true,
+                rowCollectionOnRequestCompletion: true
+            }
+    }
+
+var connection = new Connection(config);
+
+connection.on('connect', function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("connected");
+    }
 });
 
-connection.connect();
-
 connection.login = function (req, res, next) {
-    connection.query("SELECT full_name FROM users WHERE email=" + JSON.stringify(req.body.email), function (error, result, field) {
-        if (error) {
-            console.log(error);
+    console.log('Reading rows from the Table...');
+
+    // Read all rows from table
+    request = new Request("SELECT name FROM users WHERE email=" + "'" + req.body.email + "'",
+        function (err, rowCount, rows)
+        {
+            if (err)
+            {
+                console.log(err);
+            }
+            else
+            {
+                var userName = rows[0][0].value;
+                req.session.userName = userName;
+                req.session.email = req.body.email;
+            }
         }
-        else {
-            var json = JSON.parse(JSON.stringify(result));
-            var userName = json[0].full_name;
-            req.session.userName = userName;
-            req.session.email = req.body.email;
-            connection.query("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + JSON.stringify(req.body.email),
-                function (error, result, fields) {
-                    var usersFood = JSON.parse(JSON.stringify(result));
-                    res.render('dashboard', { usersFood: usersFood, userName: userName });
-                });
-        }
-    });
+    );
+    connection.execSql(request);
+
+    request.on('requestCompleted',
+        function ()
+        {
+            connection.execSql(new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.body.email + "'",
+                function (err, rowCount, rows)
+                {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        var usersFood = rows;
+                        res.render('dashboard', { usersFood: usersFood, userName: req.body.userName });
+                    }
+                }));
+        });
 }
 
 module.exports = connection;
