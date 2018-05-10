@@ -226,3 +226,10 @@ body {
 .deleteButton {
     color: black;
 }
+
+#easterModal {
+    position:absolute;
+    margin:0 auto;
+    padding:0;
+    border: 0;
+}
