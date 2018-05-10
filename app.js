@@ -6,6 +6,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var session = require('express-session')
+var flash = require("connect-flash");
 
 var homeRouter = require('./routes/home');
 var fridgeRouter = require('./routes/fridge');
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);
