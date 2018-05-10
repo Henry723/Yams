@@ -237,6 +237,8 @@ body {
     padding:0;
     border: 0;
 }
+
+
 .notificationSettingButton {
     background-image: url( '../images/cog.png' );
     background-size: 45px 45px;
@@ -247,8 +249,18 @@ body {
     border: none;
     cursor:pointer;
     overflow: hidden;
-    margin-right: 20px;
     margin-bottom: 10px;
-    
+}
+
+#notificationFrame {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+#notificationSettingPage {
+    display: none;
 }
 
