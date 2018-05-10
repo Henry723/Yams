@@ -13,7 +13,8 @@ router.get('/login', function(req, res, next){
 router.post('/login',
 		authLocal.authenticate('local-login', {
 			successRedirect: './getUserFoodData',
-			failureRedirect: '../'
+			failureRedirect: '../',
+			failureFlash: true
 		}));
 
 router.get('/getUserFoodData', function(req, res, next) {
