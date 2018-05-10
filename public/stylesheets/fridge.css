@@ -128,7 +128,24 @@ body {
     background-color: lightgrey;
 
 }
-
+#fridgeDiv{
+    border-style: solid;
+    border-color: rgb(133, 193, 233);
+    border-width: 10px;
+    border-radius: 5%;
+}
+#fridgeHead{
+    font-family: 'Skranji', cursive;
+}
+#fridgeButton{
+    border-radius: 5%;
+}
+.numberOfList {
+    font-family: 'Skranji', cursive;
+    font-size: 150%;
+    text-align: center;
+    border-radius: 5%;
+}
 .numberOfList:nth-child(odd){
     background-color: rgb(240, 240, 245);
 }
