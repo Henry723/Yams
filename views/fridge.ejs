@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - <%= userName %></title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
@@ -95,16 +96,16 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- ADD ITEM ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-
+    <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
     <div id="addPage">
         <div id="addFrame">
             <p id="add"> Add item </p>
-            <form action = "./addSingleItem" method = "POST">
+            <form id="submitForm" action = "./addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                     </div>
-                    <input type="text" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input id="foodNameInput" type="text" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
 
                 <div id="ExpiryDate" class="input-group mb-3">
@@ -231,6 +232,7 @@
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../javascripts/fridge.js"></script>
