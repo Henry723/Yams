@@ -62,7 +62,7 @@ $( document ).ready(function() {
               var receiptDataText = newReceiptFoodData.toUpperCase();
 
               $("#scannerForm form").empty();
-
+              var d = new Date(Date.now());
               var fData = "";
                 for (var i = 0; i < allFoods.length; i++) {
                     var foodName = allFoods[i][0].value;
@@ -72,12 +72,15 @@ $( document ).ready(function() {
                     // var mm
 
                 if (receiptDataText.includes(foodName.toUpperCase())) {
-                  fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + foodName + "' required></div><div class='col'><input name='expiryDate' type='number' class='form-control' value='" + expiryDate + "' required></div></div>";
+                  var dm = ((d.getMonth() + 1) > 9) ? (d.getMonth() + 1) : "0" + (d.getMonth() + 1);
+                  var dd = (d.getDate() > 9) ? d.getDate() : "0" + d.getDate();
+                  var dateStr = d.getFullYear() + "-" + dm + "-" + dd;
+                  fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + foodName + "' required></div><div class='col'><input name='expiryDate' type='date' class='form-control' value='" + dateStr + "' required></div></div>";
                 }
               }
 
               if (fData){
-                $("#scannerForm form").append(fData + "<button type='submit' class='btn'>Submit</button>");
+                $("#scannerForm form").append(fData + "<button id='scannerFormSubmit' type='submit' class='mt-4 btn btn-large'>Submit</button>");
                 $("#scannerForm").show();
               }
 

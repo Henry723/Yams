@@ -1,8 +1,20 @@
 
 
 $( document ).ready(function() {
+//    || "uni" || "hayden" || "jae" || "henry"
 
+    $("#submitForm").submit(function(e){
+        var inputValue = $("#foodNameInput").val();
+        if(inputValue == "Adam" || inputValue == "Uni" || inputValue == "Jay"
+          || inputValue == "Hayden" || inputValue == "Henry"){
+            $("#easterModal").modal({
+                 
+            });
+            e.preventDefault();
+        }
+    });
 /********************** nav bar  ********************/
+    
   $("#aboutPageAnchor").click(function(e){
 //        e.preventDefault();
         $("#aboutPage").show();
@@ -77,6 +89,8 @@ $( document ).ready(function() {
             }
         });
     });
+    
+    
 });
 
 /********************** scan  ********************/

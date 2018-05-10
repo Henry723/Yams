@@ -5,6 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - <%= userName %></title>
+<link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
@@ -46,16 +48,16 @@
     <!-- main page  ----------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
 
-    <div>
-    <div>
-         <h1 class="list-group-item" id="fridgeHead">Fridge</h1>
-    </div>
+    <div id="fridgeDiv">
         <div>
-        <ul class="list-group">
-        <% for (var i = 0; i < usersFood.length; i++){ %>
-            <li class="numberOfList" class="list-group-item"><%= usersFood[i][0].value%><button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button></li>
-        <%  }  %>
-        </ul>
+            <h1 class="list-group-item" id="fridgeHead">Fridge</h1>
+        </div>
+        <div>
+            <ul class="list-group">
+                <% for (var i = 0; i < usersFood.length; i++){ %>
+                <li class="numberOfList" class="list-group-item"><%= usersFood[i][0].value%><button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button></li>
+                <%  }  %>
+            </ul>
         </div>
     </div>
     </div>
@@ -65,15 +67,15 @@
 <!------------------------------------------------------------------------------------------------>
 <div id="scanPage">
   <div class="row mt-5">
-    <div class="col-8 mx-auto text-center">
+    <div class="col-12 mx-auto text-center">
       <p>Please upload your receipt:</p>
     </div>
-    <div class="col-8 mx-auto text-center">
+    <div class="col-12 mx-auto text-center">
       <form>
         <div class="form-group">
           <input class="form-control-file" id='imageInput' type="file">
           <br/>
-          <img class="mt-4" src="" height="200" alt="Image preview...">
+          <img class="mt-4" src="" height="400" alt="Image preview...">
         </div>
         <div class="form-group">
           <button id="submit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
@@ -86,7 +88,7 @@
       <button id="close-loader" data-dismiss="modal">Close</button>
     </div>
   </div>
-  <div id="scannerForm" class="container">
+  <div id="scannerForm" class="col-12 mx-auto addItemsForm">
     <form action="./addFoodItems" method="POST">
     </form>
   </div>
@@ -95,16 +97,16 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- ADD ITEM ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-
+    <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
     <div id="addPage">
         <div id="addFrame">
             <p id="add"> Add item </p>
-            <form action = "./addSingleItem" method = "POST">
+            <form id="submitForm" action = "./addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                     </div>
-                    <input type="text" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input id="foodNameInput" type="text" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
 
                 <div id="ExpiryDate" class="input-group mb-3">
@@ -112,11 +114,13 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
                     </div>
 					<% var dateInstance = new Date()%>
-					<% var currentDate = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate()%>
-                    <input type="date" name="expiryDate" value=<%= currentDate%> min=<%= currentDate%>
+					<% var currentDate = "" + dateInstance.getFullYear()%>
+					<% currentDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1)%>
+					<% currentDate += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() : "-0" + dateInstance.getDate()%>
+                    <input type="date" name="expiryDate" value=<%= currentDate%> min=<%= currentDate%> 
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <button id="submit" class="btn1" class="btn btn-large">SUBMIT</button>
+                <button id="submit" class="btn btn-large">SUBMIT</button>
             </form>
         </div>
     </div>
@@ -233,6 +237,7 @@
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../javascripts/fridge.js"></script>
