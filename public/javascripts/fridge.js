@@ -57,10 +57,12 @@ $( document ).ready(function() {
     });
 
     $(".deleteButton").click(function(event) {
-        var clickedItem = event.target.parentNode;
-        var foodName = clickedItem.getElementsByClassName("btn eachFoodName")[0].innerHTML;
+        var parentTag = event.target.parentNode;
+        var foodName = parentTag.innerText.slice(0, parentTag.innerText.length - 1);
+
         var foodData = { food: foodName };
         this.parentNode.remove();
+
         $.ajax({
             url: "/fridge/delete",
             type: "DELETE",
