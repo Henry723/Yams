@@ -8,7 +8,7 @@ $( document ).ready(function() {
         if(inputValue == "Adam" || inputValue == "Uni" || inputValue == "Jay"
           || inputValue == "Hayden" || inputValue == "Henry"){
             $("#easterModal").modal({
-                 
+                
             });
             e.preventDefault();
         }

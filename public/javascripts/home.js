@@ -18,7 +18,8 @@ $(document).ready(function(){
         $("#registerForm").hide();
         $("#loginForm").show();
     });
-
+    
+    
     var password = document.getElementById("registerPassword")
     , confirm_password = document.getElementById("registerPasswordCheck");
     
