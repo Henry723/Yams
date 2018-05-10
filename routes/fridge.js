@@ -117,6 +117,7 @@ router.post('/addFoodItems', function (req, res, next) {
 
 router.post('/addSingleItem', function (req, res, next) {
 
+    console.log("entered");
     var dateInstance = new Date();
     var currentDateStr = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate();
 
@@ -130,7 +131,7 @@ router.post('/addSingleItem', function (req, res, next) {
     var foodName = req.body.food;
     var date = req.body.expiryDate;
 
-    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.session.email + "', '"
+    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.user.email + "', '"
         + foodName.toUpperCase() + "', '" + daysLeft + "')",
 
         function (err, rowCount, rows) {
@@ -152,7 +153,7 @@ router.post('/addSingleItem', function (req, res, next) {
 router.delete('/delete', function (req, res, next) {
 
     var foodName = req.body.food.trim();
-    request = new Request("DELETE FROM usersFoodData WHERE email=" + "'" + req.session.email + "'"
+    request = new Request("DELETE FROM usersFoodData WHERE email=" + "'" + req.user.email + "'"
         + " AND" + " foodName=" + "'" + foodName + "'",
 
         function (err, rowCount, rows) {
@@ -164,10 +165,7 @@ router.delete('/delete', function (req, res, next) {
             }
         });
     db.execSql(request);
-
-    request.on("requestCompleted", function () {
-        res.redirect('/fridge/login');
-    });
+    res.end();
 });
 
 module.exports = router;
