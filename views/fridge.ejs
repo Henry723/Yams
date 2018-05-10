@@ -53,7 +53,7 @@
         <div>
         <ul class="list-group">
         <% for (var i = 0; i < usersFood.length; i++){ %>
-            <li class="numberOfList" class="list-group-item"><%= usersFood[i][0].value%><button class="btn btn-outline-danger" id="fridgeButton" type="button">X</button></li>
+            <li class="numberOfList" class="list-group-item"><%= usersFood[i][0].value%><button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button></li>
         <%  }  %>
         </ul>
         </div>
@@ -104,14 +104,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
                     </div>
-                    <input type="text" name = "food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
 
                 <div id="ExpiryDate" class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
                     </div>
-                    <input type="date" name = "expiryDate" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="date" name="expiryDate" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn btn-large">SUBMIT</button>
             </form>
