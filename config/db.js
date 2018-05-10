@@ -13,7 +13,7 @@ var config =
                 encrypt: true,
                 rowCollectionOnRequestCompletion: true
             }
-    }
+    };
 
 var connection = new Connection(config);
 
@@ -29,39 +29,19 @@ connection.getUserFoodData = function (req, res, next) {
     console.log('Reading rows from the Table...');
 
     // Read all rows from table
-    request = new Request("SELECT name FROM users WHERE email=" + "'" + req.body.email + "'",
-        function (err, rowCount, rows)
-        {
-            if (err)
+    getUserFoodDataRequest = new Request ("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
+    		function (err, rowCount, rows)
             {
-                console.log(err);
+                if (err) {
+                    console.log(err);
+                } else {
+                    var usersFood = rows;
+                    console.log(usersFood);
+                    res.render('fridge', { usersFood: usersFood, userName: req.user.name });
+                }
             }
-            else
-            {
-                var userName = rows[0][0].value;
-                console.log(userName);
-                req.session.userName = userName;
-                req.session.email = req.body.email;
-            }
-        }
     );
-    connection.execSql(request);
-
-    request.on('requestCompleted',
-        function ()
-        {
-            connection.execSql(new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.body.email + "'",
-                function (err, rowCount, rows)
-                {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        var usersFood = rows;
-                        res.render('fridge', { usersFood: usersFood, userName: req.session.userName });
-                    }
-                }));
-        });
+    connection.execSql(getUserFoodDataRequest);
 }
 
 module.exports = connection;
