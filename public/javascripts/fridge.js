@@ -21,7 +21,8 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").hide();
-        $("#notificationPage").hide();
+        $("#notificationPageAnchor").hide();
+      $("#notificationSettingPage").hide();
     });
     
     $("#userPageAnchor").click(function(e){
@@ -30,7 +31,8 @@ $( document ).ready(function() {
         $("#userPage").show();
         $("#scanPage").hide();
         $("#addPage").hide();
-        $("#notificationPage").show();
+        $("#notificationPageAnchor").show();
+        $("#notificationSettingPage").hide();
     });
 
     $("#scanPageAnchor").click(function(e){
@@ -39,7 +41,8 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").show();
         $("#addPage").hide();
-        $("#notificationPage").show();
+        $("#notificationPageAnchor").show();
+        $("#notificationSettingPage").hide();
     });
 
     $("#addPageAnchor").click(function(e){
@@ -48,13 +51,18 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").show();
-        $("#notificationPage").show();
+        $("#notificationPageAnchor").show();
+        $("#notificationSettingPage").hide();
     });
     
 /******************* notification button  ********************/
-     $("#notificationPage").click(function(e){
+     $("#notificationPageAnchor").click(function(e){
 //        e.preventDefault();
-        
+        $("#aboutPage").hide();
+        $("#userPage").hide();
+        $("#scanPage").hide();
+        $("#addPage").hide();
+        $("#notificationSettingPage").show();
     });
 
 /********************** user page  ********************/
