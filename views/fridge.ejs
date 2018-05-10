@@ -113,7 +113,7 @@
                     </div>
 					<% var dateInstance = new Date()%>
 					<% var currentDate = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate()%>
-                    <input type="date" name="expiryDate" value=<%= currentDate%> min=<%= currentDate%> 
+                    <input type="date" name="expiryDate" value=<%= currentDate%> min=<%= currentDate%>
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn1" class="btn btn-large">SUBMIT</button>
@@ -226,32 +226,6 @@
     </div>
     <!--End of container-->
 
-    <div id="notifications" class="row mx-auto">
-      <div class="col-8">
-        <p> Notification Settings </p>
-        <form action = "./notifications" method = "POST">
-          <div class="form-group">
-            <div class="custom-control custom-control-inline custom-checkbox">
-              <input name="by-email" type="checkbox" class="custom-control-input" id="by-email">
-              <label class="custom-control-label" for="by-email">By Email</label>
-            </div>
-            <div class="custom-control custom-control-inline custom-checkbox">
-              <input name="by-sms" type="checkbox" class="custom-control-input" id="sms">
-              <label class="custom-control-label" for="sms">By SMS</label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="phoneNumber">Phone:</label>
-            <input id="phoneNumber" class="col-7 ml-2 text-center" type="tel" name="phone" placeholder="888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"/>
-          </div>
-          <div class="form-group">
-            <label class="col-8" for="notice">How many days notice before your food expires?</label>
-            <input type="number" class="col-3" form-control" id="notice" value="3" min="1" max="14" step="1">
-          </div>
-          <button class="btn btn-large">SUBMIT</button>
-        </form>
-      </div>
-      </div>
 
 
 

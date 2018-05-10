@@ -16,8 +16,8 @@ var db = require('./config/db');
 var passport = require('./config/authLocal');
 var app = express();
 var mail = require('./notify');
-mail.setupNodemailer();
-mail.checkForAlarms();
+// mail.setupNodemailer();
+// mail.checkForAlarms();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

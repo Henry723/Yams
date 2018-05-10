@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('../config/db');
+var db = require('./config/db');
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
 var mail = {};

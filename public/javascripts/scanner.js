@@ -67,7 +67,9 @@ $( document ).ready(function() {
                 for (var i = 0; i < allFoods.length; i++) {
                     var foodName = allFoods[i][0].value;
                     var expiryDate = allFoods[i][1].value;
-
+                    console.log(expiryDate);
+                    // var dd = (expiryDate.getDate())
+                    // var mm
 
                 if (receiptDataText.includes(foodName.toUpperCase())) {
                   fData += "<div class='row'><div class='col'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" + foodName + "' required></div><div class='col'><input name='expiryDate' type='number' class='form-control' value='" + expiryDate + "' required></div></div>";
