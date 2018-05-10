@@ -57,7 +57,7 @@
         <%  }  %>
         </ul>
         </div>
-    </div>  
+    </div>
     </div>
 
 <!------------------------------------------------------------------------------------------------>
@@ -71,7 +71,7 @@
     <div class="col-8 mx-auto text-center">
       <form>
         <div class="form-group">
-          <input class="form-control" id='imageInput' type="file">
+          <input class="form-control-file" id='imageInput' type="file">
           <br/>
           <img class="mt-4" src="" height="200" alt="Image preview...">
         </div>
@@ -132,11 +132,11 @@
                     <div class="col"><hr></div>
                     <p class="big pb-5">
                         Yams is a mobile web application that helps you keep track of what's in your kitchen while you're out shopping! It also sends you notifications before your food expires so you can reduce food waste!</p>
-                </div>  
+                </div>
             </div>
         </div>
         <!--End of about yams heading row-->
-        
+
         <!--About yams row-->
         <div class="row">
             <!--Item 1-->
@@ -162,9 +162,9 @@
             <!--Item 3-->
         </div>
         <!--End of about yams row-->
-        
+
         <!--About us heading row-->
-    
+
         <div class="row pt-4 pb-4 mt-4">
             <div class="mx-auto col-11">
                 <h1 class="display-4">About Us</h1>
@@ -180,7 +180,7 @@
             </div>
         </div>
         <!--End of about us heading row-->
-        
+
         <!--About us row-->
         <div class="row">
             <!--Person 1-->
@@ -221,8 +221,36 @@
         </div>
         <!--End of about us row-->
     </div>
-    <!--End of container-->    
-    
+    <!--End of container-->
+
+    <div id="notifications" class="row mx-auto">
+      <div class="col-8">
+        <p> Notification Settings </p>
+        <form action = "./notifications" method = "POST">
+          <div class="form-group">
+            <div class="custom-control custom-control-inline custom-checkbox">
+              <input name="by-email" type="checkbox" class="custom-control-input" id="by-email">
+              <label class="custom-control-label" for="by-email">By Email</label>
+            </div>
+            <div class="custom-control custom-control-inline custom-checkbox">
+              <input name="by-sms" type="checkbox" class="custom-control-input" id="sms">
+              <label class="custom-control-label" for="sms">By SMS</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone:</label>
+            <input id="phoneNumber" class="col-7 ml-2 text-center" type="tel" name="phone" placeholder="888 888 8888" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="12"/>
+          </div>
+          <div class="form-group">
+            <label class="col-8" for="notice">How many days notice before your food expires?</label>
+            <input type="number" class="col-3" form-control" id="notice" value="3" min="1" max="14" step="1">
+          </div>
+          <button class="btn btn-large">SUBMIT</button>
+        </form>
+      </div>
+      </div>
+
+
 
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
