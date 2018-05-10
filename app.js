@@ -11,7 +11,7 @@ var homeRouter = require('./routes/home');
 var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
 
-var db = require('./db');
+var db = require('./config/db');
 var app = express();
 
 // view engine setup
