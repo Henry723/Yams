@@ -62,50 +62,7 @@ body {
     font-size: 200%;
 }
 
-#button1 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button2 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button3 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button4 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
 
-#myDropdown1 {
-    display:none;
-}
-
-#myDropdown2 {
-    display:none;
-}
-
-#myDropdown3 {
-    display:none;
-}
-
-#myDropdown4 {
-    display:none;
-}
 .eachFood {
     margin-top: 5%;
     font-weight:bold;
@@ -128,7 +85,24 @@ body {
     background-color: lightgrey;
 
 }
-
+#fridgeDiv{
+    border-style: solid;
+    border-color: rgb(44, 62, 80);
+    border-width: 10px;
+    border-radius: 5%;
+}
+#fridgeHead{
+    font-family: 'Skranji', cursive;
+}
+#fridgeButton{
+    border-radius: 5%;
+}
+.numberOfList {
+    font-family: 'Skranji', cursive;
+    font-size: 150%;
+    text-align: center;
+    border-radius: 5%;
+}
 .numberOfList:nth-child(odd){
     background-color: rgb(240, 240, 245);
 }
@@ -160,6 +134,15 @@ body {
 
 #close-loader {
   display: none;
+}
+#loaderModal.modal {
+  background-color: rgba(255,255,255,0);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
@@ -254,11 +237,6 @@ body {
     padding:0;
     border: 0;
 }
-
-/*******************************************************************************************/
-/********************************** notification button     *************************************/
-/*******************************************************************************************/
-
 .notificationSettingButton {
     background-image: url( '../images/cog.png' );
     background-size: 50px 50px;
@@ -273,3 +251,4 @@ body {
     margin-bottom: 20px;
     
 }
+
