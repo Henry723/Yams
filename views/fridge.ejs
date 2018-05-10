@@ -142,12 +142,12 @@
     <div id="notificationSettingPage">
         <div id="notificationFrame">
             <p> Notification Setting </p>
-            <form id="saveNotification" action = "" method = "POST">
+            <form id="saveNotification" action = "./notificationSet" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Set in the day before notification</span>
                     </div>
-                    <input id="foodNameInput" type="number" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input id="foodNameInput" type="number" name="days" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn btn-large">Save</button>
             </form>
