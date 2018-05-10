@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var db = require('../config/db');
 var Request = require('tedious').Request;
 
 /****Redirect to userdashboard - so messy ahhhh****/
 router.get('/login', function(req, res, next){
   req.body.email = req.session.email;
-  db.login(req, res, next);
+  db.getUserFoodData(req, res, next);
 });
 
 /***login user and render dashboard****/
 router.post('/login', function(req, res, next){
-  db.login(req, res, next);
+  db.getUserFoodData(req, res, next);
 });
 
 /***register user and render dashboard****/
@@ -35,7 +35,7 @@ router.post('/register', function (req, res, next) {
     db.execSql(request);
 
     db.request.on('requestCompleted', function () {
-        db.login(req, res, next);
+        db.getUserFoodData(req, res, next);
     });
 });
 
@@ -105,7 +105,7 @@ router.post('/addFoodItems', function (req, res, next) {
 
     req.body.email = req.session.email;
     request.on('requestCompleted', function () {
-        db.login(req, res, next);
+        db.getUserFoodData(req, res, next);
     });
 });
 
