@@ -72,19 +72,44 @@ router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
 	console.log("addfooditems: ", req.user);
     var foods = [];
-
     if (typeof req.body.foodName === 'string') {
-        foods.push([
-            req.user.email,
-            req.body.foodName,
-            req.body.expiryDate]);
+      var dateInstance = new Date();
+      var currentDateStr = "" + dateInstance.getFullYear();
+      currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
+      "-0" + (dateInstance.getMonth() + 1);
+      currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
+      "-0" + dateInstance.getDate();
+      const ONE_DAY = 1000 * 60 * 60 * 24;
+      var designatedDate = new Date(req.body.expiryDate);
+      var currentDate = new Date(currentDateStr);
+      var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+      foods.push([
+        req.user.email,
+        req.body.foodName,
+        currentDateStr,
+        req.body.expiryDate,
+        daysLeft,
+      ]);
     }
     else {
         for (var i = 0; i < req.body.foodName.length; i++) {
+          var dateInstance = new Date();
+          var currentDateStr = "" + dateInstance.getFullYear();
+          currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
+              "-0" + (dateInstance.getMonth() + 1);
+          currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
+              "-0" + dateInstance.getDate();
+          const ONE_DAY = 1000 * 60 * 60 * 24;
+          var designatedDate = new Date(req.body.expiryDate[i]);
+          var currentDate = new Date(currentDateStr);
+          var daysLeft = (designatedDate - currentDate) / ONE_DAY;
             foods.push([
                 req.user.email,
                 req.body.foodName[i],
-                req.body.expiryDate[i]]);
+                currentDateStr,
+                req.body.expiryDate[i],
+                daysLeft,
+            ]);
         }
     }
     var sql = "(";
@@ -93,7 +118,11 @@ router.post('/addFoodItems', function (req, res, next) {
         sql += ", ";
         sql += "'" + foods[i][1] + "'"; //food name
         sql += ", ";
-        sql += "'" + foods[i][2] + "')"; //daysLeft (for now)
+        sql += "'" + foods[i][2] + "'"; //dayIn
+        sql += ", ";
+        sql += "'" + foods[i][3] + "'"; //dayOut
+        sql += ", ";
+        sql += "'" + foods[i][4] + "')"; //daysLeft
 
         if (i != foods.length - 1) {
             sql += ", (";
@@ -101,7 +130,7 @@ router.post('/addFoodItems', function (req, res, next) {
     }
 
     // insert food info into database.
-    request = new Request("INSERT INTO usersFoodData(email, foodName, daysLeft) VALUES " + sql , function (error) {
+    request = new Request("INSERT INTO usersFoodData(email, foodName, dayIn, dayOut, daysLeft) VALUES " + sql , function (error) {
         if (error) {
             console.log(error.message);
             throw error;
