@@ -75,6 +75,12 @@ $( document ).ready(function() {
             }
         });
     });
+    
+    $("#submit").click(function(){
+        if ($("input[name*='food']").val("adam")) {
+            console.log("adam");
+        }
+    })
 });
 
 /********************** scan  ********************/
