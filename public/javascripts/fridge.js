@@ -22,7 +22,7 @@ $( document ).ready(function() {
         $("#scanPage").hide();
         $("#addPage").hide();
         $("#notificationPageAnchor").hide();
-      $("#notificationSettingPage").hide();
+        $("#notificationSettingPage").hide();
     });
     
     $("#userPageAnchor").click(function(e){
