@@ -113,7 +113,9 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
                     </div>
 					<% var dateInstance = new Date()%>
-					<% var currentDate = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate()%>
+					<% var currentDate = "" + dateInstance.getFullYear()%>
+					<% currentDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1)%>
+					<% currentDate += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() : "-0" + dateInstance.getDate()%>
                     <input type="date" name="expiryDate" value=<%= currentDate%> min=<%= currentDate%> 
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>

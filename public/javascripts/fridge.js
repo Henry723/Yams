@@ -5,8 +5,8 @@ $( document ).ready(function() {
 
     $("#submitForm").submit(function(e){
         var inputValue = $("#foodNameInput").val();
-        if(inputValue == "adam" || inputValue == "uni" || inputValue == "jay"
-          || inputValue == "hayden" || inputValue == "henry"){
+        if(inputValue == "Adam" || inputValue == "Uni" || inputValue == "Jay"
+          || inputValue == "Hayden" || inputValue == "Henry"){
             $("#easterModal").modal({
                  
             });

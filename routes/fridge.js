@@ -123,13 +123,20 @@ router.post('/addSingleItem', function (req, res, next) {
     var foodName = req.body.food;
 
     var dateInstance = new Date();
-    var currentDateStr = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate();
+    var currentDateStr = "" + dateInstance.getFullYear();
+    currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
+        "-0" + (dateInstance.getMonth() + 1);
+    currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
+        "-0" + dateInstance.getDate();
 
     const ONE_DAY = 1000 * 60 * 60 * 24;
     var designatedDate = new Date(req.body.expiryDate);
     var currentDate = new Date(currentDateStr);
-
+    console.log(currentDateStr);
+    console.log(req.body.expiryDate);
     var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+
+    console.log(daysLeft);
 
 
     request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.user.email + "', '"
