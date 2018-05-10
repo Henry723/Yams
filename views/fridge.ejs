@@ -65,15 +65,15 @@
 <!------------------------------------------------------------------------------------------------>
 <div id="scanPage">
   <div class="row mt-5">
-    <div class="col-8 mx-auto text-center">
+    <div class="col-12 mx-auto text-center">
       <p>Please upload your receipt:</p>
     </div>
-    <div class="col-8 mx-auto text-center">
+    <div class="col-12 mx-auto text-center">
       <form>
         <div class="form-group">
           <input class="form-control" id='imageInput' type="file">
           <br/>
-          <img class="mt-4" src="" height="200" alt="Image preview...">
+          <img class="mt-4" src="" height="400" alt="Image preview...">
         </div>
         <div class="form-group">
           <button id="submit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
@@ -86,7 +86,7 @@
       <button id="close-loader" data-dismiss="modal">Close</button>
     </div>
   </div>
-  <div id="scannerForm" class="container">
+  <div id="scannerForm" class="col-12 mx-auto addItemsForm">
     <form action="./addFoodItems" method="POST">
     </form>
   </div>
@@ -116,7 +116,7 @@
                     <input type="date" name="expiryDate" value=<%= currentDate%> min=<%= currentDate%> 
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <button id="submit" class="btn1" class="btn btn-large">SUBMIT</button>
+                <button id="submit" class="btn btn-large">SUBMIT</button>
             </form>
         </div>
     </div>

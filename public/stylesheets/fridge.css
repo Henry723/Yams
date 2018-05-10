@@ -176,6 +176,22 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+.addItemsForm {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+.addItemsForm .form-control-plaintext {
+  color: white;
+}
+
+#scannerFormSubmit {
+  width: 100%;
+}
+
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/

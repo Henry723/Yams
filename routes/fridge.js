@@ -41,7 +41,10 @@ router.post('/register', function (req, res, next) {
     db.execSql(request);
 
     db.request.on('requestCompleted', function () {
-        db.getUserFoodData(req, res, next);
+      authLocal.authenticate('local-login', {
+        successRedirect: './getUserFoodData',
+        failureRedirect: '../'
+      });
     });
 });
 
@@ -147,7 +150,7 @@ router.post('/addSingleItem', function (req, res, next) {
         db.execSql(new Request("UPDATE usersFoodData SET dayIn=" + "'" + currentDateStr + "', " +
             "dayOut=" + "'" + req.body.expiryDate + "'" + " WHERE email=" +
             "'" + req.user.email + "'" + " AND foodName=" + "'" + req.body.food + "'",
-            
+
             function (err) {
                 if (err) {
                     console.log(err);
