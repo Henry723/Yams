@@ -21,6 +21,7 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").hide();
+        $("#notificationPage").hide();
     });
     
     $("#userPageAnchor").click(function(e){
@@ -29,6 +30,7 @@ $( document ).ready(function() {
         $("#userPage").show();
         $("#scanPage").hide();
         $("#addPage").hide();
+        $("#notificationPage").show();
     });
 
     $("#scanPageAnchor").click(function(e){
@@ -37,6 +39,7 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").show();
         $("#addPage").hide();
+        $("#notificationPage").show();
     });
 
     $("#addPageAnchor").click(function(e){
@@ -45,6 +48,13 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").show();
+        $("#notificationPage").show();
+    });
+    
+/******************* notification button  ********************/
+     $("#notificationPage").click(function(e){
+//        e.preventDefault();
+        
     });
 
 /********************** user page  ********************/
