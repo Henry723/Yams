@@ -1,2 +1,39 @@
 yamsreminder@gmail.com
 Yams321!
+
+ID:
+982036972753-412l3t38hu5mheodvmefeku43g7aal15.apps.googleusercontent.com
+SECRET:
+s6MYWNgOuQndAQaJ5NKTqpsO
+REFRESH TOKEN:
+1/58bp-XMe_MJZeTFrVmVUZ6hyPZzQacdGLL0b5o_IRePkpMGFI1G8Qw-h8ajlM-el
+ACCESS TOKEN:
+ya29.Glu3BbW9eLdNt-D_rQoYSkzKBTEAyYs-WrEVX9oyhY8iQ9TGVDefMiWEL2ZCFLdZbQ4muEs3RD5F54Tyzlp5NB_1J-pPPajwJ39WZ64xlx3MlCxKT4qkMpbU335J
+
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        type: 'OAuth2',
+        user: 'yamsreminder@gmail.com',
+        accessToken: 'ya29.Glu3BbW9eLdNt-D_rQoYSkzKBTEAyYs-WrEVX9oyhY8iQ9TGVDefMiWEL2ZCFLdZbQ4muEs3RD5F54Tyzlp5NB_1J-pPPajwJ39WZ64xlx3MlCxKT4qkMpbU335J'
+    }
+});
+
+    let mailOptions = {
+        from: '"Fred Foo 👻" <foo@example.com>', // sender address
+        to: 'bar@example.com, baz@example.com', // list of receivers
+        subject: 'Hello ✔', // Subject line
+        text: 'Hello world?', // plain text body
+        html: '<b>Hello world?</b>' // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+    });
