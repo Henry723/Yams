@@ -175,6 +175,11 @@ body {
   width: 100%;
 }
 
+#scanPlaceholder {
+    width: 100px;
+    height: 100px;
+}
+
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
@@ -198,7 +203,7 @@ body {
 }
 
 #add {
-    color : rgb(255, 255, 255);
+    color : rgb(0, 0, 0);
     text-align: center;
     font-size : 150%;
 }
@@ -232,3 +237,18 @@ body {
     padding:0;
     border: 0;
 }
+.notificationSettingButton {
+    background-image: url( '../images/cog.png' );
+    background-size: 50px 50px;
+    height: 50px;  
+    width: 50px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    
+}
+
