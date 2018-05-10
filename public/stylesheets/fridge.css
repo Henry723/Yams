@@ -62,50 +62,7 @@ body {
     font-size: 200%;
 }
 
-#button1 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button2 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button3 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button4 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
 
-#myDropdown1 {
-    display:none;
-}
-
-#myDropdown2 {
-    display:none;
-}
-
-#myDropdown3 {
-    display:none;
-}
-
-#myDropdown4 {
-    display:none;
-}
 .eachFood {
     margin-top: 5%;
     font-weight:bold;
