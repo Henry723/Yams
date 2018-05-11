@@ -66,7 +66,16 @@
         <div>
             <ul class="list-group">
                 <% for (var i = 0; i < usersFood.length; i++){ %>
-                <li class="numberOfList" class="list-group-item"><%= usersFood[i][0].value%><button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button></li>
+                <li class="numberOfList" class="list-group-item">
+                    <p id="foodNameInFridge"><%= usersFood[i][0].value%></p>
+                    <div class="progress" id="progressBar">
+                        <p id="dateLeft">5</p>
+                        <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
+                            
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button>
+                </li>
                 <%  }  %>
             </ul>
         </div>
