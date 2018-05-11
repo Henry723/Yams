@@ -7,6 +7,7 @@
 <title>Yams - <%= userName %></title>
 <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
@@ -45,7 +46,7 @@
     </nav>
     
     <!--notfication button-->
-    <div class="container">
+    <div class="pr-3">
         <div class="row">
             <div class="col-12">
                 <button id="notificationPageAnchor" class="notificationSettingButton float-right"></button>
@@ -69,7 +70,7 @@
                 <li class="numberOfList" class="list-group-item">
                     <p id="foodNameInFridge"><%= usersFood[i][0].value%></p>
                     <div class="progress" id="progressBar">
-                        <p id="dateLeft"><%= usersFood[i][1].value%></p>
+                        <p id="dateLeft">D-<%= usersFood[i][1].value%></p>
                         <div class="progress-bar progress-bar-success" role="progressbar" 
 						aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
                         </div>
@@ -79,7 +80,7 @@
                 <%  }  %>
             </ul>
         </div>
-    </div>  
+    </div>
     </div>
 
 <!------------------------------------------------------------------------------------------------>
@@ -93,12 +94,12 @@
     <div class="col-12 mx-auto text-center">
       <form>
         <div class="form-group">
-          <input class="form-control" id='imageInput' type="file">
+          <input class="form-control-file" id='imageInput' type="file">
           <br/>
           <img id="scanPlaceholder" class="mt-4" src="../images/file.png" height="400" alt="Image preview...">
         </div>
         <div class="form-group">
-          <button id="submit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
+          <button id="scanSubmit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
         </div>
       </form>
     </div>
@@ -121,7 +122,7 @@
     <div id="addPage">
         <div id="addFrame">
             <p id="add"> Add item </p>
-            <form id="submitForm" action = "./addSingleItem" method = "POST">
+            <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
@@ -177,11 +178,11 @@
                     <div class="col"><hr></div>
                     <p class="big pb-5">
                         Yams is a mobile web application that helps you keep track of what's in your kitchen while you're out shopping! It also sends you notifications before your food expires so you can reduce food waste!</p>
-                </div>  
+                </div>
             </div>
         </div>
         <!--End of about yams heading row-->
-        
+
         <!--About yams row-->
         <div class="row">
             <!--Item 1-->
@@ -207,9 +208,9 @@
             <!--Item 3-->
         </div>
         <!--End of about yams row-->
-        
+
         <!--About us heading row-->
-    
+
         <div class="row pt-4 pb-4 mt-4">
             <div class="mx-auto col-11">
                 <h1 class="display-4">About Us</h1>
@@ -225,7 +226,7 @@
             </div>
         </div>
         <!--End of about us heading row-->
-        
+
         <!--About us row-->
         <div class="row">
             <!--Person 1-->
@@ -266,8 +267,10 @@
         </div>
         <!--End of about us row-->
     </div>
-    <!--End of container-->    
-    
+    <!--End of container-->
+
+
+
 
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"

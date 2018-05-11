@@ -1,9 +1,7 @@
 
-
+/************** Easter Egg *************************/
 $( document ).ready(function() {
-//    || "uni" || "hayden" || "jae" || "henry"
-
-    $("#submitForm").submit(function(e){
+    $("#addSubmitForm").submit(function(e){
         var inputValue = $("#foodNameInput").val();
         if(inputValue == "Adam" || inputValue == "Uni" || inputValue == "Jay"
           || inputValue == "Hayden" || inputValue == "Henry"){
@@ -65,30 +63,13 @@ $( document ).ready(function() {
         $("#notificationSettingPage").show();
     });
 
+
 /********************** user page  ********************/
-    $("#button1").click(function(e){
-        e.preventDefault();
-        $("#myDropdown1").toggle();
-    });
-
-    $("#button2").click(function(e){
-        e.preventDefault();
-        $("#myDropdown2").toggle();
-    });
-
-    $("#button3").click(function(e){
-        e.preventDefault();
-        $("#myDropdown3").toggle();
-    });
-
-    $("#button4").click(function(e){
-        e.preventDefault();
-        $("#myDropdown4").toggle();
-    });
+    
 
     $(".deleteButton").click(function(event) {
         var parentTag = event.target.parentNode;
-        var foodName = parentTag.innerText.slice(0, parentTag.innerText.length - 1);
+        var foodName = parentTag.firstChild.nextSibling.innerText;
 
         var foodData = { food: foodName };
         this.parentNode.remove();
@@ -108,7 +89,7 @@ $( document ).ready(function() {
         });
     });
     
-    
+    /********************** scan  ********************/
 });
 
-/********************** scan  ********************/
+
