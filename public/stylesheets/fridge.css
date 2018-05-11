@@ -75,9 +75,20 @@ body {
 .eachFoodName {
     text-align: center;
 }
+#progressBar {
+    width: 20%;
+    height: 30px;
+    margin:1%;
+    background:white;
+    margin-right:auto;
+    border-style: solid;
+    padding:2px;
+}
 #fridgeButton {
-    float:right;
+    width: 10%;
     background-color: rgb(255, 230, 230);
+    border-radius: 5%;
+    
 }
 
 #fridgeHead {
@@ -94,13 +105,11 @@ body {
 #fridgeHead{
     font-family: 'Skranji', cursive;
 }
-#fridgeButton{
-    border-radius: 5%;
-}
+
 .numberOfList {
+    display:inline-flex;
     font-family: 'Skranji', cursive;
     font-size: 150%;
-    text-align: center;
     border-radius: 5%;
 }
 .numberOfList:nth-child(odd){
@@ -109,6 +118,18 @@ body {
 .numberOfList:nth-child(even){
     background-color: rgb(235, 235, 249);
 }
+#foodNameInFridge {
+    width:60%;
+    margin:0;
+}
+#dateLeft{
+    width:18%;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0);
+    font-size:18px;
+    text-align: center;
+}
+
 /*******************************************************************************************/
 /**********************************  scanning page       *************************************/
 /*******************************************************************************************/
