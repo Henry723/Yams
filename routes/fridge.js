@@ -3,11 +3,12 @@ var router = express.Router();
 var db = require('../config/db');
 var authLocal = require('../config/authLocal');
 var Request = require('tedious').Request;
+var nodemailer = require('nodemailer');
 
 /****Redirect to userdashboard - so messy ahhhh****/
-router.get('/login', function(req, res, next){
-  db.getUserFoodData(req, res, next);
-});
+// router.get('/login', function(req, res, next){
+//   db.getUserFoodData(req, res, next);
+// });
 
 /***login user and render dashboard****/
 router.post('/login',
@@ -45,7 +46,7 @@ router.post('/register', function (req, res, next) {
       authLocal.authenticate('local-login', {
         successRedirect: './getUserFoodData',
         failureRedirect: '../'
-      });
+      })
     });
 });
 
@@ -71,7 +72,6 @@ router.get('/allFoods', function (req, res, next) {
 /*******adding multiple foods to kitchen ****/
 router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
-	console.log("addfooditems: ", req.user);
     var foods = [];
     if (typeof req.body.foodName === 'string') {
 

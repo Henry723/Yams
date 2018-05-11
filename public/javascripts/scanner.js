@@ -62,13 +62,12 @@ $( document ).ready(function() {
               var receiptDataText = newReceiptFoodData.toUpperCase();
 
               $("#scannerForm form").empty();
-              var d = new Date(Date.now());
+              var d = new Date();
+              d.setDate(d.getDate()+14);
               var fData = "";
                 for (var i = 0; i < allFoods.length; i++) {
                     var foodName = allFoods[i][0].value;
                     var expiryDate = allFoods[i][1].value;
-
-
                 if (receiptDataText.includes(foodName.toUpperCase())) {
                   var dm = ((d.getMonth() + 1) > 9) ? (d.getMonth() + 1) : "0" + (d.getMonth() + 1);
                   var dd = (d.getDate() > 9) ? d.getDate() : "0" + d.getDate();
