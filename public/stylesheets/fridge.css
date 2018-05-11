@@ -78,11 +78,12 @@ body {
 #progressBar {
     width: 20%;
     height: 30px;
-    margin:1%;
     background:white;
     margin-right:auto;
     border-style: solid;
     padding:2px;
+    margin-bottom: 0;
+    margin-top:0;
 }
 #fridgeButton {
     width: 10%;
@@ -111,6 +112,7 @@ body {
     font-family: 'Skranji', cursive;
     font-size: 150%;
     border-radius: 5%;
+    padding:5px;
 }
 .numberOfList:nth-child(odd){
     background-color: rgb(240, 240, 245);
@@ -119,7 +121,7 @@ body {
     background-color: rgb(235, 235, 249);
 }
 #foodNameInFridge {
-    width:60%;
+    width:65%;
     margin:0;
 }
 #dateLeft{
