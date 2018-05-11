@@ -74,42 +74,27 @@ router.post('/addFoodItems', function (req, res, next) {
 	console.log("addfooditems: ", req.user);
     var foods = [];
     if (typeof req.body.foodName === 'string') {
-      var dateInstance = new Date();
-      var currentDateStr = "" + dateInstance.getFullYear();
-      currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
-      "-0" + (dateInstance.getMonth() + 1);
-      currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
-      "-0" + dateInstance.getDate();
-      const ONE_DAY = 1000 * 60 * 60 * 24;
-      var designatedDate = new Date(req.body.expiryDate);
-      var currentDate = new Date(currentDateStr);
-      var daysLeft = (designatedDate - currentDate) / ONE_DAY;
-      foods.push([
-        req.user.email,
-        req.body.foodName,
-        currentDateStr,
-        req.body.expiryDate,
-        daysLeft,
+
+        var dateObject = calculateDaysLeft(new Date(req.body.expiryDate));
+
+        foods.push([
+            req.user.email,
+            req.body.foodName,
+            dateObject.currentDateStr,
+            req.body.expiryDate,
+            dateObject.daysLeft,
       ]);
     }
     else {
         for (var i = 0; i < req.body.foodName.length; i++) {
-          var dateInstance = new Date();
-          var currentDateStr = "" + dateInstance.getFullYear();
-          currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
-              "-0" + (dateInstance.getMonth() + 1);
-          currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
-              "-0" + dateInstance.getDate();
-          const ONE_DAY = 1000 * 60 * 60 * 24;
-          var designatedDate = new Date(req.body.expiryDate[i]);
-          var currentDate = new Date(currentDateStr);
-          var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+            var dateObject = calculateDaysLeft(new Date(req.body.expiryDate[i]));
+
             foods.push([
                 req.user.email,
                 req.body.foodName[i],
-                currentDateStr,
+                dateObject.currentDateStr,
                 req.body.expiryDate[i],
-                daysLeft,
+                dateObject.daysLeft,
             ]);
         }
     }
@@ -151,22 +136,10 @@ router.post('/addFoodItems', function (req, res, next) {
 router.post('/addSingleItem', function (req, res, next) {
 
     var foodName = req.body.food;
-
-    var dateInstance = new Date();
-    var currentDateStr = "" + dateInstance.getFullYear();
-    currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
-        "-0" + (dateInstance.getMonth() + 1);
-    currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
-        "-0" + dateInstance.getDate();
-
-    const ONE_DAY = 1000 * 60 * 60 * 24;
-    var designatedDate = new Date(req.body.expiryDate);
-    var currentDate = new Date(currentDateStr);
-
-    var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+    var dateObject = calculateDaysLeft(new Date(req.body.expiryDate));
 
     request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.user.email + "', '"
-        + foodName.toUpperCase() + "', '" + daysLeft + "')",
+        + foodName.toUpperCase() + "', '" + dateObject.daysLeft + "')",
 
         function (err, rowCount, rows) {
             if (err) {
@@ -180,7 +153,7 @@ router.post('/addSingleItem', function (req, res, next) {
 
     request.on("requestCompleted", function () {
 
-        db.execSql(new Request("UPDATE usersFoodData SET dayIn=" + "'" + currentDateStr + "', " +
+        db.execSql(new Request("UPDATE usersFoodData SET dayIn=" + "'" + dateObject.currentDateStr + "', " +
             "dayOut=" + "'" + req.body.expiryDate + "'" + " WHERE email=" +
             "'" + req.user.email + "'" + " AND foodName=" + "'" + req.body.food + "'",
 
@@ -233,4 +206,22 @@ router.post('/notificationSet', function (req, res, next) {
         }));
 });
 
+function calculateDaysLeft(designatedDate) {
+
+    var dateInstance = new Date();
+
+    var currentDateStr = "" + dateInstance.getFullYear();
+    currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
+        "-0" + (dateInstance.getMonth() + 1);
+    currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
+        "-0" + dateInstance.getDate();
+
+    var currentDate = new Date(currentDateStr);
+
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+    var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+
+    var dateObject = { "daysLeft": daysLeft, "currentDateStr": currentDateStr };
+    return dateObject;
+}
 module.exports = router;
