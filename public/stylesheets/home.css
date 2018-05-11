@@ -16,6 +16,7 @@ html {
   height: 255pt;
   color: rgb(75,0,130);
   background-color: rgba(255,255,255,0.6);
+  margin-bottom: 10px;
 }
 
 .carousel-item h2 {
@@ -30,9 +31,8 @@ html {
 #loginClick {
   color: white;
   background-color: rgb(75,0,130);
-  width: 20%;
   border-radius: 0;
-  margin-top: 5%;
+  margin-top: 10px;;
 }
 
 #mainForm hr {
@@ -91,4 +91,10 @@ html {
   #mainForm hr {
     width: 75%;
   }
+    
+ #googleClick {
+    color: white;
+    border-radius: 0;
+    margin-top: 5%;
+ }
 }
