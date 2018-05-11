@@ -6,18 +6,19 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var session = require('express-session')
+var flash = require("connect-flash");
 
 var homeRouter = require('./routes/home');
 var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
 
-var db = require('./db');
+var db = require('./config/db');
+var passport = require('./config/authLocal');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(session({
   secret: "puppy",
   resave: false,
@@ -28,6 +29,10 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);

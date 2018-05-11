@@ -1,3 +1,43 @@
+
+/*******************************************************************************************/
+/*******************************         ABOUT         *************************************/
+/*******************************************************************************************/
+html { font-size: 1rem; }
+
+@media (min-width: 576px) {
+    html .row{ font-size: 1.1rem; }
+}
+@media (min-width: 768px) {
+    html .row{ font-size: 1.25rem; }
+}
+@media (min-width: 992px) {
+    html .row{ font-size: 1.30rem; }
+}
+@media (min-width: 1200px) {
+    html .row{ font-size: 1.4rem; }
+}
+
+img {
+    width: 45%;
+    text-align: center;
+}
+
+.people {
+    width: 40%;
+}
+
+.big{
+  font-size: 120%;
+}
+
+#roundEdge {
+    border-radius: 0.25rem;
+}
+
+#aboutPage {
+    display:none;
+}
+
 /*******************************************************************************************/
 /*******************************  FIRST PAGE           *************************************/
 /*******************************************************************************************/
@@ -22,50 +62,7 @@ body {
     font-size: 200%;
 }
 
-#button1 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button2 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button3 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
-#button4 {
-    font-weight: bold;
-    font-size : 200%;
-    color: black;
-    width: 100%;
-    background-color:transparent;
-}
 
-#myDropdown1 {
-    display:none;
-}
-
-#myDropdown2 {
-    display:none;
-}
-
-#myDropdown3 {
-    display:none;
-}
-
-#myDropdown4 {
-    display:none;
-}
 .eachFood {
     margin-top: 5%;
     font-weight:bold;
@@ -78,9 +75,63 @@ body {
 .eachFoodName {
     text-align: center;
 }
-.kitchen-orange {
-  background-color: rgb(255,140,0);
+#progressBar {
+    width: 20%;
+    height: 30px;
+    background:white;
+    margin-right:auto;
+    border-style: solid;
+    padding:2px;
+    margin-bottom: 0;
+    margin-top:0;
 }
+#fridgeButton {
+    width: 10%;
+    background-color: rgb(255, 230, 230);
+    border-radius: 5%;
+    
+}
+
+#fridgeHead {
+    text-align: center;
+    background-color: lightgrey;
+
+}
+#fridgeDiv{
+    border-style: solid;
+    border-color: rgb(44, 62, 80);
+    border-width: 10px;
+    border-radius: 5%;
+}
+#fridgeHead{
+    font-family: 'Skranji', cursive;
+}
+
+.numberOfList {
+    display:inline-flex;
+    font-family: 'Skranji', cursive;
+    font-size: 150%;
+    border-radius: 5%;
+    padding:5px;
+}
+.numberOfList:nth-child(odd){
+    background-color: rgb(240, 240, 245);
+}
+.numberOfList:nth-child(even){
+    background-color: rgb(235, 235, 249);
+}
+#foodNameInFridge {
+    width:65%;
+    margin:0;
+}
+#dateLeft{
+    width:18%;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0);
+    font-size:18px;
+    text-align: center;
+}
+
 /*******************************************************************************************/
 /**********************************  scanning page       *************************************/
 /*******************************************************************************************/
@@ -107,6 +158,15 @@ body {
 #close-loader {
   display: none;
 }
+#loaderModal.modal {
+  background-color: rgba(255,255,255,0);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -120,6 +180,27 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.addItemsForm {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+.addItemsForm .form-control-plaintext {
+  color: white;
+}
+
+#scannerFormSubmit {
+  width: 100%;
+}
+
+#scanPlaceholder {
+    width: 100px;
+    height: 100px;
 }
 
 /*******************************************************************************************/
@@ -145,13 +226,13 @@ body {
 }
 
 #add {
-    color : rgb(255, 255, 255);
+    color : rgb(0, 0, 0);
     text-align: center;
     font-size : 150%;
 }
 
 .navbar {
-    margin-bottom : 10%;
+    margin-bottom : 10px;
 }
 
 #submit {
@@ -172,3 +253,40 @@ body {
 .deleteButton {
     color: black;
 }
+
+#easterModal {
+    position:absolute;
+    margin:0 auto;
+    padding:0;
+    border: 0;
+}
+
+/*******************************************************************************************/
+/**********************************  notification button and page       *************************************/
+/*******************************************************************************************/
+
+.notificationSettingButton {
+    background-image: url( '../images/cog.png' );
+    background-size: 45px 45px;
+    height: 45px;  
+    width: 45px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#notificationFrame {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+#notificationSettingPage {
+    display: none;
+}
+

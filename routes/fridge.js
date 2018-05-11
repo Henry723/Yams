@@ -1,17 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var db = require('../config/db');
+var authLocal = require('../config/authLocal');
 var Request = require('tedious').Request;
 
 /****Redirect to userdashboard - so messy ahhhh****/
 router.get('/login', function(req, res, next){
-  req.body.email = req.session.email;
-  db.login(req, res, next);
+  db.getUserFoodData(req, res, next);
 });
 
 /***login user and render dashboard****/
-router.post('/login', function(req, res, next){
-  db.login(req, res, next);
+router.post('/login',
+		authLocal.authenticate('local-login', {
+			successRedirect: './getUserFoodData',
+			failureRedirect: '../',
+			failureFlash: true
+		}));
+
+router.get('/getUserFoodData', function(req, res, next) {
+	db.getUserFoodData(req, res, next);
 });
 
 /***register user and render dashboard****/
@@ -35,7 +42,10 @@ router.post('/register', function (req, res, next) {
     db.execSql(request);
 
     db.request.on('requestCompleted', function () {
-        db.login(req, res, next);
+      authLocal.authenticate('local-login', {
+        successRedirect: './getUserFoodData',
+        failureRedirect: '../'
+      });
     });
 });
 
@@ -61,20 +71,31 @@ router.get('/allFoods', function (req, res, next) {
 /*******adding multiple foods to kitchen ****/
 router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
+	console.log("addfooditems: ", req.user);
     var foods = [];
-
     if (typeof req.body.foodName === 'string') {
+
+        var dateObject = calculateDaysLeft(new Date(req.body.expiryDate));
+
         foods.push([
-            req.session.email,
+            req.user.email,
             req.body.foodName,
-            req.body.expiryDate]);
+            dateObject.currentDateStr,
+            req.body.expiryDate,
+            dateObject.daysLeft,
+      ]);
     }
     else {
         for (var i = 0; i < req.body.foodName.length; i++) {
+            var dateObject = calculateDaysLeft(new Date(req.body.expiryDate[i]));
+
             foods.push([
-                req.session.email,
+                req.user.email,
                 req.body.foodName[i],
-                req.body.expiryDate[i]]);
+                dateObject.currentDateStr,
+                req.body.expiryDate[i],
+                dateObject.daysLeft,
+            ]);
         }
     }
     var sql = "(";
@@ -83,7 +104,11 @@ router.post('/addFoodItems', function (req, res, next) {
         sql += ", ";
         sql += "'" + foods[i][1] + "'"; //food name
         sql += ", ";
-        sql += "'" + foods[i][2] + "')"; //daysLeft (for now)
+        sql += "'" + foods[i][2] + "'"; //dayIn
+        sql += ", ";
+        sql += "'" + foods[i][3] + "'"; //dayOut
+        sql += ", ";
+        sql += "'" + foods[i][4] + "')"; //daysLeft
 
         if (i != foods.length - 1) {
             sql += ", (";
@@ -91,7 +116,7 @@ router.post('/addFoodItems', function (req, res, next) {
     }
 
     // insert food info into database.
-    request = new Request("INSERT INTO usersFoodData(email, foodName, daysLeft) VALUES " + sql , function (error) {
+    request = new Request("INSERT INTO usersFoodData(email, foodName, dayIn, dayOut, daysLeft) VALUES " + sql , function (error) {
         if (error) {
             console.log(error.message);
             throw error;
@@ -103,29 +128,18 @@ router.post('/addFoodItems', function (req, res, next) {
 
     db.execSql(request);
 
-    req.body.email = req.session.email;
     request.on('requestCompleted', function () {
-        db.login(req, res, next);
+        db.getUserFoodData(req, res, next);
     });
 });
 
 router.post('/addSingleItem', function (req, res, next) {
 
-    var dateInstance = new Date();
-    var currentDateStr = "" + dateInstance.getFullYear() + "-0" + (dateInstance.getMonth() + 1) + "-0" + dateInstance.getDate();
-
-    var designatedDate = new Date(req.body.expiryDate);
-    var currentDate = new Date(currentDateStr);
-
-    const ONE_DAY = 1000 * 60 * 60 * 24;
-
-    var daysLeft = (designatedDate - currentDate) / ONE_DAY;
-
     var foodName = req.body.food;
-    var date = req.body.expiryDate;
+    var dateObject = calculateDaysLeft(new Date(req.body.expiryDate));
 
-    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.session.email + "', '"
-        + foodName.toUpperCase() + "', '" + daysLeft + "')",
+    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.user.email + "', '"
+        + foodName.toUpperCase() + "', '" + dateObject.daysLeft + "')",
 
         function (err, rowCount, rows) {
             if (err) {
@@ -138,7 +152,20 @@ router.post('/addSingleItem', function (req, res, next) {
     db.execSql(request);
 
     request.on("requestCompleted", function () {
-        res.redirect('/fridge/login');
+
+        db.execSql(new Request("UPDATE usersFoodData SET dayIn=" + "'" + dateObject.currentDateStr + "', " +
+            "dayOut=" + "'" + req.body.expiryDate + "'" + " WHERE email=" +
+            "'" + req.user.email + "'" + " AND foodName=" + "'" + req.body.food + "'",
+
+            function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.redirect('/fridge/login');
+                }
+            }));
+
     });
 });
 
@@ -146,7 +173,7 @@ router.post('/addSingleItem', function (req, res, next) {
 router.delete('/delete', function (req, res, next) {
 
     var foodName = req.body.food.trim();
-    request = new Request("DELETE FROM usersFoodData WHERE email=" + "'" + req.session.email + "'"
+    request = new Request("DELETE FROM usersFoodData WHERE email=" + "'" + req.user.email + "'"
         + " AND" + " foodName=" + "'" + foodName + "'",
 
         function (err, rowCount, rows) {
@@ -158,10 +185,43 @@ router.delete('/delete', function (req, res, next) {
             }
         });
     db.execSql(request);
-
-    request.on("requestCompleted", function () {
-        res.redirect('/fridge/login');
-    });
+    res.end();
 });
 
+router.post('/notificationSet', function (req, res, next) {
+
+    var alarm = req.body.days <= 0 ? 1 : req.body.days;
+
+    db.execSql(new Request("UPDATE users SET alarm=" + alarm + "WHERE email=" +
+        "'" + req.user.email + "'",
+        function (error) {
+
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log("alarm set");
+                res.redirect('/fridge/login');
+            }
+        }));
+});
+
+function calculateDaysLeft(designatedDate) {
+
+    var dateInstance = new Date();
+
+    var currentDateStr = "" + dateInstance.getFullYear();
+    currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
+        "-0" + (dateInstance.getMonth() + 1);
+    currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
+        "-0" + dateInstance.getDate();
+
+    var currentDate = new Date(currentDateStr);
+
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+    var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+
+    var dateObject = { "daysLeft": daysLeft, "currentDateStr": currentDateStr };
+    return dateObject;
+}
 module.exports = router;

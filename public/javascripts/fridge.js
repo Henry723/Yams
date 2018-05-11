@@ -1,29 +1,69 @@
 
 
 $( document ).ready(function() {
+//    || "uni" || "hayden" || "jae" || "henry"
 
+    $("#submitForm").submit(function(e){
+        var inputValue = $("#foodNameInput").val();
+        if(inputValue == "Adam" || inputValue == "Uni" || inputValue == "Jay"
+          || inputValue == "Hayden" || inputValue == "Henry"){
+            $("#easterModal").modal({
+                
+            });
+            e.preventDefault();
+        }
+    });
 /********************** nav bar  ********************/
+    
+  $("#aboutPageAnchor").click(function(e){
+//        e.preventDefault();
+        $("#aboutPage").show();
+        $("#userPage").hide();
+        $("#scanPage").hide();
+        $("#addPage").hide();
+        $("#notificationPageAnchor").hide();
+        $("#notificationSettingPage").hide();
+    });
+    
     $("#userPageAnchor").click(function(e){
 //        e.preventDefault();
+        $("#aboutPage").hide();
         $("#userPage").show();
         $("#scanPage").hide();
         $("#addPage").hide();
+        $("#notificationPageAnchor").show();
+        $("#notificationSettingPage").hide();
     });
 
     $("#scanPageAnchor").click(function(e){
 //        e.preventDefault();
+        $("#aboutPage").hide();
         $("#userPage").hide();
         $("#scanPage").show();
         $("#addPage").hide();
+        $("#notificationPageAnchor").show();
+        $("#notificationSettingPage").hide();
     });
 
     $("#addPageAnchor").click(function(e){
 //        e.preventDefault();
+        $("#aboutPage").hide();
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").show();
+        $("#notificationPageAnchor").show();
+        $("#notificationSettingPage").hide();
     });
-
+    
+/******************* notification button  ********************/
+     $("#notificationPageAnchor").click(function(e){
+//        e.preventDefault();
+        $("#aboutPage").hide();
+        $("#userPage").hide();
+        $("#scanPage").hide();
+        $("#addPage").hide();
+        $("#notificationSettingPage").show();
+    });
 
 /********************** user page  ********************/
     $("#button1").click(function(e){
@@ -47,10 +87,12 @@ $( document ).ready(function() {
     });
 
     $(".deleteButton").click(function(event) {
-        var clickedItem = event.target.parentNode;
-        var foodName = clickedItem.getElementsByClassName("btn eachFoodName")[0].innerHTML;
+        var parentTag = event.target.parentNode;
+        var foodName = parentTag.innerText.slice(0, parentTag.innerText.length - 1);
+
         var foodData = { food: foodName };
         this.parentNode.remove();
+
         $.ajax({
             url: "/fridge/delete",
             type: "DELETE",
@@ -65,6 +107,8 @@ $( document ).ready(function() {
             }
         });
     });
+    
+    
 });
 
 /********************** scan  ********************/
