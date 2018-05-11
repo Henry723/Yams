@@ -113,7 +113,6 @@ connection.on('connect', function (err) {
 connection.getUserFoodData = function (req, res, next) {
     console.log('Reading rows from the Table...');
 
-    // Read all rows from table
     getUserFoodDataRequest = new Request ("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
     		function (err, rowCount, rows)
             {
@@ -126,10 +125,39 @@ connection.getUserFoodData = function (req, res, next) {
                     // connection.checkForAlarms();
                 }
             }
+        }
     );
     connection.execSql(getUserFoodDataRequest);
 }
 
+connection.updateDaysLeft = function () {
 
+    updateRequest = new Request("UPDATE usersFoodData SET daysLeft=daysLeft - 1",
+        function (error) {
+            if (error) {
+                console.log(error);
+            }
+        });
 
+    connection.execSql(updateRequest);
+}
+
+connection.calculateDaysLeft = function (designatedDate) {
+
+    var dateInstance = new Date();
+
+    var currentDateStr = "" + dateInstance.getFullYear();
+    currentDateStr += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) :
+        "-0" + (dateInstance.getMonth() + 1);
+    currentDateStr += dateInstance.getDate() >= 10 ? "-" + dateInstance.getDate() :
+        "-0" + dateInstance.getDate();
+
+    var currentDate = new Date(currentDateStr);
+
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+    var daysLeft = (designatedDate - currentDate) / ONE_DAY;
+
+    var dateObject = { "daysLeft": daysLeft, "currentDateStr": currentDateStr };
+    return dateObject;
+}
 module.exports = connection;
