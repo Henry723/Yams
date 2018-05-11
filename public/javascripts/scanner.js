@@ -62,7 +62,8 @@ $( document ).ready(function() {
               var receiptDataText = newReceiptFoodData.toUpperCase();
 
               $("#scannerForm form").empty();
-              var d = new Date(Date.now());
+              var d = new Date();
+              d.setDate(d.getDate()+14);
               var fData = "";
                 for (var i = 0; i < allFoods.length; i++) {
                     var foodName = allFoods[i][0].value;

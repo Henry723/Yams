@@ -122,8 +122,8 @@ connection.getUserFoodData = function (req, res, next) {
                 } else {
                     var usersFood = rows;
                     res.render('fridge', { usersFood: usersFood, userName: req.user.name });
-                    connection.setupNodemailer();
-                    connection.checkForAlarms();
+                    // connection.setupNodemailer();
+                    // connection.checkForAlarms();
                 }
             }
     );
