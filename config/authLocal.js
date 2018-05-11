@@ -40,11 +40,11 @@ passport.use(
 			if (err) {
 				return done(err);
 			}
-			if (!row) {
-				return done(null, false);
+			if (!rowCount) {
+				return done(null, false, { message: 'Incorrect Username.' });
 			}
 			if (!(password == row[0][2].value)) {
-				return done(null, false);
+				return done(null, false, { message: 'Incorrect Password' });
 			}
 			return done(null, row[0][0].value);
 		});

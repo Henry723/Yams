@@ -65,6 +65,17 @@ html {
 #registerForm a:hover, #loginForm a:hover {
   text-decoration: underline;
 }
+#wrongId {
+    position: absolute;
+    width: 60%;
+    left: 20%;
+    bottom:55%;
+    text-align: center;
+}
+#wrongIdMessage {
+    margin:0 auto;
+}
+
 
 @media (max-width: 576px) {
   .submit {
@@ -80,5 +91,4 @@ html {
   #mainForm hr {
     width: 75%;
   }
-
 }

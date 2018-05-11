@@ -75,9 +75,21 @@ body {
 .eachFoodName {
     text-align: center;
 }
+#progressBar {
+    width: 20%;
+    height: 30px;
+    background:white;
+    margin-right:auto;
+    border-style: solid;
+    padding:2px;
+    margin-bottom: 0;
+    margin-top:0;
+}
 #fridgeButton {
-    float:right;
+    width: 10%;
     background-color: rgb(255, 230, 230);
+    border-radius: 5%;
+    
 }
 
 #fridgeHead {
@@ -94,14 +106,13 @@ body {
 #fridgeHead{
     font-family: 'Skranji', cursive;
 }
-#fridgeButton{
-    border-radius: 5%;
-}
+
 .numberOfList {
+    display:inline-flex;
     font-family: 'Skranji', cursive;
     font-size: 150%;
-    text-align: center;
     border-radius: 5%;
+    padding:5px;
 }
 .numberOfList:nth-child(odd){
     background-color: rgb(240, 240, 245);
@@ -109,6 +120,18 @@ body {
 .numberOfList:nth-child(even){
     background-color: rgb(235, 235, 249);
 }
+#foodNameInFridge {
+    width:65%;
+    margin:0;
+}
+#dateLeft{
+    width:18%;
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0);
+    font-size:18px;
+    text-align: center;
+}
+
 /*******************************************************************************************/
 /**********************************  scanning page       *************************************/
 /*******************************************************************************************/
@@ -175,6 +198,11 @@ body {
   width: 100%;
 }
 
+#scanPlaceholder {
+    width: 100px;
+    height: 100px;
+}
+
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
@@ -198,13 +226,13 @@ body {
 }
 
 #add {
-    color : rgb(255, 255, 255);
+    color : rgb(0, 0, 0);
     text-align: center;
     font-size : 150%;
 }
 
 .navbar {
-    margin-bottom : 10%;
+    margin-bottom : 10px;
 }
 
 #submit {
@@ -232,3 +260,33 @@ body {
     padding:0;
     border: 0;
 }
+
+/*******************************************************************************************/
+/**********************************  notification button and page       *************************************/
+/*******************************************************************************************/
+
+.notificationSettingButton {
+    background-image: url( '../images/cog.png' );
+    background-size: 45px 45px;
+    height: 45px;  
+    width: 45px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#notificationFrame {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+#notificationSettingPage {
+    display: none;
+}
+

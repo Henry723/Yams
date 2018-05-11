@@ -5,8 +5,7 @@ var Request = require('tedious').Request;
 
 /* GET Home page. */
 router.get('/', function(req, res, next) {
-	console.log("this is what i want");
-	res.render('home');
+	res.render('home', { message: req.flash('error')});
 });
 
 module.exports = router;
