@@ -69,9 +69,9 @@
                 <li class="numberOfList" class="list-group-item">
                     <p id="foodNameInFridge"><%= usersFood[i][0].value%></p>
                     <div class="progress" id="progressBar">
-                        <p id="dateLeft">5</p>
-                        <div class="progress-bar progress-bar-success" role="progressbar" style="width:30%">
-                            
+                        <p id="dateLeft"><%= usersFood[i][1].value%></p>
+                        <div class="progress-bar progress-bar-success" role="progressbar" 
+						aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
                         </div>
                     </div>
                     <button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button>
