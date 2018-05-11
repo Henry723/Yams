@@ -113,20 +113,17 @@ connection.on('connect', function (err) {
 connection.getUserFoodData = function (req, res, next) {
     console.log('Reading rows from the Table...');
 
-    getUserFoodDataRequest = new Request ("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
-    		function (err, rowCount, rows)
-            {
-                if (err) {
-                    console.log(err);
-                } else {
-                    var usersFood = rows;
-                    res.render('fridge', { usersFood: usersFood, userName: req.user.name });
-                    // connection.setupNodemailer();
-                    // connection.checkForAlarms();
-                }
+    getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
+        function (err, rowCount, rows) {
+            if (err) {
+                console.log(err);
+            } else {
+                var usersFood = rows;
+                res.render('fridge', { usersFood: usersFood, userName: req.user.name });
+                //connection.setupNodemailer();
+                //connection.checkForAlarms();
             }
-        }
-    );
+        });
     connection.execSql(getUserFoodDataRequest);
 }
 
