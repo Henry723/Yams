@@ -76,8 +76,8 @@ body {
     text-align: center;
 }
 #progressBar {
-    width: 20%;
-    height: 30px;
+    width: 30%;
+    height: 40px;
     background:white;
     margin-right:auto;
     border-style: solid;
@@ -95,17 +95,9 @@ body {
 #fridgeHead {
     text-align: center;
     background-color: lightgrey;
-
-}
-#fridgeDiv{
-    border-style: solid;
-    border-color: rgb(44, 62, 80);
-    border-width: 10px;
-    border-radius: 5%;
-}
-#fridgeHead{
     font-family: 'Skranji', cursive;
 }
+
 
 .numberOfList {
     display:inline-flex;
@@ -121,11 +113,13 @@ body {
     background-color: rgb(235, 235, 249);
 }
 #foodNameInFridge {
-    width:65%;
-    margin:0;
+    width:55%;
+    margin-left:2%;
+    margin-bottom:0;
+    height: auto;
 }
 #dateLeft{
-    width:18%;
+    width:30%;
     position: absolute;
     background-color: rgb(0, 0, 0, 0);
     font-size:18px;
@@ -136,12 +130,7 @@ body {
 /**********************************  scanning page       *************************************/
 /*******************************************************************************************/
 
-#submit1 {
-  color: white;
-  background-color: rgb(75,0,130);
-  width: 100%;
-  border-radius: 0;
-}
+
 
 #scannerForm {
   display: none;
@@ -149,10 +138,6 @@ body {
 
 #scannerForm .userID {
   display: none;
-}
-
-#submit1 {
-    margin : 0 auto;
 }
 
 #close-loader {
@@ -199,10 +184,18 @@ body {
 }
 
 #scanPlaceholder {
-    width: 100px;
-    height: 100px;
+    width: 35%;
+    height: 35%;
 }
-
+#scanPage {
+    background-color: rgb(235, 235, 249);
+    padding:2%;
+    display:none;
+}
+#imageInput {
+    width:50%;
+    margin:0 auto;
+}
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
@@ -243,9 +236,7 @@ body {
     margin-top: 10px;
 }
 
-#scanPage {
-    display:none;
-}
+
 #addPage {
     display:none;
 }

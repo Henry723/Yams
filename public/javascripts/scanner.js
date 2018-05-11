@@ -26,7 +26,7 @@ $( document ).ready(function() {
   }
 
   $("#imageInput").on("change", previewFile);
-  $("#submit").on("click", function(e){
+  $("#scanSubmit").on("click", function(e){
     e.preventDefault();
     e.stopPropagation();
     if($("#scanPlaceholder").attr("src") != "../images/file.png"){
