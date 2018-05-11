@@ -175,6 +175,11 @@ body {
   width: 100%;
 }
 
+#scanPlaceholder {
+    width: 100px;
+    height: 100px;
+}
+
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
@@ -198,13 +203,13 @@ body {
 }
 
 #add {
-    color : rgb(255, 255, 255);
+    color : rgb(0, 0, 0);
     text-align: center;
     font-size : 150%;
 }
 
 .navbar {
-    margin-bottom : 10%;
+    margin-bottom : 10px;
 }
 
 #submit {
@@ -232,3 +237,33 @@ body {
     padding:0;
     border: 0;
 }
+
+/*******************************************************************************************/
+/**********************************  notification button and page       *************************************/
+/*******************************************************************************************/
+
+.notificationSettingButton {
+    background-image: url( '../images/cog.png' );
+    background-size: 45px 45px;
+    height: 45px;  
+    width: 45px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#notificationFrame {
+    background-color : rgb(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width : 85%;
+    margin : 0 auto;
+    padding : 10px;
+}
+
+#notificationSettingPage {
+    display: none;
+}
+

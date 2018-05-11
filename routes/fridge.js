@@ -13,7 +13,8 @@ router.get('/login', function(req, res, next){
 router.post('/login',
 		authLocal.authenticate('local-login', {
 			successRedirect: './getUserFoodData',
-			failureRedirect: '../'
+			failureRedirect: '../',
+			failureFlash: true
 		}));
 
 router.get('/getUserFoodData', function(req, res, next) {
@@ -212,6 +213,24 @@ router.delete('/delete', function (req, res, next) {
         });
     db.execSql(request);
     res.end();
+});
+
+router.post('/notificationSet', function (req, res, next) {
+
+    var alarm = req.body.days <= 0 ? 1 : req.body.days;
+
+    db.execSql(new Request("UPDATE users SET alarm=" + alarm + "WHERE email=" +
+        "'" + req.user.email + "'",
+        function (error) {
+
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log("alarm set");
+                res.redirect('/fridge/login');
+            }
+        }));
 });
 
 module.exports = router;

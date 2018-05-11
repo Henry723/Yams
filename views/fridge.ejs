@@ -43,6 +43,17 @@
 
         </div>
     </nav>
+    
+    <!--notfication button-->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <button id="notificationPageAnchor" class="notificationSettingButton float-right"></button>
+            </div>
+        </div>
+    </div>
+    <!--notification button-->
+    
     <div id="userPage">
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
@@ -75,7 +86,7 @@
         <div class="form-group">
           <input class="form-control" id='imageInput' type="file">
           <br/>
-          <img class="mt-4" src="" height="400" alt="Image preview...">
+          <img id="scanPlaceholder" class="mt-4" src="../images/file.png" height="400" alt="Image preview...">
         </div>
         <div class="form-group">
           <button id="submit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
@@ -121,6 +132,24 @@
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn btn-large">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+    
+<!------------------------------------------------------------------------------------------------>
+<!-- NOTIFICATION SETTINGS ------------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+    <div id="notificationSettingPage">
+        <div id="notificationFrame">
+            <p> Notification Setting </p>
+            <form id="saveNotification" action = "./notificationSet" method = "POST">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Set in the day before notification</span>
+                    </div>
+                    <input id="foodNameInput" type="number" name="days" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <button id="submit" class="btn btn-large">Save</button>
             </form>
         </div>
     </div>
