@@ -172,10 +172,10 @@ router.post('/addSingleItem', function (req, res, next) {
 /****delete item from fridge****/
 router.delete('/delete', function (req, res, next) {
 
-    var foodName = req.body.food.trim();
+    var foodName = req.body.food;
+
     request = new Request("DELETE FROM usersFoodData WHERE email=" + "'" + req.user.email + "'"
         + " AND" + " foodName=" + "'" + foodName + "'",
-
         function (err, rowCount, rows) {
             if (err) {
                 console.log(err);
