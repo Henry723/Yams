@@ -7,6 +7,7 @@
 <title>Yams - <%= userName %></title>
 <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
@@ -45,7 +46,7 @@
     </nav>
     
     <!--notfication button-->
-    <div class="container">
+    <div class="pr-3">
         <div class="row">
             <div class="col-12">
                 <button id="notificationPageAnchor" class="notificationSettingButton float-right"></button>
@@ -66,7 +67,16 @@
         <div>
             <ul class="list-group">
                 <% for (var i = 0; i < usersFood.length; i++){ %>
-                <li class="numberOfList" class="list-group-item"><%= usersFood[i][0].value%><button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button></li>
+                <li class="numberOfList" class="list-group-item">
+                    <p id="foodNameInFridge"><%= usersFood[i][0].value%></p>
+                    <div class="progress" id="progressBar">
+                        <p id="dateLeft"><%= usersFood[i][1].value%></p>
+                        <div class="progress-bar progress-bar-success" role="progressbar" 
+						aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button>
+                </li>
                 <%  }  %>
             </ul>
         </div>
