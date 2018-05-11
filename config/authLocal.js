@@ -10,13 +10,12 @@ var Request = require('tedious').Request;
 
 //used to serialize the user for the session
 passport.serializeUser(function(user, done) {
-	console.log("serialize: " + user);
 	done(null, user);
 });
 
 // used to deserialize the user
 passport.deserializeUser(function(email, done) {
-	deserializeRequest = 
+	deserializeRequest =
 		new Request("select * from users where email = " + "'" + email + "'",
 		function(err, rowCount, row) {
 			var result = [];
@@ -24,7 +23,6 @@ passport.deserializeUser(function(email, done) {
 			result.name = row[0][1].value;
 			result.password = row[0][2].value;
 			result.alarm = row[0][3].value;
-			console.log('deserialize: ', result);
 			done(err, result);
 		});
 	db.execSql(deserializeRequest);
@@ -32,15 +30,12 @@ passport.deserializeUser(function(email, done) {
 
 // configure local strategy
 passport.use(
-	'local-login', 
+	'local-login',
 	new LocalStrategy ({
 	usernameField: 'email',
 	passwordField: 'password'
-	}, 
+	},
 	function(email, password, done) {
-		console.log("local strategy");
-		console.log("email: ", email);
-		console.log("password: ", password);
 		loginRequest = new Request("select * from users where email = " + "'" + email + "'", function(err, rowCount, row) {
 			if (err) {
 				return done(err);
@@ -56,5 +51,5 @@ passport.use(
 		db.execSql(loginRequest);
 	}
 ));
-	
+
 module.exports = passport;
