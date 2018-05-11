@@ -55,7 +55,6 @@ mail.checkForAlarms = function(){
                         }
                         console.log('Message sent: %s', info.messageId);
                         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
                     });
                 }
 

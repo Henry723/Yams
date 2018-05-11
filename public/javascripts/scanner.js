@@ -67,10 +67,6 @@ $( document ).ready(function() {
                 for (var i = 0; i < allFoods.length; i++) {
                     var foodName = allFoods[i][0].value;
                     var expiryDate = allFoods[i][1].value;
-                    console.log(expiryDate);
-                    // var dd = (expiryDate.getDate())
-                    // var mm
-
                 if (receiptDataText.includes(foodName.toUpperCase())) {
                   var dm = ((d.getMonth() + 1) > 9) ? (d.getMonth() + 1) : "0" + (d.getMonth() + 1);
                   var dd = (d.getDate() > 9) ? d.getDate() : "0" + d.getDate();
