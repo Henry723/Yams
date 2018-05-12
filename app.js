@@ -1,5 +1,4 @@
 var createError = require('http-errors');
-var proxy = require('express-http-proxy');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -36,11 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-process.env.FIXIE_URL = 'http://fixie:lSLaEDkwOMFbxID@velodrome.usefixie.com:80'
-// console.log(process.env);
-app.use('/', proxy(process.env.FIXIE_URL));
-app.use('/fridge', proxy(process.env.FIXIE_URL));
-app.use('/about', proxy(process.env.FIXIE_URL));
 
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);

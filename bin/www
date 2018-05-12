@@ -7,6 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('yams:server');
 var http = require('http');
+const url = require('url');
+const fixieUrl = url.parse(process.env.FIXIE_URL);
+const requestUrl = url.parse('https://calm-caverns-80656.herokuapp.com/');
+// var httpProxy = require('http-proxy');
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +18,18 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+http.get({
+    host: fixieUrl.hostname,
+    port: fixieUrl.port,
+    path: requestUrl.href,
+    headers: {
+      Host: requestUrl.host,
+      'Proxy-Authorization': `Basic ${new Buffer(fixieUrl.auth).toString('base64')}`,
+    }
+}, res => {
+  console.log(`Got response: ${res.statusCode}`);
+});
 
 /**
  * Create HTTP server.
