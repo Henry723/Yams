@@ -18,6 +18,14 @@ var config =
 
 var connection = new Connection(config);
 
+connection.on('connect', function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("connected");
+    }
+});
+
 connection.setupNodemailer = function(){
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -102,13 +110,7 @@ connection.checkForAlarms = function(){
 
 
 
-connection.on('connect', function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log("connected");
-    }
-});
+
 
 connection.getUserFoodData = function (req, res, next) {
     console.log('Reading rows from the Table...');
