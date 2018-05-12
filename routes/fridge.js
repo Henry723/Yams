@@ -25,8 +25,8 @@ router.get('/getUserFoodData', function (req, res, next) {
 /***register user and render dashboard****/
 router.post('/register', function (req, res, next) {
 
-    request = new Request("INSERT INTO users (name, email, password) VALUES ('" +
-        req.body.name + "', '" + req.body.email + "', '" + req.body.password + "')",
+    request = new Request("INSERT INTO users (name, email, password, alarm) VALUES ('" +
+        req.body.name + "', '" + req.body.email + "', '" + req.body.password + "', 5)",
         function (error)
         {
             if (error)
@@ -74,7 +74,6 @@ router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
     var foods = [];
     if (typeof req.body.foodName === 'string') {
-
         var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
 
         foods.push([
@@ -201,7 +200,7 @@ router.post('/notificationSet', function (req, res, next) {
             }
             else {
                 console.log("alarm set");
-                res.redirect('/fridge/login');
+                res.redirect('/fridge/getUserFoodData');
             }
         }));
 });

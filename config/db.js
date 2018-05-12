@@ -43,69 +43,69 @@ connection.setupNodemailer = function(){
   return transporter;
 }
 
-connection.checkForAlarms = function(){
-  var transporter = connection.setupNodemailer();
-  var users;
-  request = new Request("SELECT * FROM users", function (error, rowCount, rows) {
-    if (error) {
-      console.log(error);
-    }
-    else {
-      console.log("request1");
-      users = rows;
-    }
-  });
-  connection.execSql(request);
-  request.on('requestCompleted', function () {
-      var sendMail = function(i){
-        console.log("user length " + users.length);
-        console.log("First I " + i);
-        if (i < users.length){
-          var alarm = users[i][3].value;
-          var userEmail = users[i][0].value;
-          request = new Request("SELECT * FROM usersFoodData WHERE email='" + userEmail + "' AND daysLeft='" + alarm + "'" , function (error, rowCount, rows) {
-            if (error) {
-              console.log("GETTING HERE " + error);
-            }
-            else {
-              console.log("request2");
-              var foods = rows;
-              var text = "";
-              var html = "";
-              for(var i = 0; i < foods.length; i++){
-                text += foods[i][0] + " \r\n";
-                html += "<li>" + foods[i][0] + "</li>";
-              }
-              let mailOptions = {
-                from: '"Your Friends At Yams" <yamsreminder@gmail.com>', // sender address
-                to: userEmail + ', Adamsmith6300@gmail.com', // list of receivers
-                subject: 'Gotta Eat up!', // Subject line
-                text: 'Your foods are expiring! ' + text, // plain text body
-                html: '<h2>Your foods are expiring!</h2><ul>' + html + '</ul>' // html body
-              };
-              transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  return console.log(error);
-                }
-                console.log('Message sent: %s', info.messageId);
-                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-              });
-            }
-          });
-          connection.execSql(request);
-          request.on("requestCompleted", function(){
-            i++;
-            console.log("Complete: " + i);
-            sendMail(i);
-          });
+connection.checkForAlarms = function () {
+    var transporter = connection.setupNodemailer();
+    var users;
+    request = new Request("SELECT * FROM users", function (error, rowCount, rows) {
+        if (error) {
+            console.log(error);
         }
+        else {
+            console.log("request1");
+            users = rows;
+        }
+    });
+    connection.execSql(request);
+    request.on('requestCompleted', function () {
+        var sendMail = function (i) {
+            console.log("user length " + users.length);
+            console.log("First I " + i);
+            if (i < users.length) {
+                var alarm = users[i][3].value;
+                var userEmail = users[i][0].value;
+                request = new Request("SELECT * FROM usersFoodData WHERE email='" + userEmail + "' AND daysLeft='" + alarm + "'", function (error, rowCount, rows) {
+                    if (error) {
+                        console.log("GETTING HERE " + error);
+                    }
+                    else {
+                        console.log("request2");
+                        var foods = rows;
+                        var text = "";
+                        var html = "";
+                        for (var i = 0; i < foods.length; i++) {
+                            text += foods[i][0] + " \r\n";
+                            html += "<li>" + foods[i][0] + "</li>";
+                        }
+                        let mailOptions = {
+                            from: '"Your Friends At Yams" <yamsreminder@gmail.com>', // sender address
+                            to: userEmail + ', Adamsmith6300@gmail.com', // list of receivers
+                            subject: 'Gotta Eat up!', // Subject line
+                            text: 'Your foods are expiring! ' + text, // plain text body
+                            html: '<h2>Your foods are expiring!</h2><ul>' + html + '</ul>' // html body
+                        };
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                return console.log(error);
+                            }
+                            console.log('Message sent: %s', info.messageId);
+                            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                        });
+                    }
+                });
+                connection.execSql(request);
+                request.on("requestCompleted", function () {
+                    i++;
+                    console.log("Complete: " + i);
+                    sendMail(i);
+                });
+            }
 
-      }
-      var i = 0;
-      sendMail(i);
-      console.log( "I NOW " + i);
+        }
+        var i = 0;
+        sendMail(i);
+        console.log("I NOW " + i);
 
-  });
+    });
 }
 
 
@@ -113,7 +113,6 @@ connection.checkForAlarms = function(){
 
 
 connection.getUserFoodData = function (req, res, next) {
-    console.log('Reading rows from the Table...');
 
     getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
         function (err, rowCount, rows) {
@@ -121,7 +120,7 @@ connection.getUserFoodData = function (req, res, next) {
                 console.log(err);
             } else {
                 var usersFood = rows;
-                res.render('fridge', { usersFood: usersFood, userName: req.user.name });
+                res.render('fridge', { usersFood: usersFood, userName: req.user.userName });
                 //connection.setupNodemailer();
                 //connection.checkForAlarms();
             }
@@ -129,9 +128,10 @@ connection.getUserFoodData = function (req, res, next) {
     connection.execSql(getUserFoodDataRequest);
 }
 
-connection.updateDaysLeft = function () {
+connection.updateDaysLeft = function (req, res, next, email, userName) {
 
-    updateRequest = new Request("UPDATE usersFoodData SET daysLeft=daysLeft - 1",
+    updateRequest = new Request("UPDATE usersFoodData SET daysLeft=daysLeft - 1 WHERE email=" + "'" +
+        email + "'",
         function (error) {
             if (error) {
                 console.log(error);
@@ -139,6 +139,22 @@ connection.updateDaysLeft = function () {
         });
 
     connection.execSql(updateRequest);
+
+    updateRequest.on("requestCompleted", function () {
+
+        getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + email + "'",
+            function (err, rowCount, rows) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    var usersFood = rows;
+                    res.render('fridge', { usersFood: usersFood, userName: userName });
+                    //connection.setupNodemailer();
+                    //connection.checkForAlarms();
+                }
+            });
+        connection.execSql(getUserFoodDataRequest);
+    });
 }
 
 connection.calculateDaysLeft = function (designatedDate) {
@@ -155,8 +171,8 @@ connection.calculateDaysLeft = function (designatedDate) {
 
     const ONE_DAY = 1000 * 60 * 60 * 24;
     var daysLeft = (designatedDate - currentDate) / ONE_DAY;
-
     var dateObject = { "daysLeft": daysLeft, "currentDateStr": currentDateStr };
+
     return dateObject;
 }
 module.exports = connection;
