@@ -74,7 +74,6 @@ router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
     var foods = [];
     if (typeof req.body.foodName === 'string') {
-
         var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
 
         foods.push([
@@ -162,7 +161,7 @@ router.post('/addSingleItem', function (req, res, next) {
                     console.log(err);
                 }
                 else {
-                    res.redirect('/fridge/login');
+                    res.redirect('/fridge/getUserFoodData');
                 }
             }));
 
@@ -201,7 +200,7 @@ router.post('/notificationSet', function (req, res, next) {
             }
             else {
                 console.log("alarm set");
-                res.redirect('/fridge/login');
+                res.redirect('/fridge/getUserFoodData');
             }
         }));
 });
