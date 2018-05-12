@@ -111,20 +111,51 @@ connection.on('connect', function (err) {
 });
 
 connection.getUserFoodData = function (req, res, next) {
-    console.log('Reading rows from the Table...');
 
-    getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
-        function (err, rowCount, rows) {
-            if (err) {
-                console.log(err);
-            } else {
-                var usersFood = rows;
-                res.render('fridge', { usersFood: usersFood, userName: req.user.name });
-                //connection.setupNodemailer();
-                //connection.checkForAlarms();
+
+    request = new Request("SELECT daysLeft, dayOut FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
+        function (error, rowCount, rows) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+
+                if (rows.length != 0) {
+
+                    var currentDaysLeft = rows[0][0].value;
+                    var expiryDate = new Date(rows[0][1].value);
+
+                    var dateObject = connection.calculateDaysLeft(expiryDate);
+
+                    if (currentDaysLeft != dateObject.daysLeft) {
+                        connection.updateDaysLeft();
+                    }
+                }
+                else {
+                    console.log("There are no objects on the database");
+                }
             }
         });
-    connection.execSql(getUserFoodDataRequest);
+
+    connection.execSql(request);
+
+    console.log('Reading rows from the Table...');
+    request.on("requestCompleted", function () {
+
+        getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
+            function (err, rowCount, rows) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    var usersFood = rows;
+                    res.render('fridge', { usersFood: usersFood, userName: req.user.name });
+                    //connection.setupNodemailer();
+                    //connection.checkForAlarms();
+                }
+            });
+        connection.execSql(getUserFoodDataRequest);
+    });
+ 
 }
 
 connection.updateDaysLeft = function () {
