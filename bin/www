@@ -19,17 +19,6 @@ const requestUrl = url.parse('https://calm-caverns-80656.herokuapp.com/');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-http.get({
-    host: fixieUrl.hostname,
-    port: fixieUrl.port,
-    path: requestUrl.href,
-    headers: {
-      Host: requestUrl.host,
-      'Proxy-Authorization': `Basic ${new Buffer(fixieUrl.auth).toString('base64')}`,
-    }
-}, res => {
-  console.log(`Got response: ${res.statusCode}`);
-});
 
 /**
  * Create HTTP server.
@@ -40,7 +29,18 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
+ http.get({
+     host: fixieUrl.hostname,
+     port: fixieUrl.port,
+     path: requestUrl.href,
+     headers: {
+       Host: requestUrl.host,
+       'Proxy-Authorization': `Basic ${new Buffer(fixieUrl.auth).toString('base64')}`,
+     }
+ }, res => {
+   console.log(`Got response: ${res.statusCode}`);
+ });
+ 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
