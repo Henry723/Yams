@@ -52,4 +52,21 @@ passport.use(
 	}
 ));
 
+// configuration for google login.
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+const googleClientID = '921816998744-7bo3fu2ouecuhcdolbdj971af7p5pkrv.apps.googleusercontent.com';
+const googleClientSecret = 'TUjng4inPK-hmwaeoHQ1Dhz4';
+
+passport.use(new GoogleStrategy({
+    clientID: googleClientID,
+    clientSecret: googleClientSecret,
+    callbackURL: "http://localhost:3000/login/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+	  return done(null, profile.emails[0].value);
+  }
+));
+
 module.exports = passport;
