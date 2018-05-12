@@ -162,7 +162,7 @@ router.post('/addSingleItem', function (req, res, next) {
                     console.log(err);
                 }
                 else {
-                    res.redirect('/fridge/login');
+									db.getUserFoodData(req, res, next);
                 }
             }));
 
