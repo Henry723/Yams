@@ -18,89 +18,87 @@ var config =
 
 var connection = new Connection(config);
 
-connection.setupNodemailer = function(){
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-        type: 'OAuth2',
-        user: 'yamsreminder@gmail.com',
-        clientId: '982036972753-412l3t38hu5mheodvmefeku43g7aal15.apps.googleusercontent.com',
-        clientSecret: 's6MYWNgOuQndAQaJ5NKTqpsO',
-        refreshToken: '1/oozVuK4LTwJxp7WpPasAyLIgLJea9tEhl7muZZLOUO4',
-        accessToken: 'ya29.Glu4BfMJtwbsFCtBO1nuvOK_lUxR5s8N0ErkyWQmGWp0D6zna3kShxWFC4_9PwAE3g8vtY_9vykjazccFTMN8EKIvUyys7KahA4Rk1_LGTUYnwbUskDb7tpM3t4D'
-    }
-  });
-  return transporter;
-}
-
-connection.checkForAlarms = function(){
-  var transporter = connection.setupNodemailer();
-  var users;
-  request = new Request("SELECT * FROM users", function (error, rowCount, rows) {
-    if (error) {
-      console.log(error);
-    }
-    else {
-      console.log("request1");
-      users = rows;
-    }
-  });
-  connection.execSql(request);
-  request.on('requestCompleted', function () {
-      var sendMail = function(i){
-        console.log("user length " + users.length);
-        console.log("First I " + i);
-        if (i < users.length){
-          var alarm = users[i][3].value;
-          var userEmail = users[i][0].value;
-          request = new Request("SELECT * FROM usersFoodData WHERE email='" + userEmail + "' AND daysLeft='" + alarm + "'" , function (error, rowCount, rows) {
-            if (error) {
-              console.log("GETTING HERE " + error);
-            }
-            else {
-              console.log("request2");
-              var foods = rows;
-              var text = "";
-              var html = "";
-              for(var i = 0; i < foods.length; i++){
-                text += foods[i][0] + " \r\n";
-                html += "<li>" + foods[i][0] + "</li>";
-              }
-              let mailOptions = {
-                from: '"Your Friends At Yams" <yamsreminder@gmail.com>', // sender address
-                to: userEmail + ', Adamsmith6300@gmail.com', // list of receivers
-                subject: 'Gotta Eat up!', // Subject line
-                text: 'Your foods are expiring! ' + text, // plain text body
-                html: '<h2>Your foods are expiring!</h2><ul>' + html + '</ul>' // html body
-              };
-              transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  return console.log(error);
-                }
-                console.log('Message sent: %s', info.messageId);
-                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-              });
-            }
-          });
-          connection.execSql(request);
-          request.on("requestCompleted", function(){
-            i++;
-            console.log("Complete: " + i);
-            sendMail(i);
-          });
+connection.setupNodemailer = function () {
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            type: 'OAuth2',
+            user: 'yamsreminder@gmail.com',
+            clientId: '982036972753-412l3t38hu5mheodvmefeku43g7aal15.apps.googleusercontent.com',
+            clientSecret: 's6MYWNgOuQndAQaJ5NKTqpsO',
+            refreshToken: '1/oozVuK4LTwJxp7WpPasAyLIgLJea9tEhl7muZZLOUO4',
+            accessToken: 'ya29.Glu4BfMJtwbsFCtBO1nuvOK_lUxR5s8N0ErkyWQmGWp0D6zna3kShxWFC4_9PwAE3g8vtY_9vykjazccFTMN8EKIvUyys7KahA4Rk1_LGTUYnwbUskDb7tpM3t4D'
         }
-
-      }
-      var i = 0;
-      sendMail(i);
-      console.log( "I NOW " + i);
-
-  });
+    });
+    return transporter;
 }
 
+connection.checkForAlarms = function () {
+    var transporter = connection.setupNodemailer();
+    var users;
+    request = new Request("SELECT * FROM users", function (error, rowCount, rows) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log("request1");
+            users = rows;
+        }
+    });
+    connection.execSql(request);
+    request.on('requestCompleted', function () {
+        var sendMail = function (i) {
+            console.log("user length " + users.length);
+            console.log("First I " + i);
+            if (i < users.length) {
+                var alarm = users[i][3].value;
+                var userEmail = users[i][0].value;
+                request = new Request("SELECT * FROM usersFoodData WHERE email='" + userEmail + "' AND daysLeft='" + alarm + "'", function (error, rowCount, rows) {
+                    if (error) {
+                        console.log("GETTING HERE " + error);
+                    }
+                    else {
+                        console.log("request2");
+                        var foods = rows;
+                        var text = "";
+                        var html = "";
+                        for (var i = 0; i < foods.length; i++) {
+                            text += foods[i][0] + " \r\n";
+                            html += "<li>" + foods[i][0] + "</li>";
+                        }
+                        let mailOptions = {
+                            from: '"Your Friends At Yams" <yamsreminder@gmail.com>', // sender address
+                            to: userEmail + ', Adamsmith6300@gmail.com', // list of receivers
+                            subject: 'Gotta Eat up!', // Subject line
+                            text: 'Your foods are expiring! ' + text, // plain text body
+                            html: '<h2>Your foods are expiring!</h2><ul>' + html + '</ul>' // html body
+                        };
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                return console.log(error);
+                            }
+                            console.log('Message sent: %s', info.messageId);
+                            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                        });
+                    }
+                });
+                connection.execSql(request);
+                request.on("requestCompleted", function () {
+                    i++;
+                    console.log("Complete: " + i);
+                    sendMail(i);
+                });
+            }
 
+        }
+        var i = 0;
+        sendMail(i);
+        console.log("I NOW " + i);
+
+    });
+}
 
 connection.on('connect', function (err) {
     if (err) {
@@ -112,55 +110,24 @@ connection.on('connect', function (err) {
 
 connection.getUserFoodData = function (req, res, next) {
 
-
-    request = new Request("SELECT daysLeft, dayOut FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
-        function (error, rowCount, rows) {
-            if (error) {
-                console.log(error);
-            }
-            else {
-
-                if (rows.length != 0) {
-
-                    var currentDaysLeft = rows[0][0].value;
-                    var expiryDate = new Date(rows[0][1].value);
-
-                    var dateObject = connection.calculateDaysLeft(expiryDate);
-
-                    if (currentDaysLeft != dateObject.daysLeft) {
-                        connection.updateDaysLeft();
-                    }
-                }
-                else {
-                    console.log("There are no objects on the database");
-                }
+    getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
+        function (err, rowCount, rows) {
+            if (err) {
+                console.log(err);
+            } else {
+                var usersFood = rows;
+                res.render('fridge', { usersFood: usersFood, userName: req.user.userName });
+                //connection.setupNodemailer();
+                //connection.checkForAlarms();
             }
         });
-
-    connection.execSql(request);
-
-    console.log('Reading rows from the Table...');
-    request.on("requestCompleted", function () {
-
-        getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
-            function (err, rowCount, rows) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    var usersFood = rows;
-                    res.render('fridge', { usersFood: usersFood, userName: req.user.name });
-                    //connection.setupNodemailer();
-                    //connection.checkForAlarms();
-                }
-            });
-        connection.execSql(getUserFoodDataRequest);
-    });
- 
+    connection.execSql(getUserFoodDataRequest);
 }
 
-connection.updateDaysLeft = function () {
+connection.updateDaysLeft = function (req, res, next, email, userName) {
 
-    updateRequest = new Request("UPDATE usersFoodData SET daysLeft=daysLeft - 1",
+    updateRequest = new Request("UPDATE usersFoodData SET daysLeft=daysLeft - 1 WHERE email=" + "'" +
+        email + "'",
         function (error) {
             if (error) {
                 console.log(error);
@@ -168,6 +135,22 @@ connection.updateDaysLeft = function () {
         });
 
     connection.execSql(updateRequest);
+
+    updateRequest.on("requestCompleted", function () {
+
+        getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + email + "'",
+            function (err, rowCount, rows) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    var usersFood = rows;
+                    res.render('fridge', { usersFood: usersFood, userName: userName });
+                    //connection.setupNodemailer();
+                    //connection.checkForAlarms();
+                }
+            });
+        connection.execSql(getUserFoodDataRequest);
+    });
 }
 
 connection.calculateDaysLeft = function (designatedDate) {
@@ -184,8 +167,8 @@ connection.calculateDaysLeft = function (designatedDate) {
 
     const ONE_DAY = 1000 * 60 * 60 * 24;
     var daysLeft = (designatedDate - currentDate) / ONE_DAY;
-
     var dateObject = { "daysLeft": daysLeft, "currentDateStr": currentDateStr };
+
     return dateObject;
 }
 module.exports = connection;
