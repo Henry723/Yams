@@ -25,8 +25,8 @@ router.get('/getUserFoodData', function (req, res, next) {
 /***register user and render dashboard****/
 router.post('/register', function (req, res, next) {
 
-    request = new Request("INSERT INTO users (name, email, password) VALUES ('" +
-        req.body.name + "', '" + req.body.email + "', '" + req.body.password + "')",
+    request = new Request("INSERT INTO users (name, email, password, alarm) VALUES ('" +
+        req.body.name + "', '" + req.body.email + "', '" + req.body.password + "', 5)",
         function (error)
         {
             if (error)
