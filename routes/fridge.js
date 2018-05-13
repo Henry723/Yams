@@ -37,17 +37,11 @@ router.post('/register', function (req, res, next) {
             else
             {
                 console.log("login success");
+								res.redirect("../");
             }
         }
     );
     db.execSql(request);
-
-    db.request.on('requestCompleted', function () {
-      authLocal.authenticate('local-login', {
-        successRedirect: './getUserFoodData',
-        failureRedirect: '../'
-      })
-    });
 });
 
 /****Get all food reference table****/
