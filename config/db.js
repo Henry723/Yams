@@ -18,21 +18,29 @@ var config =
 
 var connection = new Connection(config);
 
-connection.setupNodemailer = function () {
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            type: 'OAuth2',
-            user: 'yamsreminder@gmail.com',
-            clientId: '982036972753-412l3t38hu5mheodvmefeku43g7aal15.apps.googleusercontent.com',
-            clientSecret: 's6MYWNgOuQndAQaJ5NKTqpsO',
-            refreshToken: '1/oozVuK4LTwJxp7WpPasAyLIgLJea9tEhl7muZZLOUO4',
-            accessToken: 'ya29.Glu4BfMJtwbsFCtBO1nuvOK_lUxR5s8N0ErkyWQmGWp0D6zna3kShxWFC4_9PwAE3g8vtY_9vykjazccFTMN8EKIvUyys7KahA4Rk1_LGTUYnwbUskDb7tpM3t4D'
-        }
-    });
-    return transporter;
+connection.on('connect', function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("connected");
+    }
+});
+
+connection.setupNodemailer = function(){
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        type: 'OAuth2',
+        user: 'yamsreminder@gmail.com',
+        clientId: '982036972753-412l3t38hu5mheodvmefeku43g7aal15.apps.googleusercontent.com',
+        clientSecret: 's6MYWNgOuQndAQaJ5NKTqpsO',
+        refreshToken: '1/oozVuK4LTwJxp7WpPasAyLIgLJea9tEhl7muZZLOUO4',
+        accessToken: 'ya29.Glu4BfMJtwbsFCtBO1nuvOK_lUxR5s8N0ErkyWQmGWp0D6zna3kShxWFC4_9PwAE3g8vtY_9vykjazccFTMN8EKIvUyys7KahA4Rk1_LGTUYnwbUskDb7tpM3t4D'
+    }
+  });
+  return transporter;
 }
 
 connection.checkForAlarms = function () {
@@ -100,13 +108,9 @@ connection.checkForAlarms = function () {
     });
 }
 
-connection.on('connect', function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log("connected");
-    }
-});
+
+
+
 
 connection.getUserFoodData = function (req, res, next) {
 
