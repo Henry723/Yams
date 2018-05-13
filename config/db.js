@@ -114,13 +114,14 @@ connection.checkForAlarms = function () {
 
 connection.getUserFoodData = function (req, res, next) {
 
+
     getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
         function (err, rowCount, rows) {
             if (err) {
                 console.log(err);
             } else {
                 var usersFood = rows;
-                res.render('fridge', { usersFood: usersFood, userName: req.user.userName });
+                res.render('fridge', { usersFood: usersFood, userName: req.user.name });
                 //connection.setupNodemailer();
                 //connection.checkForAlarms();
             }
