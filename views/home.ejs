@@ -41,7 +41,7 @@
   <div id="mainForm">
       <div class="row">
           <div class="mx-auto">
-              <form action="./login" method="get">
+              <form action="./auth/google" method="get">
                   <button id="googleClick" class="btn btn-lg btn-social btn-google w-100 text-center">
                       <span class="fab fa-google"></span> Login with Google
                   </button>
@@ -68,7 +68,7 @@
     </div>
   <div id="loginForm" class="row">
     <div class="col-8 mx-auto">
-      <form id="authen" class="p-4" action="./fridge/login" method="POST">
+      <form id="authen" class="p-4" action="./auth/local/login" method="POST">
         <div class="form-group">
           <input name="email" type="email" class="form-control" id="emailInput" required="required" placeholder="email@example.com">
         </div>
@@ -93,7 +93,7 @@
   <!--Signup form-------------------------------------------->
   <div id="registerForm" class="row">
     <div class="col-8 mx-auto">
-      <form class="p-4" action="./fridge/register" method="POST">
+      <form class="p-4" action="./auth/local/register" method="POST">
         <div class="form-group">
           <input name="name" type="text" class="form-control" id="registerFullName" required="required" pattern="[A-Za-z]{}" placeholder="Full name">
         </div>
