@@ -19,14 +19,9 @@ passport.serializeUser(function(user, done) {
 
 // used to deserialize the user
 passport.deserializeUser(function(email, done) {
-	console.log("Deserializing");
 	deserializeRequest =
 		new Request("select * from users where email = " + "'" + email + "'",
 		function(err, rowCount, row) {
-			console.log('rowCount: ', rowCount);
-			console.log('row: ', row);
-			console.log('row[0][0]: ', row[0][0].value);
-			console.log('row[0][1]: ', row[0][1].value);
 			var result = [];
 			result.email = row[0][0].value;
 			result.name = row[0][1].value;
@@ -35,7 +30,31 @@ passport.deserializeUser(function(email, done) {
 	db.execSql(deserializeRequest);
 });
 
-// configure local strategy
+// configure local register strategy
+passport.use(
+	'local-register',
+	new LocalStrategy ({
+		usernameField: 'email',
+		passwordField: 'password',
+		passReqToCallback: true
+	},
+	function (req, email, password, done) {
+		checkRequest = new Request("select email from users where email = '" + email + "'", function (err, rowCount, row) {
+			if (err) { return done(err); }
+			if (rowCount) { return done(null, false, {message: 'That email is already taken!' }); }
+			else {
+				registerRequest = new Request ("insert into users (name, email, password) values ('"
+						+ req.body.name + "', '" + email + "', '" + password + "')",
+						function () { return done(null, email); }
+						);
+				db.execSql (registerRequest);
+			}
+		});
+		db.execSql (checkRequest);
+	}
+));
+
+// configure local login strategy
 passport.use(
 	'local-login',
 	new LocalStrategy ({
@@ -43,7 +62,7 @@ passport.use(
 	passwordField: 'password'
 	},
 	function(email, password, done) {
-		loginRequest = new Request("select * from users where email = " + "'" + email + "'", function(err, rowCount, row) {
+		loginRequest = new Request("select * from users where email = '" + email + "'", function(err, rowCount, row) {
 			if (err) {
 				return done(err);
 			}
@@ -60,7 +79,6 @@ passport.use(
 ));
 
 // configuration for google login.
-
 passport.use(new GoogleStrategy({
 	clientID: googleClientID,
     clientSecret: googleClientSecret,
