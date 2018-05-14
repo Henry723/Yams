@@ -16,7 +16,8 @@ $(document).ready(function(){
 
     $("#loginClickInSignup").click(function(){
         $("#registerForm").hide();
-        $("#loginForm").show();
+        $("#loginForm").hide();
+        $("#mainForm").show();
     });
     
     

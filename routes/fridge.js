@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../config/db');
-var authLocal = require('../config/authLocal');
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
 
@@ -10,44 +9,8 @@ var nodemailer = require('nodemailer');
 //   db.getUserFoodData(req, res, next);
 // });
 
-/***login user and render dashboard****/
-router.post('/login',
-		authLocal.authenticate('local-login', {
-			successRedirect: './getUserFoodData',
-			failureRedirect: '../',
-			failureFlash: true
-		}));
-
-router.get('/getUserFoodData', function (req, res, next) {
-    db.getUserFoodData(req, res, next);
-});
-
-/***register user and render dashboard****/
-router.post('/register', function (req, res, next) {
-
-    request = new Request("INSERT INTO users (name, email, password, alarm) VALUES ('" +
-        req.body.name + "', '" + req.body.email + "', '" + req.body.password + "', 5)",
-        function (error)
-        {
-            if (error)
-            {
-                console.log(error.message);
-                throw error;
-            }
-            else
-            {
-                console.log("login success");
-            }
-        }
-    );
-    db.execSql(request);
-
-    db.request.on('requestCompleted', function () {
-      authLocal.authenticate('local-login', {
-        successRedirect: './getUserFoodData',
-        failureRedirect: '../'
-      })
-    });
+router.get('/getUserFoodData', function(req, res, next) {
+	db.getUserFoodData(req, res, next);
 });
 
 /****Get all food reference table****/
@@ -161,7 +124,7 @@ router.post('/addSingleItem', function (req, res, next) {
                     console.log(err);
                 }
                 else {
-                    res.redirect('/fridge/getUserFoodData');
+					db.getUserFoodData(req, res, next);
                 }
             }));
 
