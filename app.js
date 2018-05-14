@@ -14,7 +14,7 @@ var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
 
 var db = require('./config/db');
-var passport = require('./config/authLocal');
+var passport = require('./config/auth');
 var app = express();
 
 
@@ -39,6 +39,7 @@ app.use(flash());
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);
 app.use('/about', aboutRouter);
+
 
 
 
