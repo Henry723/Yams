@@ -64,7 +64,7 @@ connection.checkForAlarms = function () {
                 var alarm = users[i][3].value;
                 if (!alarm) alarm = 7;
                 var userEmail = users[i][0].value;
-                request = new Request("SELECT * FROM usersFoodData WHERE email='" + userEmail + "' AND daysLeft<='" + alarm + "'", function (error, rowCount, rows) {
+                request = new Request("SELECT * FROM usersFoodData WHERE email='" + userEmail + "'AND isNotified=0 AND daysLeft<='" + alarm + "'", function (error, rowCount, rows) {
                     if (error) {
                         console.log("REQUEST2 FAIL:" + error);
                     }
@@ -125,8 +125,6 @@ connection.getUserFoodData = function (req, res, next) {
             } else {
                 var usersFood = rows;
                 res.render('fridge', { usersFood: usersFood, userName: req.user.name });
-                // connection.setupNodemailer();
-                // connection.checkForAlarms();
             }
         });
     connection.execSql(getUserFoodDataRequest);
@@ -153,8 +151,6 @@ connection.updateDaysLeft = function (req, res, next, email, userName) {
                 } else {
                     var usersFood = rows;
                     res.render('fridge', { usersFood: usersFood, userName: userName });
-                    //connection.setupNodemailer();
-                    //connection.checkForAlarms();
                 }
             });
         connection.execSql(getUserFoodDataRequest);

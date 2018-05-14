@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
+var schedule = require('node-schedule');
 
 var session = require('express-session')
 var flash = require("connect-flash");
@@ -40,8 +41,29 @@ app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);
 app.use('/about', aboutRouter);
 
+function daily(){
+  var req = {};
+  schedule.scheduleJob('48 13 * * *', function(req){
+    console.log("daily");
+    var user = {
+      email: "yamsreminder@gmail.com",
+      password: "Yams321!"
+    }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      console.log("logged in");
+      // db.setupNodemailer();
+      // console.log("Nodemailer setup.");
+      // db.checkForAlarms();
+      // console.log("emails checked.");
+      // db.updateDaysLeft();
+      // console.log("daysLeft updated.");
+    });
 
+  });
+}
 
+daily();
 
 
 
