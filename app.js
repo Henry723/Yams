@@ -17,7 +17,6 @@ var db = require('./config/db');
 var passport = require('./config/auth');
 var app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,7 +25,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -39,11 +38,6 @@ app.use(flash());
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);
 app.use('/about', aboutRouter);
-
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
