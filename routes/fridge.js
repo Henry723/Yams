@@ -45,6 +45,7 @@ router.post('/addFoodItems', function (req, res, next) {
             dateObject.currentDateStr,
             req.body.expiryDate,
             dateObject.daysLeft,
+            0
       ]);
     }
     else {
@@ -57,6 +58,7 @@ router.post('/addFoodItems', function (req, res, next) {
                 dateObject.currentDateStr,
                 req.body.expiryDate[i],
                 dateObject.daysLeft,
+                0
             ]);
         }
     }
@@ -70,7 +72,9 @@ router.post('/addFoodItems', function (req, res, next) {
         sql += ", ";
         sql += "'" + foods[i][3] + "'"; //dayOut
         sql += ", ";
-        sql += "'" + foods[i][4] + "')"; //daysLeft
+        sql += "'" + foods[i][4] + "'"; //daysLeft
+        sql += ", ";
+        sql += "'" + foods[i][5] + "')"; //isNotified
 
         if (i != foods.length - 1) {
             sql += ", (";
@@ -78,7 +82,7 @@ router.post('/addFoodItems', function (req, res, next) {
     }
 
     // insert food info into database.
-    request = new Request("INSERT INTO usersFoodData(email, foodName, dayIn, dayOut, daysLeft) VALUES " + sql , function (error) {
+    request = new Request("INSERT INTO usersFoodData(email, foodName, dayIn, dayOut, daysLeft, isNotified) VALUES " + sql , function (error) {
         if (error) {
             console.log(error.message);
             throw error;
@@ -100,8 +104,8 @@ router.post('/addSingleItem', function (req, res, next) {
     var foodName = req.body.food;
     var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
 
-    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft) VALUES" + "('" + req.user.email + "', '"
-        + foodName.toUpperCase() + "', '" + dateObject.daysLeft + "')",
+    request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft, isNotified) VALUES" + "('" + req.user.email + "', '"
+        + foodName.toUpperCase() + "', '" + dateObject.daysLeft + "', 0)",
 
         function (err, rowCount, rows) {
             if (err) {
