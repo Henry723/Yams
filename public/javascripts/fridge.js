@@ -53,6 +53,7 @@ $( document ).ready(function() {
         $("#notificationSettingPage").hide();
     });
     
+ 
 /******************* notification button  ********************/
      $("#notificationPageAnchor").click(function(e){
 //        e.preventDefault();
@@ -62,7 +63,7 @@ $( document ).ready(function() {
         $("#addPage").hide();
         $("#notificationSettingPage").show();
     });
-
+    
 
 /********************** user page  ********************/
     
