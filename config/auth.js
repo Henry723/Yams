@@ -96,9 +96,6 @@ passport.use(new GoogleStrategy({
 					
 				if (!rowCount) 
 				{
-					console.log("register works");
-					console.log('profile.displayname: ', profile.displayName);
-					console.log('email: ', email);
 					registerRequest = new Request("INSERT INTO users (name, email) VALUES ('"
 							+ profile.displayName + "', '" + email + "')", 
 							function (err, rowCount, rows) {
