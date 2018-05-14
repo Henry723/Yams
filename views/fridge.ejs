@@ -45,16 +45,6 @@
         </div>
     </nav>
     
-    <!--notfication button-->
-    <div class="pr-3">
-        <div class="row">
-            <div class="col-12">
-                <button id="notificationPageAnchor" class="notificationSettingButton float-right"></button>
-            </div>
-        </div>
-    </div>
-    <!--notification button-->
-    
     <div id="userPage">
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
@@ -62,8 +52,9 @@
 
     <div id="fridgeDiv">
         <div>
-            <h1 class="list-group-item" id="fridgeHead">Fridge</h1>
+            <h1 class="list-group-item" id="fridgeHead">&ensp;Fridge<button id="notificationPageAnchor" class="notificationSettingButton float-right"></button></h1><!--with notification button-->
         </div>
+        
         <div>
             <ul class="list-group">
                 <% for (var i = 0; i < usersFood.length; i++){ %>
