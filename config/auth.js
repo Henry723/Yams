@@ -11,7 +11,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 const googleClientID = '921816998744-7bo3fu2ouecuhcdolbdj971af7p5pkrv.apps.googleusercontent.com';
 const googleClientSecret = 'TUjng4inPK-hmwaeoHQ1Dhz4';
-console.log(process.env.PORT);
+console.log("PORT" + process.env.PORT);
 const callback = (process.env.PORT) ?
 		'https://calm-caverns-80656.herokuapp.com/auth/google/callback' : 'http://localhost:3000/auth/google/callback';
 
@@ -88,6 +88,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
+
 			var email = profile.emails[0].value;
 			loginRequest = new Request("select * from users where email = '" + email + "'", function(err, rowCount, row)
 			{

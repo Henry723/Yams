@@ -12,7 +12,7 @@ var flash = require("connect-flash");
 var homeRouter = require('./routes/home');
 var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
-console.log(process.env.PORT);
+// console.log("PORT" + process.env.PORT);
 var db = require('./config/db');
 var passport = require('./config/auth');
 var app = express();
