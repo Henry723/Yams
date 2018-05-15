@@ -41,9 +41,6 @@ app.use('/about', aboutRouter);
 var daily = require('./daily');
 
 
-
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
