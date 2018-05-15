@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var nodemailer = require('nodemailer');
 
 var session = require('express-session')
 var flash = require("connect-flash");
@@ -38,6 +37,9 @@ app.use(flash());
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);
 app.use('/about', aboutRouter);
+
+var daily = require('./daily');
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
