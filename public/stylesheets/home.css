@@ -52,6 +52,7 @@ html {
 #registerClick {
   font-size: 18pt;
   color: rgb(75,0,130);
+  cursor: pointer;
 }
 
 #registerForm {
