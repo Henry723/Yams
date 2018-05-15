@@ -84,21 +84,19 @@ $(document).ready(function () {
                                         minDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1);
                                         minDate += dateInstance.getDate() + 1 >= 10 ? "-" + (dateInstance.getDate() + 1) : "-0"(+ dateInstance.getDate() + 1);
 
-                                        fData += "<div class='row'><div class='col-4'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" +
+                                        fData += "<div class='row'><div class='col-3'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" +
                                             foodName + "' required></div><div class='col-6'><input name='expiryDate' type='date' class='form-control' value='" + dateStr +
-                                            "' min='" + minDate + "'required></div><div class='col-2'><button type='button' class='btn btn-danger scannerDelete'> X </button></div></div>";
+                                            "' min='" + minDate + "'required></div><div class='col-2'><button class='btn btn-outline-danger scannerDelete' type='button'> X </button></div></div>";
                                     }
                                 }
-
+                                
                                 if (fData) {
                                     $("#scannerForm form").append(fData + "<button id='scannerFormSubmit' type='submit' class='mt-4 btn btn-large'>Submit</button>");
                                     $("#scannerForm").show();
                                     
                                     $(".scannerDelete").click(function(event) {
-                                        var parentTag = event.target.parentNode;
-                                        //var foodName = parentTag.firstChild.nextSibling.innerText;
-                                        console.log("it's working");
-                                        //this.parentNode.remove();
+                                        var parentTag = event.target.parentNode.parentNode;
+                                        parentTag.remove();
                                     });
     
                                 }
