@@ -23,8 +23,9 @@ router.post('/auth/local/register', passport.authenticate ('local-register', {
 }));
 
 
-router.get('/auth/google', 
-		passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.email'] }));
+router.get('/auth/google',
+		passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.email']})
+);
 
 
 router.get('/auth/google/callback',
