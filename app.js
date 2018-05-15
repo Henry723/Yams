@@ -25,7 +25,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-// app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
