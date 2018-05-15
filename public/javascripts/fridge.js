@@ -64,7 +64,6 @@ $( document ).ready(function() {
         $("#notificationSettingPage").show();
     });
     
-
 /********************** user page  ********************/
     
 
@@ -89,8 +88,6 @@ $( document ).ready(function() {
             }
         });
     });
-    
-    /********************** scan  ********************/
 });
 
 
