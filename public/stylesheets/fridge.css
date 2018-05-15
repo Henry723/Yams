@@ -57,6 +57,7 @@ html {
 
 body {
     background-color: transparent;
+    height: 100%;
 }
 
 #inventoryBg h1 {
@@ -97,6 +98,10 @@ body {
     text-align: center;
     background-color: lightgrey;
     font-family: 'Skranji', cursive;
+}
+
+h1 {
+    display: inline-block;
 }
 
 
@@ -294,15 +299,15 @@ body {
 
 .notificationSettingButton {
     background-image: url( '../images/cog.png' );
-    background-size: 45px 45px;
-    height: 45px;  
-    width: 45px;
+    background-size: 30px 30px;
+    height: 30px;  
+    width: 30px;
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #notificationFrame {
@@ -316,6 +321,34 @@ body {
 #notificationSettingPage {
     display: none;
 }
+
+/*******************************************************************************************/
+/**********************************  footer      *************************************/
+/*******************************************************************************************/
+
+body {
+  min-height: 100vh; 
+}
+
+.flex-grow {
+   flex: 1;
+}
+
+footer {
+    position: relative;
+    clear:both;
+}
+
+ #googleClick {
+    color: white;
+    border-radius: 0;
+    margin-top: 5%;
+ }
+
+.marginfix {
+    margin-top: 70px;
+}
+=======
 /*******************************************************************************************/
 /************************          log out button      *************************************/
 /*******************************************************************************************/

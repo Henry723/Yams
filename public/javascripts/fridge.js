@@ -39,7 +39,7 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").show();
         $("#addPage").hide();
-        $("#notificationPageAnchor").show();
+        $("#notificationPageAnchor").hide();
         $("#notificationSettingPage").hide();
     });
 
@@ -49,7 +49,7 @@ $( document ).ready(function() {
         $("#userPage").hide();
         $("#scanPage").hide();
         $("#addPage").show();
-        $("#notificationPageAnchor").show();
+        $("#notificationPageAnchor").hide();
         $("#notificationSettingPage").hide();
     });
     

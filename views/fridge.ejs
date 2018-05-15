@@ -5,18 +5,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - <%= userName %></title>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
 <!-- font for fridge -->
 <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
 <!--------------------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link rel="stylesheet" href="../stylesheets/bootstrap-social.css">
 <link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="">YAMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,16 +63,6 @@
         </div>
     </nav>
     
-    <!--notfication button-->
-    <div class="pr-3">
-        <div class="row">
-            <div class="col-12">
-                <button id="notificationPageAnchor" class="notificationSettingButton float-right"></button>
-            </div>
-        </div>
-    </div>
-    <!--notification button-->
-    
     <div id="userPage">
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
@@ -76,8 +70,9 @@
 
     <div id="fridgeDiv">
         <div>
-            <h1 class="list-group-item" id="fridgeHead">Fridge</h1>
+            <h1 class="list-group-item marginfix" id="fridgeHead">&ensp;Fridge<button id="notificationPageAnchor" class="notificationSettingButton float-right"></button></h1><!--with notification button-->
         </div>
+        
         <div>
             <ul class="list-group">
                 <% for (var i = 0; i < usersFood.length; i++){ %>
@@ -100,7 +95,7 @@
 <!------------------------------------------------------------------------------------------------>
 <!--- Scanning ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-<div id="scanPage">
+<div id="scanPage" class="marginfix">
   <div class="row mt-5">
     <div class="col-12 mx-auto text-center">
       <p>Please upload your receipt:</p>
@@ -134,7 +129,7 @@
 <!-- ADD ITEM ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
     <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
-    <div id="addPage">
+    <div id="addPage" class="marginfix">
         <div id="addFrame">
             <p id="add"> Add item </p>
             <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
@@ -164,7 +159,7 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- NOTIFICATION SETTINGS ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-    <div id="notificationSettingPage">
+    <div id="notificationSettingPage" class="marginfix">
         <div id="notificationFrame">
             <p> Notification Setting </p>
             <form id="saveNotification" action = "./notificationSet" method = "POST">
@@ -182,7 +177,7 @@
 <!------------------------------------------------------------------------------------------------>
 <!------------- ABOUT PAGE ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-<div id="aboutPage" class="container text-center">
+<div id="aboutPage" class="container text-center marginfix">
         <!--About yams heading row-->
         <div class="row pt-4 pb-4">
             <div class="mx-auto col-11">
@@ -284,6 +279,27 @@
     </div>
     <!--End of container-->
 
+<!------------------------------------------------footer------------------------------------->
+    <footer class="bg-dark text-white mt-4 fixed-bottom">
+    <div class="container-fluid py-1">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <small>Share our application to others!</small>
+                <button class="btn-facebook">
+                    <span class="fab fa-facebook"></span>
+                </button>
+                <button class="btn-twitter">
+                    <span class="fab fa-twitter"></span>
+                </button>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3 text-right small align-self-end">©Team Microsoft</div>
+        </div>
+    </div>
+</footer>
+
+=======
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
