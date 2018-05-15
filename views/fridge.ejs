@@ -5,7 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - <%= userName %></title>
+<!-- font for fridge -->
 <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+<!--------------------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -26,8 +28,20 @@
                     <a id="aboutPageAnchor" class="nav-link" href="#">About</a>
                 </li>
             </ul>
-
+            
+          <!------------------ log out button ----------------->  
+            
+          <!----------------------------------------------------------->  
+            
             <ul class="navbar-nav ml-auto">
+                <li id="logout" class="dropdown" class="nav-item">
+                    <button id="logoutButton" class="nav-link" type="button" class="btn dropdown-toggle" data-toggle="dropdown"href="#">Hello Uni</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Setting</a>
+                        <a class="dropdown-item" href="#">Log out</a>
+                    </div>
+                </li>
+                
                 <li class="nav-item">
                     <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
                 </li>
@@ -104,6 +118,7 @@
       </form>
     </div>
   </div>
+    
   <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
     <div class="loader modal-dialog" role="document">
       <button id="close-loader" data-dismiss="modal">Close</button>
@@ -268,9 +283,6 @@
         <!--End of about us row-->
     </div>
     <!--End of container-->
-
-
-
 
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
