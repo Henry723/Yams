@@ -12,6 +12,9 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const googleClientID = '921816998744-7bo3fu2ouecuhcdolbdj971af7p5pkrv.apps.googleusercontent.com';
 const googleClientSecret = 'TUjng4inPK-hmwaeoHQ1Dhz4';
 
+const callback = (process.env.PORT) ?
+		'https://calm-caverns-80656.herokuapp.com/auth/google/callback' : 'http://localhost:3000/auth/google/callback';
+
 //used to serialize the user for the session
 passport.serializeUser(function(user, done) {
 	done(null, user);
@@ -67,10 +70,10 @@ passport.use(
 				return done(err);
 			}
 			if (!rowCount) {
-				return done(null, false, { message: 'Incorrect Username.' });
+				return done(null, false, { message: 'There is no account with this email.' });
 			}
 			if (!(password == row[0][2].value)) {
-				return done(null, false, { message: 'Incorrect Password' });
+				return done(null, false, { message: 'Incorrect Password.' });
 			}
 			return done(null, row[0][0].value);
 		});
@@ -82,7 +85,7 @@ passport.use(
 passport.use(new GoogleStrategy({
 	clientID: googleClientID,
     clientSecret: googleClientSecret,
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    callbackURL: callback
 	},
 	function(accessToken, refreshToken, profile, done) {
 			var email = profile.emails[0].value;
@@ -95,7 +98,9 @@ passport.use(new GoogleStrategy({
 				{
 					registerRequest = new Request("INSERT INTO users (name, email) VALUES ('"
 							+ profile.displayName + "', '" + email + "')", 
-							function (err, rowCount, rows) {return done(null, email);
+							function (err, rowCount, rows) {
+								console.log("done");
+								return done(null, email);
 					});
 					db.execSql(registerRequest);
 				} 

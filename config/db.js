@@ -124,6 +124,16 @@ connection.getUserFoodData = function (req, res, next) {
                 console.log(err);
             } else {
                 var usersFood = rows;
+                rows.sort(function (a, b) {
+
+                    if (a[1].value > b[1].value) {
+                        return 1;
+                    }
+                    else if (a[1].value == b[1].value) {
+                        return 0;
+                    }
+                    return -1;
+                });
                 res.render('fridge', { usersFood: usersFood, userName: req.user.name });
             }
         });
