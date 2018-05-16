@@ -1,9 +1,80 @@
+html {
+    background-image:url('../images/3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+body {
+    background-color: transparent;
+    height: 100%;
+    font-family: 'Jua', sans-serif;
+}
+
+#fridgeDoorHeader {
+  margin: 10% auto;
+  width: 100%;
+  text-align: center;
+}
+#menu {
+  width: 100%;
+}
+li.links {
+  margin: 10px auto;
+  font-size: 20pt;
+  width: 250px;
+}
+.fridgeDoor {
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  background-color: white;
+  -webkit-transition: width 0.4s ease;
+    -moz-transition: width 0.4s ease;
+    -o-transition: width 0.4s ease;
+    transition: width 0.4s ease;
+  box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.3);
+}
+
+div.fridgeDoor .hideAnchors{
+  display: none;
+}
+
+.fridgeDoor div.handle {
+  height: 30%;
+  width: 10px;
+  background-color: rgb(75,0,130);
+  position: relative;
+  border-radius: 30%;
+  -webkit-transition: left 0.6s ease;
+    -moz-transition: left 0.6s ease;
+    -o-transition: left 0.6s ease;
+    transition: left 0.6s ease;
+}
+.openDoor {
+  width: 6%;
+  border-top-right-radius: 50%;
+}
+.openDoorHandle {
+  top: 40%;
+}
+.closedDoor {
+  width: 100%;
+  border-radius: 0px;
+}
+.closedDoorHandle {
+  left: 90%;
+  top: -25%;
+}
 
 
 /*******************************************************************************************/
 /*******************************         ABOUT         *************************************/
 /*******************************************************************************************/
-html { font-size: 1rem; }
+
 
 @media (min-width: 576px) {
     html .row{ font-size: 1.1rem; }
@@ -42,30 +113,17 @@ img {
 /*******************************************************************************************/
 /*******************************  FIRST PAGE           *************************************/
 /*******************************************************************************************/
+
 buttonBackground {
     background-color:rgb(0, 0, 0, 0);
-}
-
-html {
-    background-image:url('../images/3.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    min-height: 100%;
-    text-align: center;
-}
-
-body {
-    background-color: transparent;
-    height: 100%;
 }
 
 #inventoryBg h1 {
     font-size: 200%;
 }
 
-
-.eachFood {
+/*****DONT KNOW WHAT THIS DOES******/
+/* .eachFood {
     margin-top: 5%;
     font-weight:bold;
     background-color: darkgrey;
@@ -76,28 +134,30 @@ body {
 }
 .eachFoodName {
     text-align: center;
-}
-#progressBar {
-    width: 30%;
+} */
+
+.progressBar {
+    width: calc(100% - 40px);
     height: 40px;
-    background:white;
-    margin-right:auto;
-    border-style: solid;
-    padding:2px;
-    margin-bottom: 0;
-    margin-top:0;
+    background: #343a40;
+    border-style: 2px solid white;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
-#fridgeButton {
-    width: 10%;
+.btn.deleteButton {
+    width: 40px;
     background-color: rgb(255, 230, 230);
-    border-radius: 5%;
-    
+    color: #343a40;
+    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 #fridgeHead {
     text-align: center;
-    background-color: lightgrey;
-    font-family: 'Skranji', cursive;
+    background-color: #87CEFA;
+    color: white;
 }
 
 h1 {
@@ -107,7 +167,6 @@ h1 {
 
 .numberOfList {
     display:inline-flex;
-    font-family: 'Skranji', cursive;
     font-size: 150%;
     border-radius: 5%;
     padding:5px;
@@ -118,16 +177,9 @@ h1 {
 .numberOfList:nth-child(even){
     background-color: rgb(235, 235, 249);
 }
-#foodNameInFridge {
-    width:55%;
-    margin-left:2%;
-    margin-bottom:0;
-    height: auto;
-}
-#dateLeft{
-    width:30%;
-    position: absolute;
-    background-color: rgb(0, 0, 0, 0);
+
+.progressBarContent{
+    margin:auto;
     font-size:18px;
     text-align: center;
 }
@@ -160,16 +212,6 @@ h1 {
 /**********************************  scanning page       *************************************/
 /*******************************************************************************************/
 
-
-
-#scannerForm {
-  display: none;
-}
-
-#scannerForm .userID {
-  display: none;
-}
-
 #close-loader {
   display: none;
 }
@@ -196,6 +238,21 @@ h1 {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+#scanSubmit {
+  width: 80%;
+  -webkit-box-shadow: 1px 0px 3px 3px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    1px 0px 3px 3px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
+  box-shadow:         1px 0px 3px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: -1px 0px 3px 3px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    -1px 0px 3px 3px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
+  box-shadow:         -1px 0px 3px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px 1px 3px 3px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0px 1px 3px 3px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px -1px 3px 3px rgba(0,0,0,0.1);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px -1px 3px 3px rgba(0,0,0,0.1);  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0px -1px 3px 3px rgba(0,0,0,0.1);
+}
 
 .addItemsForm {
     background-color : rgb(0, 0, 0, 0.5);
@@ -207,6 +264,14 @@ h1 {
 
 .addItemsForm .form-control-plaintext {
   color: white;
+}
+#scannerForm {
+  display: none;
+  width:100%;
+}
+
+#scannerForm .userID {
+  display: none;
 }
 
 #scannerFormSubmit {
@@ -228,18 +293,17 @@ h1 {
 }
 
 .scannerDelete {
-    
     background-color: rgb(255, 230, 230);
     border-radius: 5%;
     width:60px !important; /**change button width here**/
-}
-#scannerForm {
-    width:100%;
 }
 
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
+.addItems-settings-space {
+  height: 50px;
+}
 
 .btn {
   width: 25%;
@@ -259,8 +323,8 @@ h1 {
     margin: 0 auto;
 }
 
-#add {
-    color : rgb(0, 0, 0);
+.add {
+    color : white;
     text-align: center;
     font-size : 150%;
 }
@@ -282,10 +346,6 @@ h1 {
     display:none;
 }
 
-.deleteButton {
-    color: black;
-}
-
 #easterModal {
     position:absolute;
     margin:0 auto;
@@ -299,15 +359,16 @@ h1 {
 
 .notificationSettingButton {
     background-image: url( '../images/cog.png' );
-    background-size: 30px 30px;
-    height: 30px;  
-    width: 30px;
+    background-size: 15px 15px;
+    height: 15px;
+    width: 15px;
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 #notificationFrame {
@@ -322,13 +383,18 @@ h1 {
     display: none;
 }
 
+.notice {
+  padding: 0;
+}
+
+.daysNotice {
+  text-align: center;
+}
+
 /*******************************************************************************************/
 /**********************************  footer      *************************************/
 /*******************************************************************************************/
 
-body {
-  min-height: 100vh; 
-}
 
 .flex-grow {
    flex: 1;
@@ -345,11 +411,6 @@ footer {
     margin-top: 5%;
  }
 
-.marginfix {
-    margin-top: 70px;
-}
-
 /*******************************************************************************************/
 /************************          log out button      *************************************/
 /*******************************************************************************************/
-       
