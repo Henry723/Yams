@@ -11,6 +11,7 @@ html {
 body {
     background-color: transparent;
     height: 100%;
+    font-family: 'Jua', sans-serif;
 }
 
 #fridgeDoorHeader {
@@ -47,24 +48,24 @@ div.fridgeDoor .hideAnchors{
   width: 10px;
   background-color: rgb(75,0,130);
   position: relative;
-  border-radius: 20px;
+  border-radius: 30%;
   -webkit-transition: left 0.6s ease;
     -moz-transition: left 0.6s ease;
     -o-transition: left 0.6s ease;
     transition: left 0.6s ease;
 }
-.closedDoor {
-  width: 20px;
-  border-top-right-radius: 25px;
+.openDoor {
+  width: 6%;
+  border-top-right-radius: 50%;
 }
-.closedDoorHandle {
+.openDoorHandle {
   top: 40%;
 }
-.openDoor {
+.closedDoor {
   width: 100%;
   border-radius: 0px;
 }
-.openDoorHandle {
+.closedDoorHandle {
   left: 90%;
   top: -25%;
 }
@@ -156,7 +157,6 @@ buttonBackground {
 #fridgeHead {
     text-align: center;
     background-color: #87CEFA;
-    font-family: 'Skranji', cursive;
     color: white;
 }
 
@@ -167,7 +167,6 @@ h1 {
 
 .numberOfList {
     display:inline-flex;
-    font-family: 'Skranji', cursive;
     font-size: 150%;
     border-radius: 5%;
     padding:5px;
@@ -303,7 +302,7 @@ h1 {
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
 .addItems-settings-space {
-  height: 100px; 
+  height: 50px;
 }
 
 .btn {

@@ -17,9 +17,7 @@ $( document ).ready(function() {
 
   $("#aboutPageAnchor").click(function(e){
     e.stopPropagation();
-    $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-    $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-    $("li.links,h1").toggleClass("hideAnchors");
+    toggleDoor();
     $("#aboutPage").show();
     $("#userPage").hide();
     $("#scanPage").hide();
@@ -30,9 +28,7 @@ $( document ).ready(function() {
 
   $("#userPageAnchor").click(function(e){
     e.stopPropagation();
-    $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-    $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-    $("li.links,h1").toggleClass("hideAnchors");
+    toggleDoor();
     $("#aboutPage").hide();
     $("#userPage").show();
     $("#scanPage").hide();
@@ -42,9 +38,7 @@ $( document ).ready(function() {
 
   $("#scanPageAnchor").click(function(e){
     e.stopPropagation();
-    $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-    $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-    $("li.links,h1").toggleClass("hideAnchors");
+    toggleDoor();
     $("#aboutPage").hide();
     $("#userPage").hide();
     $("#scanPage").show();
@@ -54,9 +48,7 @@ $( document ).ready(function() {
 
   $("#addPageAnchor").click(function(e){
     e.stopPropagation();
-    $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-    $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-    $("li.links,h1").toggleClass("hideAnchors");
+    toggleDoor();
     $("#aboutPage").hide();
     $("#userPage").hide();
     $("#scanPage").hide();
@@ -68,9 +60,7 @@ $( document ).ready(function() {
   /******************* notification button  ********************/
   $("#notificationPageAnchor").click(function(e){
     e.stopPropagation();
-    $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-    $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-    $("li.links,h1").toggleClass("hideAnchors");
+    toggleDoor();
     $("#aboutPage").hide();
     $("#userPage").hide();
     $("#scanPage").hide();
@@ -105,11 +95,15 @@ $( document ).ready(function() {
 
   $("p.progressBarContent").width($("div.progressBar").width());
 
+ function toggleDoor(){
+   $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
+   $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
+   $("li.links,h1").toggleClass("hideAnchors");
+ }
   $(".fridgeDoor").click(function(){
-    $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-    $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-    $("li.links,h1").toggleClass("hideAnchors");
+    toggleDoor();
   });
+
 
 
 
@@ -132,19 +126,20 @@ setInterval(function() {
 $("#headerNav").slideUp(500)
 }, 6000);
 */
-var iScrollPos = 0;
+// var iScrollPos = 0;
+//
+// $(window).scroll(function () {
+//   var iCurScrollPos = $(this).scrollTop();
+//   if (iCurScrollPos > iScrollPos) {
+//     //Scrolling Down
+//     $(".scrollHidden").slideUp(100)
+//   } else {
+//     //Scrolling Up
+//     $(".scrollHidden").slideDown(100);
+//   }
+//   iScrollPos = iCurScrollPos;
+// });
 
-$(window).scroll(function () {
-  var iCurScrollPos = $(this).scrollTop();
-  if (iCurScrollPos > iScrollPos) {
-    //Scrolling Down
-    $(".scrollHidden").slideUp(100)
-  } else {
-    //Scrolling Up
-    $(".scrollHidden").slideDown(100);
-  }
-  iScrollPos = iCurScrollPos;
-});
 
 
 

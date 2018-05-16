@@ -6,12 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - <%= userName %></title>
 <!-- font for fridge -->
-<link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <!--------------------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css"> -->
 <link rel="stylesheet" href="../stylesheets/bootstrap-social.css">
 <link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
@@ -55,36 +54,36 @@
     </nav> -->
 
 <div class="fridgeDoor closedDoor position-fixed">
-  <h1 id="fridgeDoorHeader" class="hideAnchors">Hi <%= userName %>!</h1>
+  <h1 id="fridgeDoorHeader" class="">Hi <%= userName %>!</h1>
   <ul id="menu" class="navbar-nav">
-    <li class="links hideAnchors">
+    <li class="links ">
       <a id="userPageAnchor">
-        My Fridge <i class="fas fa-utensils"></i>
+        <i class="fas fa-utensils"></i> My Fridge
       </a>
     </li>
-    <li class="links hideAnchors">
+    <li class="links ">
       <a id="scanPageAnchor">
-        Scan Receipt <i class="fas fa-camera"></i>
+        <i class="fas fa-camera"></i> Scan Receipt
       </a>
     </li>
-    <li class="links hideAnchors">
+    <li class="links ">
       <a id="addPageAnchor">
-        Add Single Item <i class="fas fa-plus"></i>
+        <i class="fas fa-plus"></i> Add Single Item
       </a>
     </li>
-    <li class="links hideAnchors">
+    <li class="links ">
       <a id="aboutPageAnchor">
-      About Yams <i class="far fa-question-circle"></i>
+        <i class="far fa-question-circle"></i> About Yams
       </a>
     </li>
-    <li class="links hideAnchors">
+    <li class="links ">
       <a id="notificationPageAnchor">
-        Settings <i class="fas fa-cog"></i>
+        <i class="fas fa-cog"></i> Settings
       </a>
     </li>
-    <li class="links hideAnchors">
+    <li class="links ">
       <a id="logout">
-        Log out <i class="fas fa-sign-out-alt"></i>
+        <i class="fas fa-sign-out-alt"></i> Log out
       </a>
     </li>
   </ul>
@@ -134,7 +133,7 @@
 <div id="scanPage">
   <div class="row mt-5">
     <div class="col-12 mx-auto text-center">
-      <p>Please upload your receipt:</p>
+      <h2>Please upload your receipt:</h2>
     </div>
     <div class="col-12 mx-auto text-center">
       <form>
@@ -169,7 +168,7 @@
       <div class="addItems-settings-space">
       </div>
         <div id="addFrame">
-            <p class="add"> Add item </p>
+            <h2 class="add"> Add item </h2>
             <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -201,7 +200,7 @@
         <div class="addItems-settings-space">
         </div>
         <div id="notificationFrame">
-            <p class="add">How many days notice before your food expires? </p>
+            <h2 class="add">How many days notice before your food expires? </h2>
             <form id="saveNotification" action = "./notificationSet" method = "POST">
                 <div class="input-group mb-3 row mx-auto">
                   <div class="notice pr-2 col-4">
@@ -347,7 +346,6 @@ crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script> -->
 <script type="text/javascript" src="../javascripts/fridge.js"></script>
 <script type="text/javascript" src="../javascripts/scanner.js"></script>
 
