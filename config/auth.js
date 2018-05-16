@@ -71,11 +71,13 @@ passport.use(
 			}
 			if (!rowCount) {
 				return done(null, false, { message: 'There is no account with this email.' });
-			}
-			if (!(password == row[0][2].value)) {
+			} else if (!row[0][2].value) {
+				return done(null, false, { message: "Try 'login with Google'" });
+			} else if (!(password == row[0][2].value)) {
 				return done(null, false, { message: 'Incorrect Password.' });
+			} else {
+				return done(null, row[0][0].value);
 			}
-			return done(null, row[0][0].value);
 		});
 		db.execSql(loginRequest);
 	}
