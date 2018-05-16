@@ -5,11 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yams - <%= userName %></title>
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
-
 <!-- font for fridge -->
-<link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <!--------------------->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
@@ -20,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrollHidden">
         <a class="navbar-brand" href="">YAMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,20 +29,7 @@
                     <a id="aboutPageAnchor" class="nav-link" href="#">About</a>
                 </li>
             </ul>
-            
-          <!------------------ log out button ----------------->  
-            
-          <!----------------------------------------------------------->  
-            
             <ul class="navbar-nav ml-auto">
-                <li id="logout" class="dropdown" class="nav-item">
-                    <button id="logoutButton" class="nav-link" type="button" class="btn dropdown-toggle" data-toggle="dropdown"href="#">Setting</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Set alarm</a>
-                        <a class="dropdown-item" href="#">Log out</a>
-                    </div>
-                </li>
-                
                 <li class="nav-item">
                     <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
                 </li>
@@ -57,48 +41,99 @@
                 <li class="nav-item">
                     <a id="addPageAnchor" class="nav-link" href="#">Add Single Item</a>
                 </li>
+                <li class="nav-item">
+                    <a id="notificationPageAnchor" class="nav-link" href="#"><button class="notificationSettingButton"></button>Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout" class="nav-link" href="#">Log out</a>
+                </li>
 
             </ul>
 
         </div>
-    </nav>
-    
-    <div id="userPage">
+    </nav> -->
+
+<div class="fridgeDoor closedDoor position-fixed">
+  <h1 id="fridgeDoorHeader" class="">Hi <%= userName %>!</h1>
+  <ul id="menu" class="navbar-nav">
+    <li class="links ">
+      <a id="userPageAnchor">
+        <i class="fas fa-utensils"></i> My Fridge
+      </a>
+    </li>
+    <li class="links ">
+      <a id="scanPageAnchor">
+        <i class="fas fa-camera"></i> Scan Receipt
+      </a>
+    </li>
+    <li class="links ">
+      <a id="addPageAnchor">
+        <i class="fas fa-plus"></i> Add Single Item
+      </a>
+    </li>
+    <li class="links ">
+      <a id="aboutPageAnchor">
+        <i class="far fa-question-circle"></i> About Yams
+      </a>
+    </li>
+    <li class="links ">
+      <a id="notificationPageAnchor">
+        <i class="fas fa-cog"></i> Settings
+      </a>
+    </li>
+    <li class="links ">
+      <a id="logout">
+        <i class="fas fa-sign-out-alt"></i> Log out
+      </a>
+    </li>
+  </ul>
+  <div class="handle closedDoorHandle">
+  </div>
+</div>
+
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
-
+<div id="userPage" >
     <div id="fridgeDiv">
         <div>
-            <h1 class="list-group-item marginfix" id="fridgeHead">&ensp;Fridge<button id="notificationPageAnchor" class="notificationSettingButton float-right"></button></h1><!--with notification button-->
+            <h1 class="list-group-item" id="fridgeHead">&ensp;Fridge</h1><!--with notification button-->
         </div>
-        
+
         <div>
             <ul class="list-group">
                 <% for (var i = 0; i < usersFood.length; i++){ %>
                 <li class="numberOfList" class="list-group-item">
-                    <p id="foodNameInFridge"><%= usersFood[i][0].value%></p>
-                    <div class="progress" id="progressBar">
-                        <p id="dateLeft">D-<%= usersFood[i][1].value%></p>
-                        <div class="progress-bar progress-bar-success" role="progressbar" 
-						aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
+                    <div class="progress progressBar">
+                      <% if (usersFood[i][1].value >= 7 ) { %>
+                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
+                          <p class="progressBarContent"> <%= usersFood[i][0].value%> Expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <%= usersFood[i][1].value %> Days</p>
                         </div>
+                      <% } else if (usersFood[i][1].value <= 4) { %>
+                        <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
+                          <p class="progressBarContent"> <%= usersFood[i][0].value%> Expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <%= usersFood[i][1].value %> Days</p>
+                        </div>
+                      <% } else { %>
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
+                          <p class="progressBarContent"> <%= usersFood[i][0].value%> Expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <%= usersFood[i][1].value %> Days</p>
+                        </div>
+                      <% } %>
                     </div>
-                    <button class="btn btn-outline-danger deleteButton" id="fridgeButton" type="button">X</button>
+                    <button class="ml-2 btn btn-outline-danger deleteButton" type="button">X</button>
                 </li>
                 <%  }  %>
             </ul>
         </div>
     </div>
-    </div>
+</div>
 
 <!------------------------------------------------------------------------------------------------>
 <!--- Scanning ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-<div id="scanPage" class="marginfix">
+<div id="scanPage">
   <div class="row mt-5">
     <div class="col-12 mx-auto text-center">
-      <p>Please upload your receipt:</p>
+      <h2>Please upload your receipt:</h2>
     </div>
     <div class="col-12 mx-auto text-center">
       <form>
@@ -113,7 +148,7 @@
       </form>
     </div>
   </div>
-    
+
   <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
     <div class="loader modal-dialog" role="document">
       <button id="close-loader" data-dismiss="modal">Close</button>
@@ -129,9 +164,11 @@
 <!-- ADD ITEM ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
     <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
-    <div id="addPage" class="marginfix">
+    <div id="addPage">
+      <div class="addItems-settings-space">
+      </div>
         <div id="addFrame">
-            <p id="add"> Add item </p>
+            <h2 class="add"> Add item </h2>
             <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -148,26 +185,30 @@
 					<% var minDate = "" + dateInstance.getFullYear()%>
 					<% minDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1)%>
 					<% minDate += dateInstance.getDate() + 1 >= 10 ? "-" + (dateInstance.getDate() + 1) : "-0" (+ dateInstance.getDate() + 1) %>
-                    <input type="date" name="expiryDate" value=<%= minDate%> min=<%= minDate%> 
+                    <input type="date" name="expiryDate" value=<%= minDate%> min=<%= minDate%>
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn btn-large">SUBMIT</button>
             </form>
         </div>
     </div>
-    
+
 <!------------------------------------------------------------------------------------------------>
 <!-- NOTIFICATION SETTINGS ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-    <div id="notificationSettingPage" class="marginfix">
+    <div id="notificationSettingPage">
+        <div class="addItems-settings-space">
+        </div>
         <div id="notificationFrame">
-            <p> Notification Setting </p>
+            <h2 class="add">How many days notice before your food expires? </h2>
             <form id="saveNotification" action = "./notificationSet" method = "POST">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Set in the day before notification</span>
-                    </div>
-                    <input id="foodNameInput" type="number" name="days" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <div class="input-group mb-3 row mx-auto">
+                  <div class="notice pr-2 col-4">
+                    <input id="foodNameInput" type="number" name="days" min='1' max='28' value='5' step='1' class="form-control">
+                  </div>
+                  <div class="daysNotice notice col-8">
+                    <span class="daysNotice input-group-text">Days Notice</span>
+                  </div>
                 </div>
                 <button id="submit" class="btn btn-large">Save</button>
             </form>
@@ -177,7 +218,7 @@
 <!------------------------------------------------------------------------------------------------>
 <!------------- ABOUT PAGE ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-<div id="aboutPage" class="container text-center marginfix">
+<div id="aboutPage" class="container text-center">
         <!--About yams heading row-->
         <div class="row pt-4 pb-4">
             <div class="mx-auto col-11">
@@ -278,26 +319,25 @@
         <!--End of about us row-->
     </div>
     <!--End of container-->
-
+<!-- </div> -->
 <!------------------------------------------------footer------------------------------------->
-    <footer class="bg-dark text-white mt-4 fixed-bottom">
-    <div class="container-fluid py-1">
-        
-        <div class="row">
-            <div class="col-md-6">
-                <small>Share our application to others!</small>
-                <button class="btn-facebook">
-                    <span class="fab fa-facebook"></span>
-                </button>
-                <button class="btn-twitter">
-                    <span class="fab fa-twitter"></span>
-                </button>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-right small align-self-end">©Team Microsoft</div>
-        </div>
+<!-- <footer class="bg-dark text-white mt-4 fixed-bottom scrollHidden">
+  <div class="container-fluid py-1">
+
+    <div class="row">
+      <div class="col-8">
+        <small>Share our application!</small>
+        <button class="btn-facebook">
+          <span class="fab fa-facebook"></span>
+        </button>
+        <button class="btn-twitter">
+          <span class="fab fa-twitter"></span>
+        </button>
+      </div>
+      <div class="col-4"><small>©Yams</small></div>
     </div>
-</footer>
+  </div>
+</footer> -->
 
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
