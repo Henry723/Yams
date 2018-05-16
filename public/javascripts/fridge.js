@@ -96,16 +96,16 @@ $( document ).ready(function() {
   $("p.progressBarContent").width($("div.progressBar").width());
 
  function toggleDoor(){
-   if($("li.links, .fridgeDoor h1").is(':visible')){
-       $("li.links, .fridgeDoor h1").fadeOut('fast');
+   if($("li.links, .fridgeDoor h1, .footerStuff").is(':visible')){
+       $("li.links, .fridgeDoor h1, .footerStuff").fadeOut('fast');
     }
     else{
-       $("li.links, .fridgeDoor h1").fadeIn('slow');
+       $("li.links, .fridgeDoor h1, .footerStuff").fadeIn('slow');
     }
     setTimeout(function()
     {
       $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-      $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
+      $(".handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
     }, 100);
  }
   $(".fridgeDoor").click(function(){
