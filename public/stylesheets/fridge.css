@@ -293,7 +293,7 @@ h1 {
 }
 #scannerForm {
   display: none;
-  width:100%;
+  width:80%;
 }
 
 #scannerForm .userID {
