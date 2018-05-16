@@ -61,6 +61,7 @@ div.fridgeDoor .hideAnchors{
 }
 .openDoorHandle {
   top: 40%;
+  left: 30%;
 }
 .closedDoor {
   width: 100%;
