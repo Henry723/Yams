@@ -96,9 +96,17 @@ $( document ).ready(function() {
   $("p.progressBarContent").width($("div.progressBar").width());
 
  function toggleDoor(){
-   $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-   $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-   $("li.links,h1").toggleClass("hideAnchors");
+   if($("li.links, .fridgeDoor h1").is(':visible')){
+       $("li.links, .fridgeDoor h1").fadeOut('fast');
+    }
+    else{
+       $("li.links, .fridgeDoor h1").fadeIn('slow');
+    }
+    setTimeout(function()
+    {
+      $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
+      $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
+    }, 100);
  }
   $(".fridgeDoor").click(function(){
     toggleDoor();

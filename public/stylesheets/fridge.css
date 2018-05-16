@@ -48,6 +48,7 @@ div.fridgeDoor .hideAnchors{
   width: 10px;
   background-color: rgb(75,0,130);
   position: relative;
+  z-index: 10;
   border-radius: 30%;
   -webkit-transition: left 0.6s ease;
     -moz-transition: left 0.6s ease;
