@@ -75,7 +75,7 @@ $( document ).ready(function() {
     var parentTag = event.target.parentNode;
     var foodName = parentTag.firstChild.nextSibling.innerText;
 
-    var foodData = { food: foodName };
+    var foodData = { food: foodName.slice(0, foodName.indexOf(' ')) };
     this.parentNode.remove();
 
     $.ajax({
