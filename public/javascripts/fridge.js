@@ -6,13 +6,13 @@ $( document ).ready(function() {
         if(inputValue == "Adam" || inputValue == "Uni" || inputValue == "Jay"
           || inputValue == "Hayden" || inputValue == "Henry"){
             $("#easterModal").modal({
-                
+
             });
             e.preventDefault();
         }
     });
 /********************** nav bar  ********************/
-    
+
   $("#aboutPageAnchor").click(function(e){
 //        e.preventDefault();
         $("#aboutPage").show();
@@ -22,7 +22,7 @@ $( document ).ready(function() {
         $("#notificationPageAnchor").hide();
         $("#notificationSettingPage").hide();
     });
-    
+
     $("#userPageAnchor").click(function(e){
 //        e.preventDefault();
         $("#aboutPage").hide();
@@ -52,8 +52,8 @@ $( document ).ready(function() {
         $("#notificationPageAnchor").hide();
         $("#notificationSettingPage").hide();
     });
-    
- 
+
+
 /******************* notification button  ********************/
      $("#notificationPageAnchor").click(function(e){
 //        e.preventDefault();
@@ -63,9 +63,9 @@ $( document ).ready(function() {
         $("#addPage").hide();
         $("#notificationSettingPage").show();
     });
-    
+
 /********************** user page  ********************/
-    
+
 
     $(".deleteButton").click(function(event) {
         var parentTag = event.target.parentNode;
@@ -88,6 +88,22 @@ $( document ).ready(function() {
             }
         });
     });
+
+    var iScrollPos = 0;
+
+       $(window).scroll(function () {
+           var iCurScrollPos = $(this).scrollTop();
+           if (iCurScrollPos > iScrollPos) {
+               //Scrolling Down
+               $("#headerNav").slideUp(500)
+           } else {
+              //Scrolling Up
+              $("#headerNav").slideDown(180);
+           }
+           iScrollPos = iCurScrollPos;
+       });
+
+
+
+
 });
-
-
