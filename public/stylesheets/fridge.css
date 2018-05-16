@@ -1,4 +1,5 @@
 
+
 /*******************************************************************************************/
 /*******************************         ABOUT         *************************************/
 /*******************************************************************************************/
@@ -56,6 +57,7 @@ html {
 
 body {
     background-color: transparent;
+    height: 100%;
 }
 
 #inventoryBg h1 {
@@ -98,6 +100,10 @@ body {
     font-family: 'Skranji', cursive;
 }
 
+h1 {
+    display: inline-block;
+}
+
 
 .numberOfList {
     display:inline-flex;
@@ -125,6 +131,30 @@ body {
     font-size:18px;
     text-align: center;
 }
+
+/*********** logout ***********/
+#logoutButton {
+    background-color: rgb(0, 0, 0, 0);
+    border:0;
+    cursor:pointer;
+}
+#logoutButton:active{
+    border-style: none;
+    border:0;
+}
+
+.dropdown-menu {
+    background-color : rgb(44, 62, 80);
+}
+.dropdown-item {
+    color : rgb(255, 255, 255);
+}
+
+#userPage{
+    background-color: rgb(235, 235, 249);
+    height: 50%;
+}
+
 
 /*******************************************************************************************/
 /**********************************  scanning page       *************************************/
@@ -196,6 +226,17 @@ body {
     width:50%;
     margin:0 auto;
 }
+
+.scannerDelete {
+    text-align: center;
+    background-color: rgb(255, 230, 230);
+    border-radius: 5%;
+    width:15%;
+}
+#scannerForm {
+    width:100%;
+}
+
 /*******************************************************************************************/
 /**********************************  add item page       *************************************/
 /*******************************************************************************************/
@@ -258,15 +299,15 @@ body {
 
 .notificationSettingButton {
     background-image: url( '../images/cog.png' );
-    background-size: 45px 45px;
-    height: 45px;  
-    width: 45px;
+    background-size: 30px 30px;
+    height: 30px;  
+    width: 30px;
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #notificationFrame {
@@ -281,3 +322,34 @@ body {
     display: none;
 }
 
+/*******************************************************************************************/
+/**********************************  footer      *************************************/
+/*******************************************************************************************/
+
+body {
+  min-height: 100vh; 
+}
+
+.flex-grow {
+   flex: 1;
+}
+
+footer {
+    position: relative;
+    clear:both;
+}
+
+ #googleClick {
+    color: white;
+    border-radius: 0;
+    margin-top: 5%;
+ }
+
+.marginfix {
+    margin-top: 70px;
+}
+
+/*******************************************************************************************/
+/************************          log out button      *************************************/
+/*******************************************************************************************/
+       
