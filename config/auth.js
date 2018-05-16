@@ -28,6 +28,7 @@ passport.deserializeUser(function(email, done) {
 			var result = [];
 			result.email = row[0][0].value;
 			result.name = row[0][1].value;
+			result.alarm = row[0][3].value;
 			done(err, result);
 		});
 	db.execSql(deserializeRequest);
@@ -89,27 +90,27 @@ passport.use(new GoogleStrategy({
 	},
 	function(accessToken, refreshToken, profile, done) {
 			var email = profile.emails[0].value;
-			loginRequest = new Request("select * from users where email = '" + email + "'", function(err, rowCount, row) 
+			loginRequest = new Request("select * from users where email = '" + email + "'", function(err, rowCount, row)
 			{
-					
+
 				if (err) { return done(err); }
-					
-				if (!rowCount) 
+
+				if (!rowCount)
 				{
 					registerRequest = new Request("INSERT INTO users (name, email) VALUES ('"
-							+ profile.displayName + "', '" + email + "')", 
+							+ profile.displayName + "', '" + email + "')",
 							function (err, rowCount, rows) {
 								console.log("done");
 								return done(null, email);
 					});
 					db.execSql(registerRequest);
-				} 
-				else 
+				}
+				else
 				{
 					return done(null, email);
 				}
 			});
-			db.execSql(loginRequest);		
+			db.execSql(loginRequest);
 	}));
 
 module.exports = passport;

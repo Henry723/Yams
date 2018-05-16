@@ -107,15 +107,15 @@
                     <div class="progress progressBar">
                       <% if (usersFood[i][1].value >= 7 ) { %>
                         <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
-                          <p class="progressBarContent"> <%= usersFood[i][0].value%> Expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <%= usersFood[i][1].value %> Days</p>
+                          <p class="progressBarContent"><b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
                         </div>
                       <% } else if (usersFood[i][1].value <= 4) { %>
                         <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
-                          <p class="progressBarContent"> <%= usersFood[i][0].value%> Expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <%= usersFood[i][1].value %> Days</p>
+                          <p class="progressBarContent"><b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
                         </div>
                       <% } else { %>
                         <div class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
-                          <p class="progressBarContent"> <%= usersFood[i][0].value%> Expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <%= usersFood[i][1].value %> Days</p>
+                          <p class="progressBarContent"><b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
                         </div>
                       <% } %>
                     </div>
