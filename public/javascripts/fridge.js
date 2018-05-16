@@ -88,20 +88,40 @@ $( document ).ready(function() {
             }
         });
     });
+    
+  /**********************header timer***********************/
 
+    /*var didScroll;
+    // on scroll, let the interval function know the user has scrolled
+    $(window).scroll(function(event){
+        didScroll = true;
+    });
+    // run hasScrolled() and reset didScroll status
+    setInterval(function() {
+        if (didScroll) {
+            $("#headerNav").slideDown(500);
+            didScroll = false;
+        }
+    }, 250);
+
+    setInterval(function() {
+        $("#headerNav").slideUp(500)
+    }, 6000);
+    */
     var iScrollPos = 0;
 
-       $(window).scroll(function () {
-           var iCurScrollPos = $(this).scrollTop();
-           if (iCurScrollPos > iScrollPos) {
-               //Scrolling Down
-               $("#headerNav").slideUp(500)
-           } else {
-              //Scrolling Up
-              $("#headerNav").slideDown(180);
-           }
-           iScrollPos = iCurScrollPos;
-       });
+   $(window).scroll(function () {
+       var iCurScrollPos = $(this).scrollTop();
+       if (iCurScrollPos > iScrollPos) {
+           //Scrolling Down
+           $("#headerNav").slideUp(100)
+       } else {
+          //Scrolling Up
+          $("#headerNav").slideDown(100);
+       }
+       iScrollPos = iCurScrollPos;
+   });
+});
 
 
 

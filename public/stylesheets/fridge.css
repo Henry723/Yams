@@ -228,10 +228,10 @@ h1 {
 }
 
 .scannerDelete {
-    text-align: center;
+    
     background-color: rgb(255, 230, 230);
     border-radius: 5%;
-    width:15%;
+    width:60px !important; /**change button width here**/
 }
 #scannerForm {
     width:100%;
