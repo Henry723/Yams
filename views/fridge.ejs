@@ -32,20 +32,12 @@
                     <a id="aboutPageAnchor" class="nav-link" href="#">About</a>
                 </li>
             </ul>
-            
-          <!------------------ log out button ----------------->  
-            
-          <!----------------------------------------------------------->  
-            
+
+          <!------------------ log out button ----------------->
+
+          <!----------------------------------------------------------->
+
             <ul class="navbar-nav ml-auto">
-                <li id="logout" class="dropdown" class="nav-item">
-                    <button id="logoutButton" class="nav-link" type="button" class="btn dropdown-toggle" data-toggle="dropdown"href="#">Setting</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Set alarm</a>
-                        <a class="dropdown-item" href="#">Log out</a>
-                    </div>
-                </li>
-                
                 <li class="nav-item">
                     <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
                 </li>
@@ -57,12 +49,15 @@
                 <li class="nav-item">
                     <a id="addPageAnchor" class="nav-link" href="#">Add Single Item</a>
                 </li>
+                <li class="nav-item">
+                    <a id="logout" class="nav-link" href="#">Log out</a>
+                </li>
 
             </ul>
 
         </div>
     </nav>
-    
+
     <div id="userPage">
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
@@ -72,7 +67,7 @@
         <div>
             <h1 class="list-group-item marginfix" id="fridgeHead">&ensp;Fridge<button id="notificationPageAnchor" class="notificationSettingButton float-right"></button></h1><!--with notification button-->
         </div>
-        
+
         <div>
             <ul class="list-group">
                 <% for (var i = 0; i < usersFood.length; i++){ %>
@@ -80,7 +75,7 @@
                     <p id="foodNameInFridge"><%= usersFood[i][0].value%></p>
                     <div class="progress" id="progressBar">
                         <p id="dateLeft">D-<%= usersFood[i][1].value%></p>
-                        <div class="progress-bar progress-bar-success" role="progressbar" 
+                        <div class="progress-bar progress-bar-success" role="progressbar"
 						aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/10*100%>%">
                         </div>
                     </div>
@@ -113,7 +108,7 @@
       </form>
     </div>
   </div>
-    
+
   <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
     <div class="loader modal-dialog" role="document">
       <button id="close-loader" data-dismiss="modal">Close</button>
@@ -131,7 +126,7 @@
     <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
     <div id="addPage" class="marginfix">
         <div id="addFrame">
-            <p id="add"> Add item </p>
+            <p class="add"> Add item </p>
             <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -148,26 +143,28 @@
 					<% var minDate = "" + dateInstance.getFullYear()%>
 					<% minDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1)%>
 					<% minDate += dateInstance.getDate() + 1 >= 10 ? "-" + (dateInstance.getDate() + 1) : "-0" (+ dateInstance.getDate() + 1) %>
-                    <input type="date" name="expiryDate" value=<%= minDate%> min=<%= minDate%> 
+                    <input type="date" name="expiryDate" value=<%= minDate%> min=<%= minDate%>
 						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <button id="submit" class="btn btn-large">SUBMIT</button>
             </form>
         </div>
     </div>
-    
+
 <!------------------------------------------------------------------------------------------------>
 <!-- NOTIFICATION SETTINGS ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
     <div id="notificationSettingPage" class="marginfix">
         <div id="notificationFrame">
-            <p> Notification Setting </p>
+            <p class="add">How many days notice before your food expires? </p><icon class='float-right'>X</icon>
             <form id="saveNotification" action = "./notificationSet" method = "POST">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Set in the day before notification</span>
-                    </div>
-                    <input id="foodNameInput" type="number" name="days" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <div class="input-group mb-3 row mx-auto">
+                  <div class="notice pr-2 col-4">
+                    <input id="foodNameInput" type="number" name="days" min='1' max='28' value='5' step='1' class="form-control">
+                  </div>
+                  <div class="daysNotice notice col-8">
+                    <span class="daysNotice input-group-text">Days Notice</span>
+                  </div>
                 </div>
                 <button id="submit" class="btn btn-large">Save</button>
             </form>
@@ -282,10 +279,10 @@
 <!------------------------------------------------footer------------------------------------->
     <footer class="bg-dark text-white mt-4 fixed-bottom">
     <div class="container-fluid py-1">
-        
+
         <div class="row">
-            <div class="col-md-6">
-                <small>Share our application to others!</small>
+            <div class="col-8">
+                <small>Share our application!</small>
                 <button class="btn-facebook">
                     <span class="fab fa-facebook"></span>
                 </button>
@@ -293,13 +290,11 @@
                     <span class="fab fa-twitter"></span>
                 </button>
             </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3 text-right small align-self-end">©Team Microsoft</div>
+            <div class="col-4"><small>©Yams</small></div>
         </div>
     </div>
 </footer>
 
-=======
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
