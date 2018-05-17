@@ -90,6 +90,7 @@ router.post('/addFoodItems', function (req, res, next) {
     db.execSql(request);
 
     request.on('requestCompleted', function () {
+    	req.flash('info', 'Items are added');
         res.redirect('/fridge/dashboard');
     });
 });
@@ -123,6 +124,7 @@ router.post('/addSingleItem', function (req, res, next) {
                     console.log(err);
                 }
                 else {
+                	req.flash('info', 'Item is added');
                     res.redirect('/fridge/dashboard');
                 }
             }));
