@@ -156,19 +156,7 @@ buttonBackground {
     font-size: 200%;
 }
 
-/*****DONT KNOW WHAT THIS DOES******/
-/* .eachFood {
-    margin-top: 5%;
-    font-weight:bold;
-    background-color: darkgrey;
-    border-radius: 10px;
-    border-style:solid;
-    border-width:5px;
-    border-color: aliceblue;
-}
-.eachFoodName {
-    text-align: center;
-} */
+
 
 .progressBar {
     width: calc(100% - 40px);
@@ -205,13 +193,6 @@ h1 {
     border-radius: 5%;
     padding:5px;
 }
-.numberOfList:nth-child(odd){
-    background-color: rgb(240, 240, 245);
-}
-.numberOfList:nth-child(even){
-    background-color: rgb(235, 235, 249);
-}
-
 .progressBarContent{
     margin:auto;
     font-size:18px;
@@ -458,7 +439,7 @@ footer {
 /************************          log out button      *************************************/
 /*******************************************************************************************/
 
-.row {
+.shareFooter {
     padding-left: 10px;
 }
 
@@ -469,4 +450,3 @@ footer {
     bottom: 0%;
     text-align: center;
 }
-
