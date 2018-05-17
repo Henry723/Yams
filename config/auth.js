@@ -28,6 +28,7 @@ passport.deserializeUser(function(email, done) {
 			var result = [];
 			result.email = row[0][0].value;
 			result.name = row[0][1].value;
+			result.alarm = row[0][3].value;
 			done(err, result);
 		});
 	db.execSql(deserializeRequest);
@@ -71,11 +72,13 @@ passport.use(
 			}
 			if (!rowCount) {
 				return done(null, false, { message: 'There is no account with this email.' });
-			}
-			if (!(password == row[0][2].value)) {
+			} else if (!row[0][2].value) {
+				return done(null, false, { message: "Try 'login with Google'" });
+			} else if (!(password == row[0][2].value)) {
 				return done(null, false, { message: 'Incorrect Password.' });
+			} else {
+				return done(null, row[0][0].value);
 			}
-			return done(null, row[0][0].value);
 		});
 		db.execSql(loginRequest);
 	}

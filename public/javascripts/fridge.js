@@ -75,7 +75,7 @@ $( document ).ready(function() {
     var parentTag = event.target.parentNode;
     var foodName = parentTag.firstChild.nextSibling.innerText;
 
-    var foodData = { food: foodName };
+    var foodData = { food: foodName.slice(0, foodName.indexOf(' ')) };
     this.parentNode.remove();
 
     $.ajax({
@@ -96,16 +96,27 @@ $( document ).ready(function() {
   $("p.progressBarContent").width($("div.progressBar").width());
 
  function toggleDoor(){
-   $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-   $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
-   $("li.links,h1").toggleClass("hideAnchors");
+   if($("li.links, .fridgeDoor h1, .footerStuff").is(':visible')){
+       $("li.links, .fridgeDoor h1, .footerStuff").fadeOut('fast');
+    }
+    else{
+       $("li.links, .fridgeDoor h1, .footerStuff").delay('100').fadeIn('2000');
+    }
+    setTimeout(function()
+    {
+      $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
+      $(".handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
+    }, 100);
  }
   $(".fridgeDoor").click(function(){
     toggleDoor();
   });
 
-
-
+  // flash messages for adding items.
+  
+  setTimeout ( function() {
+	  $('.alert').fadeOut(1500);
+  }, 2000);
 
   /**********************header timer***********************/
 
