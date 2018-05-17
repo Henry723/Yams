@@ -11,13 +11,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/auth/local/login',
 		passport.authenticate('local-login', {
-			successRedirect: '/fridge/getUserFoodData',
+            successRedirect: '/fridge/dashboard',
 			failureRedirect: '/',
 			failureFlash: true
 }));
 
 router.post('/auth/local/register', passport.authenticate ('local-register', {
-	successRedirect: '/fridge/getUserFoodData',
+    successRedirect: '/fridge/dashboard',
 	failureRedirect: '/',
 	failureFlash: true
 }));
@@ -33,7 +33,7 @@ router.get('/auth/google/callback',
 		function(req, res) {
 			console.log('call back!');
 			console.log('req.user: ', req.user)
-			res.redirect('/fridge/getUserFoodData');
+            res.redirect('/fridge/dashboard');
 });
 
 module.exports = router;

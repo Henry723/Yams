@@ -43,11 +43,13 @@ div.fridgeDoor .hideAnchors{
   display: none;
 }
 
-.fridgeDoor div.handle {
+.handle {
   height: 30%;
   width: 10px;
   background-color: rgb(75,0,130);
-  position: relative;
+  position: absolute;
+  top: 250px;
+  z-index: 10;
   border-radius: 30%;
   -webkit-transition: left 0.6s ease;
     -moz-transition: left 0.6s ease;
@@ -59,7 +61,8 @@ div.fridgeDoor .hideAnchors{
   border-top-right-radius: 50%;
 }
 .openDoorHandle {
-  top: 40%;
+  top: 31%;
+  left: 30%;
 }
 .closedDoor {
   width: 100%;
@@ -67,8 +70,39 @@ div.fridgeDoor .hideAnchors{
 }
 .closedDoorHandle {
   left: 90%;
-  top: -25%;
 }
+
+
+.footerStuff {
+    position: absolute;
+    bottom: 10px;
+}
+
+#userPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#scanPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#addPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#aboutPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#notificationPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#logout:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+
 
 
 /*******************************************************************************************/
@@ -122,19 +156,7 @@ buttonBackground {
     font-size: 200%;
 }
 
-/*****DONT KNOW WHAT THIS DOES******/
-/* .eachFood {
-    margin-top: 5%;
-    font-weight:bold;
-    background-color: darkgrey;
-    border-radius: 10px;
-    border-style:solid;
-    border-width:5px;
-    border-color: aliceblue;
-}
-.eachFoodName {
-    text-align: center;
-} */
+
 
 .progressBar {
     width: calc(100% - 40px);
@@ -171,13 +193,6 @@ h1 {
     border-radius: 5%;
     padding:5px;
 }
-.numberOfList:nth-child(odd){
-    background-color: rgb(240, 240, 245);
-}
-.numberOfList:nth-child(even){
-    background-color: rgb(235, 235, 249);
-}
-
 .progressBarContent{
     margin:auto;
     font-size:18px;
@@ -267,7 +282,7 @@ h1 {
 }
 #scannerForm {
   display: none;
-  width:100%;
+  width:80%;
 }
 
 #scannerForm .userID {
@@ -283,12 +298,14 @@ h1 {
     height: 35%;
 }
 #scanPage {
+    background-repeat: no-repeat;
+    background-size: auto;
     background-color: rgb(235, 235, 249);
     padding:2%;
     display:none;
 }
 #imageInput {
-    width:50%;
+    width:60%;
     margin:0 auto;
 }
 
@@ -296,6 +313,10 @@ h1 {
     background-color: rgb(255, 230, 230);
     border-radius: 5%;
     width:60px !important; /**change button width here**/
+}
+
+.row {
+
 }
 
 /*******************************************************************************************/
@@ -316,6 +337,9 @@ h1 {
     width : 85%;
     margin : 0 auto;
     padding : 10px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
 }
 
 #category {
@@ -324,7 +348,7 @@ h1 {
 }
 
 .add {
-    color : white;
+    color : black;
     text-align: center;
     font-size : 150%;
 }
@@ -414,3 +438,15 @@ footer {
 /*******************************************************************************************/
 /************************          log out button      *************************************/
 /*******************************************************************************************/
+
+.shareFooter {
+    padding-left: 10px;
+}
+
+.alert {
+    position: fixed;
+    width: 60%;
+    left: 20%;
+    bottom: 0%;
+    text-align: center;
+}

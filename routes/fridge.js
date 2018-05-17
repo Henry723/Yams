@@ -4,12 +4,7 @@ var db = require('../config/db');
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
 
-/****Redirect to userdashboard - so messy ahhhh****/
-// router.get('/login', function(req, res, next){
-//   db.getUserFoodData(req, res, next);
-// });
-
-router.get('/getUserFoodData', function(req, res, next) {
+router.get('/dashboard', function(req, res, next) {
 	db.getUserFoodData(req, res, next);
 });
 
@@ -23,7 +18,7 @@ router.get('/allFoods', function (req, res, next) {
             console.log(error);
         }
         else {
-            foods = rows
+            foods = rows;
             res.send({ foods: foods });
         }
     }
@@ -95,17 +90,18 @@ router.post('/addFoodItems', function (req, res, next) {
     db.execSql(request);
 
     request.on('requestCompleted', function () {
-        db.getUserFoodData(req, res, next);
+    	req.flash('info', 'Items are added');
+        res.redirect('/fridge/dashboard');
     });
 });
 
 router.post('/addSingleItem', function (req, res, next) {
 
-    var foodName = req.body.food;
+    var foodName = req.body.food.slice(0, 1).toUpperCase() + req.body.food.slice(1, req.body.food.length).toLowerCase();
     var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
 
     request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft, isNotified) VALUES" + "('" + req.user.email + "', '"
-        + foodName.toUpperCase() + "', '" + dateObject.daysLeft + "', 0)",
+        + foodName + "', '" + dateObject.daysLeft + "', 0)",
 
         function (err, rowCount, rows) {
             if (err) {
@@ -128,7 +124,8 @@ router.post('/addSingleItem', function (req, res, next) {
                     console.log(err);
                 }
                 else {
-					db.getUserFoodData(req, res, next);
+                	req.flash('info', 'Item is added');
+                    res.redirect('/fridge/dashboard');
                 }
             }));
 
@@ -167,9 +164,14 @@ router.post('/notificationSet', function (req, res, next) {
             }
             else {
                 console.log("alarm set");
-                res.redirect('/fridge/getUserFoodData');
+                res.redirect('/fridge/dashboard');
             }
         }));
+});
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;

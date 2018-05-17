@@ -73,10 +73,11 @@ $(document).ready(function () {
                                     var expiryDate = allFoods[i][1].value;
 
                                     if (receiptDataText.includes(foodName.toUpperCase())) {
-
-                                        var dm = ((d.getMonth() + 1) > 9) ? (d.getMonth() + 1) : "0" + (d.getMonth() + 1);
-                                        var dd = (d.getDate() > 9) ? d.getDate() : "0" + d.getDate();
-                                        var dateStr = d.getFullYear() + "-" + dm + "-" + dd;
+                                        var exp = new Date();
+                                        exp.setDate(exp.getDate() + expiryDate);
+                                        var dm = ((exp.getMonth() + 1) > 9) ? (exp.getMonth() + 1) : "0" + (exp.getMonth() + 1);
+                                        var dd = (exp.getDate() > 9) ? exp.getDate() : "0" + exp.getDate();
+                                        var dateStr = exp.getFullYear() + "-" + dm + "-" + dd;
 
 
                                         var dateInstance = new Date();
@@ -89,16 +90,16 @@ $(document).ready(function () {
                                             "' min='" + minDate + "'required></div><div class='col-3'><button class='btn btn-outline-danger scannerDelete float-right' type='button'> X </button></div></div>";
                                     }
                                 }
-                                
+
                                 if (fData) {
                                     $("#scannerForm form").append(fData + "<button id='scannerFormSubmit' type='submit' class='mt-4 btn btn-large'>Submit</button>");
                                     $("#scannerForm").show();
-                                    
+
                                     $(".scannerDelete").click(function(event) {
                                         var parentTag = event.target.parentNode.parentNode;
                                         parentTag.remove();
                                     });
-    
+
                                 }
 
                                 else {
@@ -116,9 +117,9 @@ $(document).ready(function () {
             });
         }
     });
-    
+
     /********************** scan  ********************/
-    
-   
-     
+
+
+
 });
