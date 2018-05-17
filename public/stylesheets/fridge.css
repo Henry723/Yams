@@ -43,11 +43,12 @@ div.fridgeDoor .hideAnchors{
   display: none;
 }
 
-.fridgeDoor div.handle {
+.handle {
   height: 30%;
   width: 10px;
   background-color: rgb(75,0,130);
-  position: relative;
+  position: absolute;
+  top: 250px;
   z-index: 10;
   border-radius: 30%;
   -webkit-transition: left 0.6s ease;
@@ -60,7 +61,7 @@ div.fridgeDoor .hideAnchors{
   border-top-right-radius: 50%;
 }
 .openDoorHandle {
-  top: 40%;
+  top: 31%;
   left: 30%;
 }
 .closedDoor {
@@ -69,7 +70,12 @@ div.fridgeDoor .hideAnchors{
 }
 .closedDoorHandle {
   left: 90%;
-  top: -25%;
+}
+
+
+.footerStuff {
+    position: absolute;
+    bottom: 10px;
 }
 
 #userPageAnchor:hover {
@@ -96,6 +102,7 @@ div.fridgeDoor .hideAnchors{
   cursor: pointer;
   color:rgb(128,128,128);
 }
+
 
 
 /*******************************************************************************************/
@@ -360,7 +367,7 @@ h1 {
 }
 
 .add {
-    color : white;
+    color : black;
     text-align: center;
     font-size : 150%;
 }
@@ -451,6 +458,10 @@ footer {
 /************************          log out button      *************************************/
 /*******************************************************************************************/
 
+.row {
+    padding-left: 10px;
+}
+
 .alert {
     position: fixed;
     width: 60%;
@@ -458,3 +469,4 @@ footer {
     bottom: 0%;
     text-align: center;
 }
+
