@@ -33,7 +33,7 @@ router.get('/auth/google/callback',
 		function(req, res) {
 			console.log('call back!');
 			console.log('req.user: ', req.user)
-            res.redirect('/fridge');
+            res.redirect('/fridge/dashboard');
 });
 
 module.exports = router;
