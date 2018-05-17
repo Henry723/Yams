@@ -99,8 +99,12 @@ div.fridgeDoor .hideAnchors{
   color:rgb(128,128,128);
 }
 #logout:hover {
+  text-decoration: none;
   cursor: pointer;
   color:rgb(128,128,128);
+}
+#logout {
+  color: black;
 }
 
 
@@ -298,8 +302,6 @@ h1 {
     height: 35%;
 }
 #scanPage {
-    background-repeat: no-repeat;
-    background-size: auto;
     background-color: rgb(235, 235, 249);
     padding:2%;
     display:none;
