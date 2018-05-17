@@ -1,3 +1,8 @@
+@font-face {
+font-family: coolvetica-rg;
+src: url(../font/coolvetica-rg.ttf);
+}
+
 html {
     background-image:url('../images/3.jpg');
     background-repeat: no-repeat;
@@ -11,7 +16,7 @@ html {
 body {
     background-color: transparent;
     height: 100%;
-    font-family: 'Jua', sans-serif;
+    font-family: coolvetica-rg;
 }
 
 #fridgeDoorHeader {
