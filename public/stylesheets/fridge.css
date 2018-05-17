@@ -61,7 +61,8 @@ div.fridgeDoor .hideAnchors{
   border-top-right-radius: 50%;
 }
 .openDoorHandle {
-  top: 33%;
+  top: 40%;
+  left: 30%;
 }
 .closedDoor {
   width: 100%;
@@ -71,10 +72,39 @@ div.fridgeDoor .hideAnchors{
   left: 90%;
 }
 
+
 .footerStuff {
     position: absolute;
     bottom: 10px;
 }
+
+#userPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#scanPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#addPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#aboutPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#notificationPageAnchor:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+#logout:hover {
+  cursor: pointer;
+  color:rgb(128,128,128);
+}
+
+
+
 /*******************************************************************************************/
 /*******************************         ABOUT         *************************************/
 /*******************************************************************************************/
@@ -271,7 +301,7 @@ h1 {
 }
 #scannerForm {
   display: none;
-  width:100%;
+  width:80%;
 }
 
 #scannerForm .userID {
@@ -287,12 +317,14 @@ h1 {
     height: 35%;
 }
 #scanPage {
+    background-repeat: no-repeat;
+    background-size: auto;
     background-color: rgb(235, 235, 249);
     padding:2%;
     display:none;
 }
 #imageInput {
-    width:50%;
+    width:60%;
     margin:0 auto;
 }
 
@@ -300,6 +332,10 @@ h1 {
     background-color: rgb(255, 230, 230);
     border-radius: 5%;
     width:60px !important; /**change button width here**/
+}
+
+.row {
+
 }
 
 /*******************************************************************************************/
@@ -320,6 +356,9 @@ h1 {
     width : 85%;
     margin : 0 auto;
     padding : 10px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
 }
 
 #category {

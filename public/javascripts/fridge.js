@@ -100,7 +100,7 @@ $( document ).ready(function() {
        $("li.links, .fridgeDoor h1, .footerStuff").fadeOut('fast');
     }
     else{
-       $("li.links, .fridgeDoor h1, .footerStuff").fadeIn('slow');
+       $("li.links, .fridgeDoor h1, .footerStuff").delay('100').fadeIn('2000');
     }
     setTimeout(function()
     {
