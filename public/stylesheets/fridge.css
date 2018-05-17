@@ -107,7 +107,9 @@ div.fridgeDoor .hideAnchors{
   color: black;
 }
 
-
+#scannerForm .col-2{
+    padding:0;
+}
 
 /*******************************************************************************************/
 /*******************************         ABOUT         *************************************/
@@ -286,7 +288,8 @@ h1 {
 }
 #scannerForm {
   display: none;
-  width:80%;
+  width:95%;
+  margin-left:20px !important;
 }
 
 #scannerForm .userID {
@@ -313,8 +316,8 @@ h1 {
 
 .scannerDelete {
     background-color: rgb(255, 230, 230);
-    border-radius: 5%;
-    width:60px !important; /**change button width here**/
+    border-radius: 5% !important;
+    width: 40px !important;
 }
 
 .row {

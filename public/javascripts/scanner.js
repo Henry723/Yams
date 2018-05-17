@@ -86,8 +86,8 @@ $(document).ready(function () {
                                         minDate += dateInstance.getDate() + 1 >= 10 ? "-" + (dateInstance.getDate() + 1) : "-0"(+ dateInstance.getDate() + 1);
 
                                         fData += "<div class='row'><div class='col-3'><input name='foodName' type='text' readonly class='form-control-plaintext' value='" +
-                                            foodName + "' required></div><div class='col-6'><input name='expiryDate' type='date' class='form-control' value='" + dateStr +
-                                            "' min='" + minDate + "'required></div><div class='col-3'><button class='btn btn-outline-danger scannerDelete float-right' type='button'> X </button></div></div>";
+                                            foodName + "' required></div><div class='col-7'><input name='expiryDate' type='date' class='form-control' value='" + dateStr +
+                                            "' min='" + minDate + "'required></div><div class='col-2'><button class='btn btn-outline-danger scannerDelete' type='button'> X </button></div></div>";
                                     }
                                 }
 
