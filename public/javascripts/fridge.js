@@ -96,24 +96,27 @@ $( document ).ready(function() {
   $("p.progressBarContent").width($("div.progressBar").width());
 
  function toggleDoor(){
-   if($("li.links, .fridgeDoor h1").is(':visible')){
-       $("li.links, .fridgeDoor h1").fadeOut('fast');
+   if($("li.links, .fridgeDoor h1, .footerStuff").is(':visible')){
+       $("li.links, .fridgeDoor h1, .footerStuff").fadeOut('fast');
     }
     else{
-       $("li.links, .fridgeDoor h1").fadeIn('slow');
+       $("li.links, .fridgeDoor h1, .footerStuff").delay('100').fadeIn('2000');
     }
     setTimeout(function()
     {
       $(".fridgeDoor").toggleClass("closedDoor").toggleClass("openDoor");
-      $("div.handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
+      $(".handle").toggleClass("openDoorHandle").toggleClass("closedDoorHandle");
     }, 100);
  }
   $(".fridgeDoor").click(function(){
     toggleDoor();
   });
 
-
-
+  // flash messages for adding items.
+  
+  setTimeout ( function() {
+	  $('.alert').fadeOut(1500);
+  }, 2000);
 
   /**********************header timer***********************/
 

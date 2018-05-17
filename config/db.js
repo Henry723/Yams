@@ -147,7 +147,12 @@ connection.getUserFoodData = function (req, res, next) {
                     }
                     return -1;
                 });
-                res.render('fridge', { usersFood: usersFood, userName: req.user.name, alarm: req.user.alarm });
+                res.render('fridge', { 
+                	usersFood: usersFood,
+                	userName: req.user.name,
+                	alarm: req.user.alarm,
+                	message: req.flash('info')
+                	});
             }
         });
     connection.execSql(getUserFoodDataRequest);
