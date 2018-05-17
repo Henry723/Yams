@@ -90,17 +90,18 @@ router.post('/addFoodItems', function (req, res, next) {
     db.execSql(request);
 
     request.on('requestCompleted', function () {
+    	req.flash('info', 'Items are added');
         res.redirect('/fridge/dashboard');
     });
 });
 
 router.post('/addSingleItem', function (req, res, next) {
 
-    var foodName = req.body.food;
+    var foodName = req.body.food.slice(0, 1).toUpperCase() + req.body.food.slice(1, req.body.food.length).toLowerCase();
     var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
 
     request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft, isNotified) VALUES" + "('" + req.user.email + "', '"
-        + foodName.toUpperCase() + "', '" + dateObject.daysLeft + "', 0)",
+        + foodName + "', '" + dateObject.daysLeft + "', 0)",
 
         function (err, rowCount, rows) {
             if (err) {
@@ -123,6 +124,7 @@ router.post('/addSingleItem', function (req, res, next) {
                     console.log(err);
                 }
                 else {
+                	req.flash('info', 'Item is added');
                     res.redirect('/fridge/dashboard');
                 }
             }));

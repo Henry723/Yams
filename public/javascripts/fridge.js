@@ -112,8 +112,11 @@ $( document ).ready(function() {
     toggleDoor();
   });
 
-
-
+  // flash messages for adding items.
+  
+  setTimeout ( function() {
+	  $('.alert').fadeOut(1500);
+  }, 2000);
 
   /**********************header timer***********************/
 
