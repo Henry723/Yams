@@ -1,3 +1,8 @@
+@font-face {
+font-family: coolvetica-rg;
+src: url(../font/coolvetica-rg.ttf);
+}
+
 html {
     background-image:url('../images/3.jpg');
     background-repeat: no-repeat;
@@ -11,7 +16,7 @@ html {
 body {
     background-color: transparent;
     height: 100%;
-    font-family: 'Jua', sans-serif;
+    font-family: coolvetica-rg;
 }
 
 #fridgeDoorHeader {
@@ -107,7 +112,9 @@ div.fridgeDoor .hideAnchors{
   color: black;
 }
 
-
+#scannerForm .col-2{
+    padding:0;
+}
 
 /*******************************************************************************************/
 /*******************************         ABOUT         *************************************/
@@ -286,7 +293,8 @@ h1 {
 }
 #scannerForm {
   display: none;
-  width:80%;
+  width:95%;
+  margin-left:20px !important;
 }
 
 #scannerForm .userID {
@@ -313,8 +321,8 @@ h1 {
 
 .scannerDelete {
     background-color: rgb(255, 230, 230);
-    border-radius: 5%;
-    width:60px !important; /**change button width here**/
+    border-radius: 5% !important;
+    width: 40px !important;
 }
 
 .row {
