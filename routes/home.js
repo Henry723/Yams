@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/db');
-var passport = require("../config/auth");
+var DataProcessor = require('../config/DataProcessor');
+var passport = require("../config/Auth");
 var Request = require('tedious').Request;
 
 /* GET Home page. */
@@ -9,26 +9,26 @@ router.get('/', function(req, res, next) {
 	res.render('home', { message: req.flash('error')});
 });
 
-router.post('/auth/local/login',
+router.post('/Auth/local/login',
 		passport.authenticate('local-login', {
             successRedirect: '/fridge/dashboard',
 			failureRedirect: '/',
 			failureFlash: true
 }));
 
-router.post('/auth/local/register', passport.authenticate ('local-register', {
+router.post('/Auth/local/register', passport.authenticate ('local-register', {
     successRedirect: '/fridge/dashboard',
 	failureRedirect: '/',
 	failureFlash: true
 }));
 
 
-router.get('/auth/google',
+router.get('/Auth/google',
 		passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.email']})
 );
 
 
-router.get('/auth/google/callback',
+router.get('/Auth/google/callback',
 		passport.authenticate('google', { failureRedirect: '/' }),
 		function(req, res) {
 			console.log('call back!');

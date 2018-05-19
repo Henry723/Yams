@@ -17,7 +17,6 @@ var config =
     };
 
 var connection = new Connection(config);
-
 connection.on('connect', function (err) {
     if (err) {
         console.log(err);
@@ -26,6 +25,7 @@ connection.on('connect', function (err) {
     }
 });
 
+// notification 
 connection.setupNodemailer = function () {
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -124,12 +124,8 @@ connection.checkForAlarms = function () {
     });
 }
 
-
-
-
-
+// fridge
 connection.getUserFoodData = function (req, res, next) {
-
 
     getUserFoodDataRequest = new Request("SELECT foodName, daysLeft FROM usersFoodData WHERE email=" + "'" + req.user.email + "'",
         function (err, rowCount, rows) {
@@ -157,7 +153,6 @@ connection.getUserFoodData = function (req, res, next) {
         });
     connection.execSql(getUserFoodDataRequest);
 }
-
 connection.updateDaysLeft = function () {
 
     updateRequest = new Request("UPDATE usersFoodData SET daysLeft=daysLeft - 1",
@@ -170,7 +165,6 @@ connection.updateDaysLeft = function () {
     connection.execSql(updateRequest);
 
 }
-
 connection.calculateDaysLeft = function (designatedDate) {
 
     var dateInstance = new Date();
@@ -189,4 +183,5 @@ connection.calculateDaysLeft = function (designatedDate) {
 
     return dateObject;
 }
+
 module.exports = connection;

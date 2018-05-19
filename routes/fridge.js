@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/db');
+var db = require('../config/DataProcessor');
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
 
 router.get('/dashboard', function(req, res, next) {
-	db.getUserFoodData(req, res, next);
+    DataProcessor.getUserFoodData(req, res, next);
 });
 
 /****Get all food reference table****/
@@ -24,7 +24,7 @@ router.get('/allFoods', function (req, res, next) {
     }
     );
 
-    db.execSql(request);
+    DataProcessor.execSql(request);
 });
 
 /*******adding multiple foods to kitchen ****/
@@ -32,7 +32,7 @@ router.post('/addFoodItems', function (req, res, next) {
     // get userID and food info and store them into array.
     var foods = [];
     if (typeof req.body.foodName === 'string') {
-        var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
+        var dateObject = DataProcessor.calculateDaysLeft(new Date(req.body.expiryDate));
 
         foods.push([
             req.user.email,
@@ -45,7 +45,7 @@ router.post('/addFoodItems', function (req, res, next) {
     }
     else {
         for (var i = 0; i < req.body.foodName.length; i++) {
-            var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate[i]));
+            var dateObject = DataProcessor.calculateDaysLeft(new Date(req.body.expiryDate[i]));
 
             foods.push([
                 req.user.email,
@@ -87,7 +87,7 @@ router.post('/addFoodItems', function (req, res, next) {
         }
     });
 
-    db.execSql(request);
+    DataProcessor.execSql(request);
 
     request.on('requestCompleted', function () {
     	req.flash('info', 'Items are added');
@@ -98,7 +98,7 @@ router.post('/addFoodItems', function (req, res, next) {
 router.post('/addSingleItem', function (req, res, next) {
 
     var foodName = req.body.food.slice(0, 1).toUpperCase() + req.body.food.slice(1, req.body.food.length).toLowerCase();
-    var dateObject = db.calculateDaysLeft(new Date(req.body.expiryDate));
+    var dateObject = DataProcessor.calculateDaysLeft(new Date(req.body.expiryDate));
 
     request = new Request("INSERT INTO usersFoodData (email, foodName, daysLeft, isNotified) VALUES" + "('" + req.user.email + "', '"
         + foodName + "', '" + dateObject.daysLeft + "', 0)",
@@ -111,11 +111,11 @@ router.post('/addSingleItem', function (req, res, next) {
                 console.log("data added");
             }
         });
-    db.execSql(request);
+    DataProcessor.execSql(request);
 
     request.on("requestCompleted", function () {
 
-        db.execSql(new Request("UPDATE usersFoodData SET dayIn=" + "'" + dateObject.currentDateStr + "', " +
+        DataProcessor.execSql(new Request("UPDATE usersFoodData SET dayIn=" + "'" + dateObject.currentDateStr + "', " +
             "dayOut=" + "'" + req.body.expiryDate + "'" + " WHERE email=" +
             "'" + req.user.email + "'" + " AND foodName=" + "'" + req.body.food + "'",
 
@@ -147,7 +147,7 @@ router.delete('/delete', function (req, res, next) {
                 console.log("data deleted");
             }
         });
-    db.execSql(request);
+    DataProcessor.execSql(request);
     res.end();
 });
 
@@ -155,7 +155,7 @@ router.post('/notificationSet', function (req, res, next) {
 
     var alarm = req.body.days <= 0 ? 1 : req.body.days;
 
-    db.execSql(new Request("UPDATE users SET alarm=" + alarm + "WHERE email=" +
+    DataProcessor.execSql(new Request("UPDATE users SET alarm=" + alarm + "WHERE email=" +
         "'" + req.user.email + "'",
         function (error) {
 

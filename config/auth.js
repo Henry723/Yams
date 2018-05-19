@@ -5,7 +5,7 @@
 var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var db = require('./db');
+var db = require('./DataProcessor');
 var Request = require('tedious').Request;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
@@ -31,7 +31,7 @@ passport.deserializeUser(function(email, done) {
 			result.alarm = row[0][3].value;
 			done(err, result);
 		});
-	db.execSql(deserializeRequest);
+    DataProcessor.execSql(deserializeRequest);
 });
 
 // configure local register strategy
@@ -51,10 +51,10 @@ passport.use(
 						+ req.body.name + "', '" + email + "', '" + password + "')",
 						function () { return done(null, email); }
 						);
-				db.execSql (registerRequest);
+                DataProcessor.execSql (registerRequest);
 			}
 		});
-		db.execSql (checkRequest);
+        DataProcessor.execSql (checkRequest);
 	}
 ));
 
@@ -80,7 +80,7 @@ passport.use(
 				return done(null, row[0][0].value);
 			}
 		});
-		db.execSql(loginRequest);
+        DataProcessor.execSql(loginRequest);
 	}
 ));
 
@@ -105,14 +105,14 @@ passport.use(new GoogleStrategy({
 								console.log("done");
 								return done(null, email);
 					});
-					db.execSql(registerRequest);
+                    DataProcessor.execSql(registerRequest);
 				}
 				else
 				{
 					return done(null, email);
 				}
 			});
-			db.execSql(loginRequest);
+        DataProcessor.execSql(loginRequest);
 	}));
 
 module.exports = passport;
