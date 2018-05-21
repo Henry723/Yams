@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/DataProcessor');
+var dataProcessor = require('../config/DataProcessor');
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
 
@@ -9,7 +9,7 @@ router.get
     '/dashboard'
     , function (req, res, next)
       {
-          DataProcessor.getUserFoodData(req, res, next);
+          dataProcessor.getUserFoodData(req, res, next);
       }
 );
 
@@ -37,7 +37,7 @@ router.get
                     }
                 }
           );
-          DataProcessor.execSql(request);
+          dataProcessor.execSql(request);
       }
 );
 
@@ -52,7 +52,7 @@ router.post
 
           if (typeof req.body.foodName === 'string')
           {
-              var dateObject = DataProcessor.calculateDaysLeft(new Date(req.body.expiryDate));
+              var dateObject = dataProcessor.calculateDaysLeft(new Date(req.body.expiryDate));
               foods.push([req.user.email, req.body.foodName, dateObject.currentDateStr
                   , req.body.expiryDate, dateObject.daysLeft, 0]);
           }
@@ -60,7 +60,7 @@ router.post
           {
               for (var i = 0; i < req.body.foodName.length; i++)
               {
-                  var dateObject = DataProcessor.calculateDaysLeft(new Date(req.body.expiryDate[i]));
+                  var dateObject = dataProcessor.calculateDaysLeft(new Date(req.body.expiryDate[i]));
 
                   foods.push([ req.user.email, req.body.foodName[i], dateObject.currentDateStr,
                       req.body.expiryDate[i], dateObject.daysLeft, 0 ]);
@@ -105,7 +105,7 @@ router.post
                 }
           );
 
-          DataProcessor.execSql(request);
+          dataProcessor.execSql(request);
 
           request.on
           (
@@ -125,7 +125,7 @@ router.post
     , function (req, res, next)
       {
           var foodName = req.body.food.slice(0, 1).toUpperCase() + req.body.food.slice(1, req.body.food.length).toLowerCase();
-          var dateObject = DataProcessor.calculateDaysLeft(new Date(req.body.expiryDate));
+          var dateObject = dataProcessor.calculateDaysLeft(new Date(req.body.expiryDate));
 
           request = new Request
           (
@@ -143,14 +143,14 @@ router.post
                     }
                 }
           );
-          DataProcessor.execSql(request);
+          dataProcessor.execSql(request);
 
           request.on
           (
               "requestCompleted"
               , function ()
                 {
-                    DataProcessor.execSql
+                    dataProcessor.execSql
                     (
                         new Request
                         (
@@ -201,7 +201,7 @@ router.delete
                 }
           );
 
-          DataProcessor.execSql(request);
+          dataProcessor.execSql(request);
           res.end();
       }
 );
@@ -213,7 +213,7 @@ router.post
       {
           var alarm = req.body.days <= 0 ? 1 : req.body.days;
 
-          DataProcessor.execSql
+          dataProcessor.execSql
           (
               new Request
               (

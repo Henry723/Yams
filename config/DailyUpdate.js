@@ -1,7 +1,7 @@
 var schedule = require('node-schedule');
 var http = require('http');
 var os = require('os');
-var db = require('./DataProcessor');
+var dataProcessor = require('./DataProcessor');
 
 
 function DailyUpdate()
@@ -11,10 +11,10 @@ function DailyUpdate()
         '30 16 * * *'
         , function (req)
           {
-              DataProcessor.setupNodemailer();
+              dataProcessor.setupNodemailer();
               console.log("Nodemailer setup.");
 
-              DataProcessor.checkForAlarms();
+              dataProcessor.checkForAlarms();
               console.log("emails checked.");
           }
     );

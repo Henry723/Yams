@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var DataProcessor = require('../config/DataProcessor');
+var dataProcessor = require('../config/DataProcessor');
 var passport = require("../config/Auth");
 var Request = require('tedious').Request;
 
