@@ -4,14 +4,21 @@ var os = require('os');
 var db = require('./DataProcessor');
 
 
-function daily() {
-    schedule.scheduleJob('30 16 * * *', function (req) {
-        console.log("job"); DataProcessor.setupNodemailer();
-        console.log("Nodemailer setup.");
-        DataProcessor.checkForAlarms();
-        console.log("emails checked.");
-    });
-}
+function DailyUpdate()
+{
+    schedule.scheduleJob
+    (
+        '30 16 * * *'
+        , function (req)
+          {
+              DataProcessor.setupNodemailer();
+              console.log("Nodemailer setup.");
 
-var daily = daily();
-module.exports = daily;
+              DataProcessor.checkForAlarms();
+              console.log("emails checked.");
+          }
+    );
+}
+var DailyUpdate = DailyUpdate();
+
+module.exports = DailyUpdate;
