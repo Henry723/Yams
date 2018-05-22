@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
-  <link type="text/css" rel="stylesheet" href="./stylesheets/home.css">
+  <link type="text/css" rel="stylesheet" href="./stylesheets/Home.css">
 </head>
 <body>
     
@@ -41,7 +41,7 @@
   <div id="mainForm">
       <div class="buttons">
           <div class="mx-auto">
-              <form action="./auth/google" method="get">
+              <form action="./Auth/google" method="get">
                   <button id="googleClick" class="btn btn-lg btn-social btn-google w-100 text-center">
                       <span class="fab fa-google"></span> Login with Google
                   </button>
@@ -68,7 +68,7 @@
     </div>
   <div id="loginForm" class="logins">
     <div class="col-8 mx-auto">
-      <form id="authen" class="p-4" action="./auth/local/login" method="POST">
+      <form id="authen" class="p-4" action="./Auth/local/login" method="POST">
         <div class="form-group">
           <input name="email" type="email" class="form-control" id="emailInput" required="required" placeholder="email@example.com">
         </div>
@@ -93,7 +93,7 @@
   <!--Signup form-------------------------------------------->
   <div id="registerForm" class="registers">
     <div class="col-8 mx-auto">
-      <form class="p-4" action="./auth/local/register" method="POST">
+      <form class="p-4" action="./Auth/local/register" method="POST">
         <div class="form-group">
           <input name="name" type="text" class="form-control" id="registerFullName" required="required" pattern="[A-Za-z]{}" placeholder="Full name">
         </div>
@@ -118,6 +118,6 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./javascripts/home.js"></script>
+  <script type="text/javascript" src="./javascripts/Home.js"></script>
 </body>
 </html>
