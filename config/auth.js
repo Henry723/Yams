@@ -11,7 +11,7 @@ const GOOGLE_CLIENT_ID = '921816998744-7bo3fu2ouecuhcdolbdj971af7p5pkrv.apps.goo
 const GOOGLE_CLIENT_SECRET = 'TUjng4inPK-hmwaeoHQ1Dhz4';
 
 const callback = (process.env.PORT) ?
-		'https://calm-caverns-80656.herokuapp.com/auth/google/callback' : 'http://localhost:3000/auth/google/callback';
+		'https://calm-caverns-80656.herokuapp.com/Auth/google/callback' : 'http://localhost:3000/Auth/google/callback';
 
 //used to serialize the user for the session
 passport.serializeUser(function (user, done) { done(null, user); });
@@ -21,7 +21,7 @@ passport.deserializeUser
 (
     function (email, done)
     {
-        deserializeRequest = new Request
+        deserializeRequest = new request
         (
             "SELECT * FROM users WHERE email = " + "'" + email + "'"
             , function (err, rowCount, row)
@@ -48,7 +48,7 @@ passport.use
           }
           , function (req, email, password, done)
             {
-                checkRequest = new Request
+                checkRequest = new request
                 (
                     "SELECT email FROM users WHERE email = '" + email + "'"
                     , function (err, rowCount, row)
@@ -64,7 +64,7 @@ passport.use
                           }
                           else
                           {
-                              registerRequest = new Request("insert into users (name, email, password) values ('" + req.body.name + "', '"
+                              registerRequest = new request("insert into users (name, email, password) values ('" + req.body.name + "', '"
                                   + email + "', '" + password + "')", function () { return done(null, email); });
                               dataProcessor.execSql (registerRequest);
 			              }
@@ -86,7 +86,7 @@ passport.use
           }
           , function (email, password, done)
             {
-                loginRequest = new Request
+                loginRequest = new request
                 (
                     "SELECT * FROM users WHERE email = '" + email + "'"
                     , function (err, rowCount, row)
@@ -131,7 +131,7 @@ passport.use
           {
 	          var email = profile.emails[0].value;
 
-              loginRequest = new Request
+              loginRequest = new request
               (
                   "SELECT * FROM users WHERE email = '" + email + "'"
                   , function (err, rowCount, row)
@@ -143,7 +143,7 @@ passport.use
 
 			            if (!rowCount)
 		                {
-		                    registerRequest = new Request("INSERT INTO users (name, email) VALUES ('"
+		                    registerRequest = new request("INSERT INTO users (name, email) VALUES ('"
                                 + profile.displayName + "', '" + email + "')"
                             , function (err, rowCount, rows) { console.log("done"); return done(null, email); });
                         
