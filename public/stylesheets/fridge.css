@@ -3,6 +3,12 @@ font-family: coolvetica-rg;
 src: url(../font/coolvetica-rg.ttf);
 }
 
+@media screen and (min-width: 600px) {
+    .desktopVer {
+        margin-top: 60px;
+    }
+}
+
 html {
     background-image:url('../images/3.jpg');
     background-repeat: no-repeat;
@@ -189,7 +195,7 @@ buttonBackground {
 
 #fridgeHead {
     text-align: center;
-    background-color: #87CEFA;
+    background-color: rgb(75,0,130);
     color: white;
 }
 
