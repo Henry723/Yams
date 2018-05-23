@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var dataProcessor = require('../config/DataProcessor');
-var passport = require("../config/Auth");
+var passport = require("../config/auth");
 var Request = require('tedious').Request;
 
 /* GET Home page. */
