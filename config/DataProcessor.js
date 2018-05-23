@@ -116,15 +116,19 @@ connection.checkForAlarms = function ()
                                     if (rows.length > 0)
                                     {
                                         var foods = rows;
+
                                         var text = "";
-                                        var html = "<head><style>body {background-color: rgb(245,245,245);}h1 {text-align: center;font-family: 'Fredoka One';}"
-                                        + "#main {margin:0 auto;width: 70%;background-color: rgb(255,255,255);}#header{text-align: center;background-color:rgb(240, 248, 255);}"
-                                        + "#content {padding : 30px;}#header{padding : 30px;}a {text-decoration: none;text-transform: uppercase;color: white;}a:visited {color: white;}button{background-color: cadetblue;border: none;color: white;padding: 15px 32px;margin: 0 auto;display: block;"
-                                        + "text-align: center;text-decoration: none;font-size: 16px;cursor: pointer;margin:0 auto;}#main {font-family: 'Bree Serif', serif;}"
-                                        + "table{margin:0 auto;padding: 16px 40px;border-style:solid;}tr, td {padding: 5px 60px;}</style><link href='https://fonts.googleapis.com/css?family=Fredoka+One'"
-                                        + "rel='stylesheet'><link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet'></head><body><h1>YAMS</h1><div id='main'><div id='header'>"
-                                        + "<p style='font-size:20px'>YOUR FOOD IS EXPIRING SOON!</p><p>We want you to check your fridge</p><table><tr><th>Food</th></tr>"
+                                        var html = "";
                                         var expiringFood = "";
+
+                                        html += "<head><style>body {background-color: rgb(245,245,245);}h1 {text-align: center;font-family: 'Fredoka One';}"
+                                                + "#main {margin:0 auto;width: 70%;background-color: rgb(255,255,255);}#header{text-align: center;background-color:rgb(240, 248, 255);}"
+                                                + "#content {padding : 30px;}#header{padding : 30px;}a {text-decoration: none;text-transform: uppercase;color: white;}a:visited {color: white;}button{background-color: cadetblue;border: none;color: white;padding: 15px 32px;margin: 0 auto;display: block;"
+                                                + "text-align: center;text-decoration: none;font-size: 16px;cursor: pointer;margin:0 auto;}#main {font-family: 'Bree Serif', serif;}"
+                                                + "table{margin:0 auto;padding: 16px 40px;border-style:solid;}tr, td {padding: 5px 60px;}</style><link href='https://fonts.googleapis.com/css?family=Fredoka+One'"
+                                                + "rel='stylesheet'><link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet'></head><body><h1>YAMS</h1><div id='main'><div id='header'>"
+                                                + "<p style='font-size:20px'>YOUR FOOD IS EXPIRING SOON!</p><p>We want you to check your fridge</p><table><tr><th>Food</th></tr>"
+
                                         for (var i = 0; i < foods.length; i++)
                                         {
                                             text += foods[i][0].value + " \r\n";
@@ -166,22 +170,37 @@ connection.checkForAlarms = function ()
                           "requestCompleted"
                           , function ()
                             {
-                              request = new Request("UPDATE usersFoodData SET isNotified=1 WHERE email='" + userEmail + "'AND isNotified=0 AND daysLeft<='" + alarm + "'"
-                                  , function (error, rowCount, rows){
-                                     if (error){
-                                       console.log(error);
-                                     } else {
-                                       console.log("Users food data updated.");
-                                     }
-                                   });
-                                connection.execSql(request);
-                                request.on ("requestCompleted", function(){
-                                  i++;
-                                  /*****dash of es6 ;) *****/
-                                  console.log(`Request2 Complete: (${i})`);
-                                  sendMail(i);
-                                });
-                            });
+                              request = new Request
+                              (
+                                  "UPDATE usersFoodData SET isNotified=1 WHERE email='" + userEmail
+                                      + "'AND isNotified=0 AND daysLeft<='" + alarm + "'"
+                                  , function (error, rowCount, rows)
+                                    {
+                                        if (error)
+                                        {
+                                            console.log(error);
+                                        }
+                                        else
+                                        {
+                                            console.log("Users food data updated.");
+                                        }
+                                    }
+                              );
+                              connection.execSql(request);
+
+                              request.on
+                              (
+                                  "requestCompleted"
+                                  , function ()
+                                    {
+                                        i++;
+                                        /*****dash of es6 ;) *****/
+                                        console.log(`Request2 Complete: (${i})`);
+                                        sendMail(i);
+                                    }
+                              );
+                            }
+                      );
                   }
                   else
                   {
