@@ -2,6 +2,7 @@
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
+var MobileDetect = require('mobile-detect');
 
 var config =
 {
@@ -243,9 +244,10 @@ connection.getUserFoodData = function (req, res, next)
                           return -1;
                       }
                   );
+                  md = new MobileDetect(req.headers['user-agent']);
 
                   res.render('fridge', { usersFood: usersFood, userName: req.user.name
-                      , alarm: req.user.alarm, message: req.flash('info') } );
+                      , alarm: req.user.alarm, message: req.flash('info'), device: md.mobile() } );
               }
           }
     );

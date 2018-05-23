@@ -24,42 +24,7 @@
         </div>
 <% } %>
 
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrollHidden">
-        <a class="navbar-brand" href="">YAMS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a id="aboutPageAnchor" class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
-                </li>
-
-                <li class="nav-item">
-                    <a id="scanPageAnchor" class="nav-link" href="#">Scan Receipt</a>
-                </li>
-
-                <li class="nav-item">
-                    <a id="addPageAnchor" class="nav-link" href="#">Add Single Item</a>
-                </li>
-                <li class="nav-item">
-                    <a id="notificationPageAnchor" class="nav-link" href="#"><button class="notificationSettingButton"></button>Settings</a>
-                </li>
-                <li class="nav-item">
-                    <a id="logout" class="nav-link" href="#">Log out</a>
-                </li>
-
-            </ul>
-
-        </div>
-    </nav> -->
-
+<% if(device) { %>
 <div class="fridgeDoor closedDoor position-fixed">
   <h1 id="fridgeDoorHeader" class="">Hi <%= userName %>!</h1>
   <ul id="menu" class="navbar-nav">
@@ -89,7 +54,9 @@
       </a>
     </li>
     <li class="links ">
-      <a id="logout" href="./logout" method="GET">
+        <a id="logout" href="./logout" method="GET">
+        </a>
+    </li>
     <li class="links">
       <a id="logout" method="GET" href="./logout">
         <i class="fas fa-sign-out-alt"></i> Log out
@@ -115,10 +82,52 @@
   </div>
 </div>
 
+<% } else { %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrollHidden">
+        <a class="navbar-brand" href="">YAMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a id="aboutPageAnchor" class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
+                </li>
+
+                <li class="nav-item">
+                    <a id="scanPageAnchor" class="nav-link" href="#">Scan Receipt</a>
+                </li>
+
+                <li class="nav-item">
+                    <a id="addPageAnchor" class="nav-link" href="#">Add Single Item</a>
+                </li>
+                <li class="nav-item">
+                    <a id="notificationPageAnchor" class="nav-link" href="#">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout" class="nav-link text-danger" method="GET" href="./logout">Log out</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+<% } %>
+
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
 <div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
     <div id="fridgeDiv">
         <div>
             <h1 class="list-group-item" id="fridgeHead">&ensp;Fridge</h1><!--with notification button-->
@@ -154,6 +163,11 @@
 <!------------------------------------------------------------------------------------------------>
 <!--- Scanning ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
 <div id="scanPage">
   <div class="row mt-5">
     <div class="col-12 mx-auto text-center">
@@ -187,6 +201,11 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- ADD ITEM ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
     <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
     <div id="addPage">
       <div class="addItems-settings-space">
@@ -220,6 +239,11 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- NOTIFICATION SETTINGS ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
     <div id="notificationSettingPage">
         <div class="addItems-settings-space">
         </div>
@@ -242,6 +266,11 @@
 <!------------------------------------------------------------------------------------------------>
 <!------------- ABOUT PAGE ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
 <div id="aboutPage" class="container text-center">
         <!--About yams heading row-->
         <div class="row pt-4 pb-4">
@@ -344,6 +373,7 @@
     </div>
     <!--End of container-->
 <!-- </div> -->
+</div>
 <!------------------------------------------------footer------------------------------------->
 <!--
 <footer class="bg-dark text-white mt-4 fixed-bottom scrollHidden ">
