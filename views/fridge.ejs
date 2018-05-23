@@ -123,8 +123,12 @@
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
 <div id="userPage" >
-    <div id="fridgeDiv" class="desktopVer">
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
+    <div id="fridgeDiv">
         <div>
             <h1 class="list-group-item" id="fridgeHead">&ensp;Fridge</h1><!--with notification button-->
         </div>
@@ -159,7 +163,12 @@
 <!------------------------------------------------------------------------------------------------>
 <!--- Scanning ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-<div id="scanPage" class="desktopVer">
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
+<div id="scanPage">
   <div class="row mt-5">
     <div class="col-12 mx-auto text-center">
       <h2>Please upload your receipt:</h2>
@@ -192,8 +201,13 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- ADD ITEM ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
     <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
-    <div id="addPage" class="desktopVer">
+    <div id="addPage">
       <div class="addItems-settings-space">
       </div>
         <div id="addFrame">
@@ -225,7 +239,12 @@
 <!------------------------------------------------------------------------------------------------>
 <!-- NOTIFICATION SETTINGS ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-    <div id="notificationSettingPage" class="desktopVer">
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
+    <div id="notificationSettingPage">
         <div class="addItems-settings-space">
         </div>
         <div id="notificationFrame">
@@ -247,7 +266,12 @@
 <!------------------------------------------------------------------------------------------------>
 <!------------- ABOUT PAGE ------------------------------------------------->
 <!------------------------------------------------------------------------------------------------>
-<div id="aboutPage" class="container text-center desktopVer">
+<% if (device) { %>
+<div id="userPage" >
+    <% } else { %>
+    <div id="userPage" class="topNavbarSpacing">
+<% } %>
+<div id="aboutPage" class="container text-center">
         <!--About yams heading row-->
         <div class="row pt-4 pb-4">
             <div class="mx-auto col-11">
@@ -349,6 +373,7 @@
     </div>
     <!--End of container-->
 <!-- </div> -->
+</div>
 <!------------------------------------------------footer------------------------------------->
 <!--
 <footer class="bg-dark text-white mt-4 fixed-bottom scrollHidden ">
