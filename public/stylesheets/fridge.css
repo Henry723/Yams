@@ -3,6 +3,10 @@ font-family: coolvetica-rg;
 src: url(../font/coolvetica-rg.ttf);
 }
 
+.topNavbarSpacing {
+    margin-top: 60px;
+}
+
 html {
     background-image:url('../images/3.jpg');
     background-repeat: no-repeat;
@@ -152,6 +156,8 @@ img {
 }
 
 #aboutPage {
+    padding-left:7%;
+    padding-right:7%;
     display:none;
 }
 
@@ -189,7 +195,7 @@ buttonBackground {
 
 #fridgeHead {
     text-align: center;
-    background-color: #87CEFA;
+    background-color: rgb(75,0,130);
     color: white;
 }
 
@@ -229,7 +235,6 @@ h1 {
 }
 
 #userPage{
-    background-color: rgb(235, 235, 249);
     height: 50%;
 }
 
@@ -310,8 +315,8 @@ h1 {
     height: 35%;
 }
 #scanPage {
-    background-color: rgb(235, 235, 249);
-    padding:2%;
+   
+    padding:5%;
     display:none;
 }
 #imageInput {
@@ -406,11 +411,15 @@ h1 {
 }
 
 #notificationFrame {
+    
     background-color : rgb(0, 0, 0, 0.5);
     border-radius: 10px;
     width : 85%;
     margin : 0 auto;
     padding : 10px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
 }
 
 #notificationSettingPage {

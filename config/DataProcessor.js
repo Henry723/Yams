@@ -2,6 +2,7 @@
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
+var MobileDetect = require('mobile-detect');
 
 var config =
 {
@@ -33,7 +34,7 @@ connection.on
       }
 );
 
-// notification 
+// notification
 connection.setupNodemailer = function()
 {
     let transporter = nodemailer.createTransport
@@ -96,12 +97,12 @@ connection.checkForAlarms = function ()
                       {
                           alarm = 7;
                       }
-                   
+
                       var userEmail = users[i][0].value;
 
                       request = new Request
                       (
-                          "UPDATE usersFoodData SET isNotified=1 WHERE email='" + userEmail + "'AND isNotified=0 AND daysLeft<='" + alarm + "'"
+                          "SELECT * from usersFoodData WHERE email='" + userEmail + "'AND isNotified=0 AND daysLeft<='" + alarm + "'"
                           , function (error, rowCount, rows)
                             {
                                 if (error)
@@ -111,18 +112,30 @@ connection.checkForAlarms = function ()
                                 else
                                 {
                                     console.log("request2 successfully reached.");
+                                    console.log(rows.length);
 
                                     if (rows.length > 0)
                                     {
                                         var foods = rows;
+
                                         var text = "";
                                         var html = "";
+                                        var expiringFood = "";
+
+                                        html += "<head><style>body {background-color: rgb(245,245,245);}h1 {text-align: center;font-family: 'Fredoka One';}"
+                                                + "#main {margin:0 auto;width: 70%;background-color: rgb(255,255,255);}#header{text-align: center;background-color:rgb(240, 248, 255);}"
+                                                + "#content {padding : 30px;}#header{padding : 30px;}a {text-decoration: none;text-transform: uppercase;color: white;}a:visited {color: white;}button{background-color: cadetblue;border: none;color: white;padding: 15px 32px;margin: 0 auto;display: block;"
+                                                + "text-align: center;text-decoration: none;font-size: 16px;cursor: pointer;margin:0 auto;}#main {font-family: 'Bree Serif', serif;}"
+                                                + "table{margin:0 auto;padding: 16px 40px;border-style:solid;}tr, td {padding: 5px 60px;}</style><link href='https://fonts.googleapis.com/css?family=Fredoka+One'"
+                                                + "rel='stylesheet'><link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet'></head><body><h1>YAMS</h1><div id='main'><div id='header'>"
+                                                + "<p style='font-size:20px'>YOUR FOOD IS EXPIRING SOON!</p><p>We want you to check your fridge</p><table><tr><th>Food</th></tr>"
 
                                         for (var i = 0; i < foods.length; i++)
                                         {
                                             text += foods[i][0].value + " \r\n";
-                                            html += "<li>" + foods[i][0].value + "</li>";
+                                            expiringFood += "<tr><td>" + foods[i][0].value + "</td></tr>";
                                         }
+                                        html += expiringFood + "</table></div><div id='content'><button><a href='https://calm-caverns-80656.herokuapp.com'>Check your fridge</a></button></div></div></body>"
 
                                         let mailOptions =
                                         {
@@ -130,7 +143,7 @@ connection.checkForAlarms = function ()
                                             to: userEmail + ', Adamsmith6300@gmail.com', // list of receivers
                                             subject: 'Gotta Eat up!', // Subject line
                                             text: 'Your foods are expiring! ' + text, // plain text body
-                                            html: '<h2>Your foods are expiring!</h2><ul>' + html + '</ul>' // html body
+                                            html: html // html body
                                         };
 
                                         transporter.sendMail
@@ -158,9 +171,35 @@ connection.checkForAlarms = function ()
                           "requestCompleted"
                           , function ()
                             {
-                                i++;
-                                console.log(`Request2 Complete: (${i})`);
-                                sendMail(i);
+                              request = new Request
+                              (
+                                  "UPDATE usersFoodData SET isNotified=1 WHERE email='" + userEmail
+                                      + "'AND isNotified=0 AND daysLeft<='" + alarm + "'"
+                                  , function (error, rowCount, rows)
+                                    {
+                                        if (error)
+                                        {
+                                            console.log(error);
+                                        }
+                                        else
+                                        {
+                                            console.log("Users food data updated.");
+                                        }
+                                    }
+                              );
+                              connection.execSql(request);
+
+                              request.on
+                              (
+                                  "requestCompleted"
+                                  , function ()
+                                    {
+                                        i++;
+                                        /*****dash of es6 ;) *****/
+                                        console.log(`Request2 Complete: (${i})`);
+                                        sendMail(i);
+                                    }
+                              );
                             }
                       );
                   }
@@ -205,9 +244,10 @@ connection.getUserFoodData = function (req, res, next)
                           return -1;
                       }
                   );
+                  md = new MobileDetect(req.headers['user-agent']);
 
                   res.render('fridge', { usersFood: usersFood, userName: req.user.name
-                      , alarm: req.user.alarm, message: req.flash('info') } );
+                      , alarm: req.user.alarm, message: req.flash('info'), device: md.mobile() } );
               }
           }
     );
