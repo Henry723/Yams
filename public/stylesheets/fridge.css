@@ -3,10 +3,8 @@ font-family: coolvetica-rg;
 src: url(../font/coolvetica-rg.ttf);
 }
 
-@media screen and (min-width: 600px) {
-    .desktopVer {
-        margin-top: 60px;
-    }
+.topNavbarSpacing {
+    margin-top: 60px;
 }
 
 html {
@@ -158,6 +156,8 @@ img {
 }
 
 #aboutPage {
+    padding-left:7%;
+    padding-right:7%;
     display:none;
 }
 
@@ -235,7 +235,6 @@ h1 {
 }
 
 #userPage{
-    background-color: rgb(235, 235, 249);
     height: 50%;
 }
 
@@ -316,8 +315,8 @@ h1 {
     height: 35%;
 }
 #scanPage {
-    background-color: rgb(235, 235, 249);
-    padding:2%;
+   
+    padding:5%;
     display:none;
 }
 #imageInput {
@@ -412,11 +411,15 @@ h1 {
 }
 
 #notificationFrame {
+    
     background-color : rgb(0, 0, 0, 0.5);
     border-radius: 10px;
     width : 85%;
     margin : 0 auto;
     padding : 10px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
 }
 
 #notificationSettingPage {
