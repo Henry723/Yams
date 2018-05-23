@@ -96,6 +96,16 @@ $(document).ready
 
         /********************** user page  ********************/
 
+        $(function(){
+            // Bind the swipeHandler callback function to the swipe event on div.box
+            $(".list-group").on("swipe", swipeHandler);
+            
+            // Callback function references the event target and adds the 'swipe' class to it
+            function swipeHandler(){
+                $(".btn.deleteButton").show();
+            }
+        });
+        
         $(".deleteButton").click
         (
             function (event)

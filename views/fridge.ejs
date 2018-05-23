@@ -8,11 +8,13 @@
 <!-- font for fridge -->
 
 <!--------------------->
+<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
 <link type="text/css" rel="stylesheet" href="../stylesheets/Fridge.css">
+
 
 </head>
 
@@ -365,15 +367,72 @@
 </footer>
 -->
 
-<script
-src="https://code.jquery.com/jquery-3.3.1.min.js"
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../javascripts/Fridge.js"></script>
 <script type="text/javascript" src="../javascripts/Scanner.js"></script>
+    <script>
+        var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or touchstart events.
+            touchEndCoords = {'x':-1, 'y':-1},// X and Y coordinates on mouseup or touchend events.
+            direction = 'undefined',// Swipe direction
+            minDistanceXAxis = 30,// Min distance on mousemove or touchmove on the X axis
+            maxDistanceYAxis = 30,// Max distance on mousemove or touchmove on the Y axis
+            maxAllowedTime = 1000,// Max allowed time between swipeStart and swipeEnd
+            startTime = 0,// Time on swipeStart
+            elapsedTime = 0,// Elapsed time between swipeStart and swipeEnd
+            targetElement = document.getElementsByClassName('progressBarContent');// Element to delegate
+        
+        function swipeStart(e) {
+            e = e ? e : window.event;
+            e = ('changedTouches' in e)?e.changedTouches[0] : e;
+            touchStartCoords = {'x':e.pageX, 'y':e.pageY};
+            startTime = new Date().getTime();
+            targetElement.textContent = " ";
+        }
+        
+        function swipeMove(e){
+            e = e ? e : window.event;
+            e.preventDefault();
+        }
+        
+        function swipeEnd(e) {
+            e = e ? e : window.event;
+            e = ('changedTouches' in e)?e.changedTouches[0] : e;
+            touchEndCoords = {'x':e.pageX - touchStartCoords.x, 'y':e.pageY - touchStartCoords.y};
+            elapsedTime = new Date().getTime() - startTime;
+            if (elapsedTime <= maxAllowedTime){
+                if (Math.abs(touchEndCoords.x) >= minDistanceXAxis && Math.abs(touchEndCoords.y) <= maxDistanceYAxis){
+                    direction = (touchEndCoords.x < 0)? 'left' : 'right';
+                    switch(direction){
+                        case 'left':
+                            $( ".progressBarContent" ).hover(function() {
+                                console.log($(this).find('button'));
+                            });
+                            console.log("left is working");
+                            break;
+                        case 'right':
+                            break;
+                    }
+                }
+            }
+        }
+        
+        
+        function addMultipleListeners(el, s, fn) {
+            var evts = s.split(' '); 
+             for (var i=0, iLen=evts.length; i<iLen; i++) {
+                    el.addEventListener(evts[i], fn, false);    
+             }
+        
+        }
+        for(i = 0; i < targetElement.length;i++){
+            addMultipleListeners(targetElement[i], 'mousedown touchstart', swipeStart);
+            addMultipleListeners(targetElement[i], 'mousemove touchmove', swipeMove);
+            addMultipleListeners(targetElement[i], 'mouseup touchend', swipeEnd);
+        }
+    </script>
 
 </body>
 </html>
