@@ -8,7 +8,7 @@ function DailyUpdate()
 {
     schedule.scheduleJob
     (
-        '* * * * *'
+        '30 16 * * *'
         , function (req)
           {
               dataProcessor.setupNodemailer();
