@@ -11,9 +11,11 @@ var flash = require("connect-flash");
 var homeRouter = require('./routes/home');
 var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
-// console.log("PORT" + process.env.PORT);
-var db = require('./config/db');
-var passport = require('./config/auth');
+
+var dataProcessor = require('./config/DataProcessor');
+var passport = require('./config/Auth');
+var daily = require('./config/DailyUpdate');
+
 var app = express();
 
 // view engine setup
@@ -37,9 +39,6 @@ app.use(flash());
 app.use('/', homeRouter);
 app.use('/fridge', fridgeRouter);
 app.use('/about', aboutRouter);
-
-var daily = require('./daily');
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
