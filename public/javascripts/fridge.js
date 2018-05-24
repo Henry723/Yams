@@ -159,7 +159,7 @@ $(document).ready
             
         $(".overlayDiv").on("swipeleft", swipeHandler);
         function swipeHandler(event){
-            $(".deleteButton").animate({width:'0'},100),
+            $(".deleteButton").animate({width:'0'},10),
             $(".deleteButton").css("padding", "0"),    
             $(".deleteButton").text("");
             
@@ -170,6 +170,10 @@ $(document).ready
         }
         
         $(".overlayDiv").mousedown(function(event){
+            $(".deleteButton").animate({width:'0'},10),
+            $(".deleteButton").css("padding", "0"),    
+            $(".deleteButton").text("");
+            
             $(event.target).css("width", "100%"),
             $(event.target).prev().animate({width:'0'},100),
             $(event.target).prev().css("padding", "0"),    
