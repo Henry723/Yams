@@ -3,7 +3,7 @@
 var express = require('express');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
-var dataProcessor = require('./dataprocessor');
+var dataProcessor = require('./Dataprocessor');
 var request = require('tedious').Request;
 var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 

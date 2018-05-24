@@ -12,7 +12,7 @@ var homeRouter = require('./routes/home');
 var fridgeRouter = require('./routes/fridge');
 var aboutRouter = require('./routes/about');
 
-var dataProcessor = require('./config/dataprocessor');
+var dataProcessor = require('./config/Dataprocessor');
 var passport = require('./config/auth');
 var daily = require('./config/dailyupdate');
 

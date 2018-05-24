@@ -1,7 +1,7 @@
 var schedule = require('node-schedule');
 var http = require('http');
 var os = require('os');
-var dataProcessor = require('./dataprocessor');
+var dataProcessor = require('./Dataprocessor');
 
 
 function dailyUpdate()
