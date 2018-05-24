@@ -2,6 +2,8 @@ $(document).ready
 (
     function ()
     {
+        
+        
         /******************* Easter Egg ********************/
 
         $("#addSubmitForm").submit
@@ -96,15 +98,7 @@ $(document).ready
 
         /********************** user page  ********************/
 
-        $(function(){
-            // Bind the swipeHandler callback function to the swipe event on div.box
-            $(".list-group").on("swipe", swipeHandler);
-            
-            // Callback function references the event target and adds the 'swipe' class to it
-            function swipeHandler(){
-                $(".btn.deleteButton").show();
-            }
-        });
+        
         
         $(".deleteButton").click
         (
@@ -160,5 +154,41 @@ $(document).ready
         // flash messages for adding items.
   
         setTimeout(function() { $('.alert').fadeOut(1500); }, 2000);
+        
+        
+            
+        $(".overlayDiv").on("swipeleft", swipeHandler);
+        function swipeHandler(event){
+            $(".deleteButton").animate({width:'0'},100),
+            $(".deleteButton").css("padding", "0"),    
+            $(".deleteButton").text("");
+            
+            $(event.target).css("width", "83%"),
+            $(event.target).prev().show(),
+            $(event.target).prev().animate({width:'20%'},100),
+            $(event.target).prev().text("Delete");
+        }
+        
+        $(".overlayDiv").mousedown(function(event){
+            $(event.target).css("width", "100%"),
+            $(event.target).prev().animate({width:'0'},100),
+            $(event.target).prev().css("padding", "0"),    
+            $(event.target).prev().text("");
+        });
+        
+        $(".overlayDiv").on("swiperight", function(event){
+            $(event.target).css("width", "100%"),
+            $(event.target).prev().animate({width:'0'},100),
+            $(event.target).prev().css("padding", "0"),    
+            $(event.target).prev().text("");
+        });
+            
+            
+        
+        
+        
     }
 );
+
+
+
