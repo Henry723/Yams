@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
-  <link type="text/css" rel="stylesheet" href="./stylesheets/Home.css">
+  <link type="text/css" rel="stylesheet" href="./stylesheets/home.css">
 </head>
 <body>
-    
+
   <!-- carousel -------------------------------------------->
   <div id="carouselContent" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner row mx-auto justify-content-center" role="listbox">
@@ -49,7 +49,7 @@
               <button type="button" id="loginClick" class="btn btn-yams btn-lg w-100">LOGIN</button>
           </div>
       </div>
-    
+
     <hr />
     <div class="text-center">
       <a id="registerClick" class="mt-3 pointer">Don't have an account? Signup!</a>
@@ -95,13 +95,13 @@
     <div class="col-8 mx-auto">
       <form class="p-4" action="./Auth/local/register" method="POST">
         <div class="form-group">
-          <input name="name" type="text" class="form-control" id="registerFullName" required="required" pattern="[A-Za-z]{}" placeholder="Full name">
+          <input name="name" type="text" class="form-control" id="registerFullName" required="required" minlength="2" maxlength="20" placeholder="Your Name">
         </div>
         <div class="form-group">
-          <input name="email" type="email" class="form-control" id="registerEmail" required="required"  placeholder="Email address">
+          <input name="email" type="email" class="form-control" id="registerEmail" required="required"  minlength="2" maxlength="50" placeholder="Email address">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="registerPassword" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password">
+          <input type="password" class="form-control" id="registerPassword" required="required" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password">
         </div>
         <div class="form-group">
           <input name="password" type="password" class="form-control" id="registerPasswordCheck" required="required" pattern=".{}" title="Your password does not match" placeholder="Confirm Password">
@@ -118,6 +118,6 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./javascripts/Home.js"></script>
+  <script type="text/javascript" src="./javascripts/home.js"></script>
 </body>
 </html>

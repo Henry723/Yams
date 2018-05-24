@@ -12,24 +12,83 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
-<link type="text/css" rel="stylesheet" href="../stylesheets/Fridge.css">
+<link type="text/css" rel="stylesheet" href="../stylesheets/fridge.css">
 
 </head>
 
 <body>
 
-<% if(message && message.length){ %>
-        <div class = "alert alert-success" role="alert">
-            <%= message %>
+    <% if(message && message.length){ %>
+    <div class = "alert alert-success" role="alert">
+        <%= message %>
+    </div>
+    <% } %>
+    
+    <% if(device) { %>
+    <div class="fridgeDoor closedDoor position-fixed">
+        <h1 id="fridgeDoorHeader" class="">Hi <%= userName %>!</h1>
+        <ul id="menu" class="navbar-nav">
+            <li class="links ">
+                <a id="userPageAnchor">
+                    <i class="fas fa-utensils"></i> My Fridge
+                </a>
+            </li>
+            <li class="links ">
+                <a id="scanPageAnchor">
+                    <i class="fas fa-camera"></i> Scan Receipt
+                </a>
+            </li>
+            <li class="links ">
+                <a id="addPageAnchor">
+                    <i class="fas fa-plus"></i> Add Single Item
+                </a>
+            </li>
+            <li class="links ">
+                <a id="aboutPageAnchor">
+                    <i class="far fa-question-circle"></i> About Yams
+                </a>
+            </li>
+            <li class="links ">
+                <a id="notificationPageAnchor">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </li>
+            <li class="links ">
+                <a id="logout" href="./logout" method="GET">
+                </a>
+            </li>
+            <li class="links">
+                <a id="logout" method="GET" href="./logout">
+                    <i class="fas fa-sign-out-alt"></i> Log out
+                </a>
+            </li>
+        </ul>
+        <div class="handle closedDoorHandle">
         </div>
-<% } %>
-
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrollHidden">
+        <div class="container mt-5 footerStuff">
+            
+            <div class="row shareFooter">
+                <div class="col-8">
+                    <small>Share our application!</small>
+                    <button class="btn-facebook">
+                        <span class="fab fa-facebook"></span>
+                    </button>
+                    <button class="btn-twitter">
+                        <span class="fab fa-twitter"></span>
+                    </button>
+                </div>
+                <div class="col-4"><small>©Yams</small></div>
+            </div>
+        </div>
+    </div>
+    
+    <% } else { %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrollHidden">
         <a class="navbar-brand" href="">YAMS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -40,328 +99,307 @@
                 <li class="nav-item">
                     <a id="userPageAnchor" class="nav-link" href="#">My Fridge</a>
                 </li>
-
+                
                 <li class="nav-item">
                     <a id="scanPageAnchor" class="nav-link" href="#">Scan Receipt</a>
                 </li>
-
+                
                 <li class="nav-item">
                     <a id="addPageAnchor" class="nav-link" href="#">Add Single Item</a>
                 </li>
                 <li class="nav-item">
-                    <a id="notificationPageAnchor" class="nav-link" href="#"><button class="notificationSettingButton"></button>Settings</a>
+                    <a id="notificationPageAnchor" class="nav-link" href="#">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a id="logout" class="nav-link" href="#">Log out</a>
+                    <a id="logout" class="nav-link text-danger" method="GET" href="./logout">Log out</a>
                 </li>
-
+                
             </ul>
-
+            
         </div>
-    </nav> -->
-
-<div class="fridgeDoor closedDoor position-fixed">
-  <h1 id="fridgeDoorHeader" class="">Hi <%= userName %>!</h1>
-  <ul id="menu" class="navbar-nav">
-    <li class="links ">
-      <a id="userPageAnchor">
-        <i class="fas fa-utensils"></i> My Fridge
-      </a>
-    </li>
-    <li class="links ">
-      <a id="scanPageAnchor">
-        <i class="fas fa-camera"></i> Scan Receipt
-      </a>
-    </li>
-    <li class="links ">
-      <a id="addPageAnchor">
-        <i class="fas fa-plus"></i> Add Single Item
-      </a>
-    </li>
-    <li class="links ">
-      <a id="aboutPageAnchor">
-        <i class="far fa-question-circle"></i> About Yams
-      </a>
-    </li>
-    <li class="links ">
-      <a id="notificationPageAnchor">
-        <i class="fas fa-cog"></i> Settings
-      </a>
-    </li>
-    <li class="links ">
-      <a id="logout" href="./logout" method="GET">
-    <li class="links">
-      <a id="logout" method="GET" href="./logout">
-        <i class="fas fa-sign-out-alt"></i> Log out
-      </a>
-    </li>
-  </ul>
-  <div class="handle closedDoorHandle">
-  </div>
-   <div class="container mt-5 footerStuff">
-
-    <div class="row shareFooter">
-      <div class="col-8">
-        <small>Share our application!</small>
-        <button class="btn-facebook">
-          <span class="fab fa-facebook"></span>
-        </button>
-        <button class="btn-twitter">
-          <span class="fab fa-twitter"></span>
-        </button>
-      </div>
-      <div class="col-4"><small>©Yams</small></div>
-    </div>
-  </div>
-</div>
-
+    </nav>
+    <% } %>
+    
     <!------------------------------------------------------------------------------------------------>
     <!-- main page  ----------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
-<div id="userPage" >
-    <div id="fridgeDiv">
-        <div>
-            <h1 class="list-group-item" id="fridgeHead">&ensp;Fridge</h1><!--with notification button-->
-        </div>
-
-        <div>
-            <ul class="list-group">
-                <% for (var i = 0; i < usersFood.length; i++){ %>
-                <li class="numberOfList" class="list-group-item">
-                    <div class="progress progressBar">
-                      <% if (usersFood[i][1].value >= alarm ) { %>
-                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/alarm*100%>%">
-                          <p class="progressBarContent"> <b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
-                        </div>
-                      <% } else if (usersFood[i][1].value <= (alarm/2)) { %>
-                        <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/alarm*100%>%">
-                          <p class="progressBarContent"> <b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
-                        </div>
-                      <% } else { %>
-                        <div class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/alarm*100%>%">
-                          <p class="progressBarContent"> <b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
-                        </div>
-                      <% } %>
-                    </div>
-                    <button class="ml-2 btn btn-outline-danger deleteButton" type="button">X</button>
-                </li>
-                <%  }  %>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!------------------------------------------------------------------------------------------------>
-<!--- Scanning ------------------------------------------------->
-<!------------------------------------------------------------------------------------------------>
-<div id="scanPage">
-  <div class="row mt-5">
-    <div class="col-12 mx-auto text-center">
-      <h2>Please upload your receipt:</h2>
-    </div>
-    <div class="col-12 mx-auto text-center">
-      <form>
-        <div class="form-group">
-          <input class="form-control-file" id='imageInput' type="file">
-          <br/>
-          <img id="scanPlaceholder" class="mt-4" src="../images/file.png" height="400" alt="Image preview...">
-        </div>
-        <div class="form-group">
-          <button id="scanSubmit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
-    <div class="loader modal-dialog" role="document">
-      <button id="close-loader" data-dismiss="modal">Close</button>
-    </div>
-  </div>
-  <div id="scannerForm" class="col-12 mx-auto addItemsForm">
-    <form action="./addFoodItems" method="POST">
-    </form>
-  </div>
-</div>
-
-<!------------------------------------------------------------------------------------------------>
-<!-- ADD ITEM ------------------------------------------------->
-<!------------------------------------------------------------------------------------------------>
-    <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
-    <div id="addPage">
-      <div class="addItems-settings-space">
-      </div>
-        <div id="addFrame">
-            <h2 class="add"> Add item </h2>
-            <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
-                    </div>
-                    <input id="foodNameInput" type="text" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <% if (device) { %>
+    <div id="userPage" >
+        <% } else { %>
+        <div id="userPage" class="topNavbarSpacing">
+            <% } %>
+            <div id="fridgeDiv">
+                <div>
+                    <h1 class="list-group-item" id="fridgeHead">&ensp;Fridge</h1><!--with notification button-->
                 </div>
-
-                <div id="ExpiryDate" class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
+                
+                <div>
+                    <ul class="list-group">
+                        <% for (var i = 0; i < usersFood.length; i++){ %>
+                        <li class="numberOfList" class="list-group-item">
+                            <div class="progress progressBar">
+                                <% if (usersFood[i][1].value >= alarm ) { %>
+                                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/alarm*100%>%">
+                                    <p class="progressBarContent"> <b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
+                                </div>
+                                <% } else if (usersFood[i][1].value <= (alarm/2)) { %>
+                                <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/alarm*100%>%">
+                                    <p class="progressBarContent"> <b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
+                                </div>
+                                <% } else { %>
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:<%= usersFood[i][1].value/alarm*100%>%">
+                                    <p class="progressBarContent"> <b class="foodName"><%= usersFood[i][0].value%></b> expire<%= (usersFood[i][0].value.substring(usersFood[i][0].value.length - 1) == 's') ? '' : 's'  %> in <b><%= usersFood[i][1].value %></b> days</p>
+                                </div>
+                                <% } %>
+                            </div>
+                            <button class="ml-2 btn btn-outline-danger deleteButton" type="button">X</button>
+                        </li>
+                        <%  }  %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!------------------------------------------------------------------------------------------------>
+    <!--- Scanning ------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    <% if (device) { %>
+    <div id="userPage" >
+        <% } else { %>
+        <div id="userPage" class="topNavbarSpacing">
+            <% } %>
+            <div id="scanPage">
+                <div class="row mt-5">
+                    <div class="col-12 mx-auto text-center">
+                        <h2>Please upload your receipt:</h2>
                     </div>
-					<% var dateInstance = new Date()%>
-					<% var minDate = "" + dateInstance.getFullYear()%>
-					<% minDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1)%>
-					<% minDate += dateInstance.getDate() + 1 >= 10 ? "-" + (dateInstance.getDate() + 1) : "-0" (+ dateInstance.getDate() + 1) %>
-                    <input type="date" name="expiryDate" value=<%= minDate%> min=<%= minDate%>
-						class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="col-12 mx-auto text-center">
+                        <form>
+                            <div class="form-group">
+                                <input class="form-control-file" id='imageInput' type="file">
+                                <br/>
+                                <img id="scanPlaceholder" class="mt-4" src="../images/file.png" height="400" alt="Image preview...">
+                            </div>
+                            <div class="form-group">
+                                <button id="scanSubmit" class="btn btn-large" data-toggle="modal" data-target="#loaderModal">SCAN</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <button id="submit" class="btn btn-large">SUBMIT</button>
-            </form>
+                
+                <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
+                    <div class="loader modal-dialog" role="document">
+                        <button id="close-loader" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <div id="scannerForm" class="col-12 mx-auto addItemsForm">
+                    <form action="./addFoodItems" method="POST">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-<!------------------------------------------------------------------------------------------------>
-<!-- NOTIFICATION SETTINGS ------------------------------------------------->
-<!------------------------------------------------------------------------------------------------>
-    <div id="notificationSettingPage">
-        <div class="addItems-settings-space">
-        </div>
-        <div id="notificationFrame">
-            <h2 class="add">How many days notice before your food expires? </h2>
-            <form id="saveNotification" action = "./notificationSet" method = "POST">
-                <div class="input-group mb-3 row mx-auto">
-                  <div class="notice pr-2 col-4">
-                    <input id="foodNameInput" type="number" name="days" min='1' max='28' value='5' step='1' class="form-control">
-                  </div>
-                  <div class="daysNotice notice col-8">
-                    <span class="daysNotice input-group-text">Days Notice</span>
-                  </div>
+    
+    <!------------------------------------------------------------------------------------------------>
+    <!-- ADD ITEM ------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    <% if (device) { %>
+    <div id="userPage" >
+        <% } else { %>
+        <div id="userPage" class="topNavbarSpacing">
+            <% } %>
+            <img id="easterModal" class="modal" src="../images/cannibal.jpg"/>
+            <div id="addPage">
+                <div class="addItems-settings-space">
                 </div>
-                <button id="submit" class="btn btn-large">Save</button>
-            </form>
+                <div id="addFrame">
+                    <h2 class="add"> Add item </h2>
+                    <form id="addSubmitForm" action = "./addSingleItem" method = "POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                            </div>
+                            <input id="foodNameInput" type="text" minlength="2" maxlength="30" name="food" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        
+                        <div id="ExpiryDate" class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Expiry date</span>
+                            </div>
+                            <% var dateInstance = new Date()%>
+                            <% var minDate = "" + dateInstance.getFullYear()%>
+                            <% minDate += (dateInstance.getMonth() + 1) >= 10 ? "-" + (dateInstance.getMonth() + 1) : "-0" + (dateInstance.getMonth() + 1)%>
+                            <% minDate += dateInstance.getDate() + 1 >= 10 ? "-" + (dateInstance.getDate() + 1) : "-0" (+ dateInstance.getDate() + 1) %>
+                            <input type="date" name="expiryDate" value=<%= minDate%> min=<%= minDate%>
+                                   class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <button id="submit" class="btn btn-large">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-<!------------------------------------------------------------------------------------------------>
-<!------------- ABOUT PAGE ------------------------------------------------->
-<!------------------------------------------------------------------------------------------------>
-<div id="aboutPage" class="container text-center">
-        <!--About yams heading row-->
-        <div class="row pt-4 pb-4">
-            <div class="mx-auto col-11">
-                <h1 class="display-4">About Yams</h1>
+    
+    <!------------------------------------------------------------------------------------------------>
+    <!-- NOTIFICATION SETTINGS ------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    <% if (device) { %>
+    <div id="userPage" >
+        <% } else { %>
+        <div id="userPage" class="topNavbarSpacing">
+            <% } %>
+            <div id="notificationSettingPage">
+                <div class="addItems-settings-space">
+                </div>
+                <div id="notificationFrame">
+                    <h2 class="add">How many days notice before your food expires? </h2>
+                    <form id="saveNotification" action = "./notificationSet" method = "POST">
+                        <div class="input-group mb-3 row mx-auto">
+                            <div class="notice pr-2 col-4">
+                                <input id="foodNameInput" type="number" name="days" min='1' max='28' value='5' step='1' class="form-control">
+                            </div>
+                            <div class="daysNotice notice col-8">
+                                <span class="daysNotice input-group-text">Days Notice</span>
+                            </div>
+                        </div>
+                        <button id="submit" class="btn btn-large">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!------------------------------------------------------------------------------------------------>
+    <!------------- ABOUT PAGE ------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    <% if (device) { %>
+    <div id="userPage" >
+        <% } else { %>
+        <div id="userPage" class="topNavbarSpacing">
+            <% } %>
+            <div id="aboutPage" class="container text-center">
+                <!--About yams heading row-->
+                <div class="row pt-4 pb-4">
+                    <div class="mx-auto col-11">
+                        <h1 class="display-4">About Yams</h1>
+                        <div class="row">
+                            <div class="col"><hr></div>
+                            <div class="col-auto"><i class="fas fa-square"></i></div>
+                            <div class="col"><hr></div>
+                            <p class="big pb-5">
+                                Yams is a mobile web application that helps you keep track of what's in your kitchen while you're out shopping! It also sends you notifications before your food expires so you can reduce food waste!</p>
+                        </div>
+                    </div>
+                </div>
+                <!--End of about yams heading row-->
+                
+                <!--About yams row-->
                 <div class="row">
-                    <div class="col"><hr></div>
-                    <div class="col-auto"><i class="fas fa-square"></i></div>
-                    <div class="col"><hr></div>
-                    <p class="big pb-5">
-                        Yams is a mobile web application that helps you keep track of what's in your kitchen while you're out shopping! It also sends you notifications before your food expires so you can reduce food waste!</p>
-                </div>
-            </div>
-        </div>
-        <!--End of about yams heading row-->
-
-        <!--About yams row-->
-        <div class="row">
-            <!--Item 1-->
-            <div class="col-lg-4 col-md-7 mb-4 mx-auto">
-                <img src="../images/fridge.png" att="Icons made by Tracy Tam" class="pic" class="mx-auto">
-                <h3 class="pt-4">Virtual Kitchen</h3>
-                <p class="text-justify ">The virtual kitchen lists all your food for quick reference while you're out and about!</p>
-            </div>
-            <!--Item 1-->
-            <!--Item 2-->
-            <div class="col-lg-4 col-md-6 mb-4 mx-auto">
-                <img src="../images/clock.png" att="Icons made by Smashicons" class="pic" class="mx-auto">
-                <h3 class="pt-4">Notifications</h3>
-                <p class="text-justify">After adding food to your kitchen, you're notified by email or text message before your food expires!</p>
-            </div>
-            <!--Item 2-->
-            <!--Item 3-->
-            <div class="col-lg-4 col-md-6 mb-5 mx-auto">
-                <img src="../images/coins.png" att="Icons made by Good Ware" class="pic" class="mx-auto">
-                <h3 class="pt-4">Money Saver</h3>
-                <p class="text-justify">The power and efficiency of Yams stops you from double buying food or throwing out food that's gone off. This adds up to lots of savings!</p>
-            </div>
-            <!--Item 3-->
-        </div>
-        <!--End of about yams row-->
-
-        <!--About us heading row-->
-
-        <div class="row pt-4 pb-4 mt-4">
-            <div class="mx-auto col-11">
-                <h1 class="display-4">About Us</h1>
-                <div class="row">
-                    <div class="col"><hr></div>
-                    <div class="col-auto"><i class="fas fa-square"></i>
+                    <!--Item 1-->
+                    <div class="col-lg-4 col-md-7 mb-4 mx-auto">
+                        <img src="../images/fridge.png" att="Icons made by Tracy Tam" class="pic" class="mx-auto">
+                        <h3 class="pt-4">Virtual Kitchen</h3>
+                        <p class="text-justify ">The virtual kitchen lists all your food for quick reference while you're out and about!</p>
                     </div>
-                    <div class="col"><hr></div>
-                    <p class="big pb-5">
-                        Our team consists of five highly passionate and skilled students who recently teamed up to tackle this food waste issue. We hope Yams can help you in your life!
-                    </p>
+                    <!--Item 1-->
+                    <!--Item 2-->
+                    <div class="col-lg-4 col-md-6 mb-4 mx-auto">
+                        <img src="../images/clock.png" att="Icons made by Smashicons" class="pic" class="mx-auto">
+                        <h3 class="pt-4">Notifications</h3>
+                        <p class="text-justify">After adding food to your kitchen, you're notified by email or text message before your food expires!</p>
+                    </div>
+                    <!--Item 2-->
+                    <!--Item 3-->
+                    <div class="col-lg-4 col-md-6 mb-5 mx-auto">
+                        <img src="../images/coins.png" att="Icons made by Good Ware" class="pic" class="mx-auto">
+                        <h3 class="pt-4">Money Saver</h3>
+                        <p class="text-justify">The power and efficiency of Yams stops you from double buying food or throwing out food that's gone off. This adds up to lots of savings!</p>
+                    </div>
+                    <!--Item 3-->
                 </div>
+                <!--End of about yams row-->
+                
+                <!--About us heading row-->
+                
+                <div class="row pt-4 pb-4 mt-4">
+                    <div class="mx-auto col-11">
+                        <h1 class="display-4">About Us</h1>
+                        <div class="row">
+                            <div class="col"><hr></div>
+                            <div class="col-auto"><i class="fas fa-square"></i>
+                            </div>
+                            <div class="col"><hr></div>
+                            <p class="big pb-5">
+                                Our team consists of five highly passionate and skilled students who recently teamed up to tackle this food waste issue. We hope Yams can help you in your life!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--End of about us heading row-->
+                
+                <!--About us row-->
+                <div class="row">
+                    <!--Person 1-->
+                    <div class="col-lg-6 col-md-6 mb-4 mx-auto">
+                        <img src="../images/Henry.jpg" class="people rounded-circle">
+                        <h3 class="pt-4">Henry</h3>
+                        <p>Front End UI Designer</p>
+                    </div>
+                    <!--Person 1-->
+                    <!--Person 2-->
+                    <div class="col-lg-6 col-md-6 mb-4 mx-auto">
+                        <img src="../images/Younhee.jpg" class="people rounded-circle">
+                        <h3 class="pt-4">Younhee</h3>
+                        <p>Front End Javascript Developer</p>
+                    </div>
+                    <!--Person 2-->
+                    <!--Person 3-->
+                    <div class="col-lg-4 col-md-4 mb-4 mx-auto">
+                        <img src="../images/Hayden.jpg" class="people rounded-circle">
+                        <h3 class="pt-4">Hayden</h3>
+                        <p>Full Stack Developer, Database Architect and Git Master</p>
+                    </div>
+                    <!--Person 3-->
+                    <!--Person 4-->
+                    <div class="col-lg-4 col-md-4 mb-4 mx-auto">
+                        <img src="../images/Adam.jpg" class="people rounded-circle">
+                        <h3 class="pt-4">Adam</h3>
+                        <p>Full Stack Developer and All Around Supporter</p>
+                    </div>
+                    <!--Person 4-->
+                    <!--Person 5-->
+                    <div class="col-lg-4 col-md-4 mb-4 mx-auto">
+                        <img src="../images/Jae.jpg" class="people rounded-circle">
+                        <h3 class="pt-4">Jae</h3>
+                        <p>Back End Developer, Database and Security Architect</p>
+                    </div>
+                    <!--Person 5-->
+                </div>
+                <!--End of about us row-->
             </div>
+            <!--End of container-->
+            <!-- </div> -->
         </div>
-        <!--End of about us heading row-->
-
-        <!--About us row-->
-        <div class="row">
-            <!--Person 1-->
-            <div class="col-lg-6 col-md-6 mb-4 mx-auto">
-                <img src="../images/Henry.jpg" class="people rounded-circle">
-                <h3 class="pt-4">Henry</h3>
-                <p>Front End UI Designer</p>
-            </div>
-            <!--Person 1-->
-            <!--Person 2-->
-            <div class="col-lg-6 col-md-6 mb-4 mx-auto">
-                <img src="../images/Younhee.jpg" class="people rounded-circle">
-                <h3 class="pt-4">Younhee</h3>
-                <p>Front End Javascript Developer</p>
-            </div>
-            <!--Person 2-->
-            <!--Person 3-->
-            <div class="col-lg-4 col-md-4 mb-4 mx-auto">
-                <img src="../images/Hayden.jpg" class="people rounded-circle">
-                <h3 class="pt-4">Hayden</h3>
-                <p>Full Stack Developer, Database Architect and Git Master</p>
-            </div>
-            <!--Person 3-->
-            <!--Person 4-->
-            <div class="col-lg-4 col-md-4 mb-4 mx-auto">
-                <img src="../images/Adam.jpg" class="people rounded-circle">
-                <h3 class="pt-4">Adam</h3>
-                <p>Full Stack Developer and All Around Supporter</p>
-            </div>
-            <!--Person 4-->
-            <!--Person 5-->
-            <div class="col-lg-4 col-md-4 mb-4 mx-auto">
-                <img src="../images/Jae.jpg" class="people rounded-circle">
-                <h3 class="pt-4">Jae</h3>
-                <p>Back End Developer, Database and Security Architect</p>
-            </div>
-            <!--Person 5-->
-        </div>
-        <!--End of about us row-->
     </div>
-    <!--End of container-->
-<!-- </div> -->
 <!------------------------------------------------footer------------------------------------->
 <!--
 <footer class="bg-dark text-white mt-4 fixed-bottom scrollHidden ">
-  <div class="container-fluid py-1 ">
+<div class="container-fluid py-1 ">
 
-    <div class="row">
-      <div class="col-8">
-        <small>Share our application!</small>
-        <button class="btn-facebook">
-          <span class="fab fa-facebook"></span>
-        </button>
-        <button class="btn-twitter">
-          <span class="fab fa-twitter"></span>
-        </button>
-      </div>
-      <div class="col-4"><small>©Yams</small></div>
-    </div>
-  </div>
+<div class="row">
+<div class="col-8">
+<small>Share our application!</small>
+<button class="btn-facebook">
+<span class="fab fa-facebook"></span>
+</button>
+<button class="btn-twitter">
+<span class="fab fa-twitter"></span>
+</button>
+</div>
+<div class="col-4"><small>©Yams</small></div>
+</div>
+</div>
 </footer>
 -->
 
@@ -372,8 +410,8 @@ crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../javascripts/Fridge.js"></script>
-<script type="text/javascript" src="../javascripts/Scanner.js"></script>
+<script type="text/javascript" src="../javascripts/fridge.js"></script>
+<script type="text/javascript" src="../javascripts/scanner.js"></script>
 
 </body>
 </html>

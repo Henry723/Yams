@@ -3,7 +3,7 @@
 var express = require('express');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
-var dataProcessor = require('./DataProcessor');
+var dataProcessor = require('./dataprocessor');
 var request = require('tedious').Request;
 var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
@@ -72,7 +72,7 @@ passport.use
                 );
                 dataProcessor.execSql (checkRequest);
             }
-      )  
+      )
 );
 
 // configure local login strategy
@@ -113,7 +113,7 @@ passport.use
 				              return done(null, row[0][0].value);
 		                  }
                       }
-                ); 
+                );
                 dataProcessor.execSql(loginRequest);
 	        }
       )
@@ -146,7 +146,7 @@ passport.use
 		                    registerRequest = new request("INSERT INTO users (name, email) VALUES ('"
                                 + profile.displayName + "', '" + email + "')"
                             , function (err, rowCount, rows) { console.log("done"); return done(null, email); });
-                        
+
                             dataProcessor.execSql(registerRequest);
 			            }
 			            else
