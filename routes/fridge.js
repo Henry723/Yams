@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var dataProcessor = require('../config/DataProcessor');
+var dataProcessor = require('../config/dataprocessor');
 var Request = require('tedious').Request;
 var nodemailer = require('nodemailer');
 
