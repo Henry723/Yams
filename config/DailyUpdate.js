@@ -1,10 +1,10 @@
 var schedule = require('node-schedule');
 var http = require('http');
 var os = require('os');
-var dataProcessor = require('./DataProcessor');
+var dataProcessor = require('./dataprocessor');
 
 
-function DailyUpdate()
+function dailyUpdate()
 {
     schedule.scheduleJob
     (
@@ -19,6 +19,6 @@ function DailyUpdate()
           }
     );
 }
-var DailyUpdate = DailyUpdate();
+var dailyUpdate = dailyUpdate();
 
-module.exports = DailyUpdate;
+module.exports = dailyUpdate;
